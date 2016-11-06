@@ -17,20 +17,24 @@
   
   <path id="hotciv.module.production.classpath">
     <path refid="${module.jdk.classpath.hotciv}"/>
+    <path refid="library.hamcrest-core-1.3.classpath"/>
   </path>
   
   <path id="hotciv.runtime.production.module.classpath">
     <pathelement location="${hotciv.output.dir}"/>
+    <path refid="library.hamcrest-core-1.3.classpath"/>
   </path>
   
   <path id="hotciv.module.classpath">
     <path refid="${module.jdk.classpath.hotciv}"/>
     <pathelement location="${hotciv.output.dir}"/>
+    <path refid="library.hamcrest-core-1.3.classpath"/>
   </path>
   
   <path id="hotciv.runtime.module.classpath">
     <pathelement location="${hotciv.testoutput.dir}"/>
     <pathelement location="${hotciv.output.dir}"/>
+    <path refid="library.hamcrest-core-1.3.classpath"/>
   </path>
   
   
@@ -39,8 +43,16 @@
     <exclude name="out/**"/>
     <exclude name="out/production/**"/>
     <exclude name="out/production/HotCiv/**"/>
+    <exclude name="out/production/HotCiv/lib/**"/>
+    <exclude name="out/production/HotCiv/test/**"/>
+    <exclude name="out/production/HotCiv/test/hotciv/**"/>
+    <exclude name="out/production/HotCiv/test/hotciv/standard/**"/>
     <exclude name="out/production/HotCiv/.idea/**"/>
     <exclude name="out/production/HotCiv/.idea/copyright/**"/>
+    <exclude name="out/production/HotCiv/.idea/libraries/**"/>
+    <exclude name="out/production/HotCiv/hotciv/**"/>
+    <exclude name="out/production/HotCiv/hotciv/standard/**"/>
+    <exclude name="out/production/HotCiv/hotciv/framework/**"/>
   </patternset>
   
   <patternset id="excluded.from.compilation.hotciv">
