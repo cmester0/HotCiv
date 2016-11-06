@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_hotciv" default="compile.module.hotciv">
+  <dirname property="module.hotciv.basedir" file="${ant.file.module_hotciv}"/>
+  
+  <property name="module.jdk.home.hotciv" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.hotciv" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.hotciv" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.hotciv" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="hotciv.output.dir" value="${module.hotciv.basedir}/out/production/HotCiv"/>
+  <property name="hotciv.testoutput.dir" value="${module.hotciv.basedir}/out/test/HotCiv"/>
+  
+  <path id="hotciv.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="hotciv.module.production.classpath">
+    <path refid="${module.jdk.classpath.hotciv}"/>
+  </path>
+  
+  <path id="hotciv.runtime.production.module.classpath">
+    <pathelement location="${hotciv.output.dir}"/>
+  </path>
+  
+  <path id="hotciv.module.classpath">
+    <path refid="${module.jdk.classpath.hotciv}"/>
+    <pathelement location="${hotciv.output.dir}"/>
+  </path>
+  
+  <path id="hotciv.runtime.module.classpath">
+    <pathelement location="${hotciv.testoutput.dir}"/>
+    <pathelement location="${hotciv.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.hotciv">
+    <patternset refid="ignored.files"/>
+    <exclude name="out/**"/>
+    <exclude name="out/production/**"/>
+    <exclude name="out/production/HotCiv/**"/>
+    <exclude name="out/production/HotCiv/.idea/**"/>
+    <exclude name="out/production/HotCiv/.idea/copyright/**"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.hotciv">
+    <patternset refid="excluded.from.module.hotciv"/>
+  </patternset>
+  
+  <path id="hotciv.module.sourcepath">
+    <dirset dir="${module.hotciv.basedir}/../../HotCiv">
+      <include name="HotCiv"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.hotciv" depends="compile.module.hotciv.production,compile.module.hotciv.tests" description="Compile module HotCiv"/>
+  
+  <target name="compile.module.hotciv.production" depends="register.custom.compilers" description="Compile module HotCiv; production classes">
+    <mkdir dir="${hotciv.output.dir}"/>
+    <javac2 destdir="${hotciv.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.hotciv}/javac">
+      <compilerarg line="${compiler.args.hotciv}"/>
+      <bootclasspath refid="hotciv.module.bootclasspath"/>
+      <classpath refid="hotciv.module.production.classpath"/>
+      <src refid="hotciv.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.hotciv"/>
+    </javac2>
+    
+    <copy todir="${hotciv.output.dir}">
+      <fileset dir="${module.hotciv.basedir}">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.hotciv.tests" depends="register.custom.compilers,compile.module.hotciv.production" description="compile module HotCiv; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.hotciv" description="cleanup module">
+    <delete dir="${hotciv.output.dir}"/>
+    <delete dir="${hotciv.testoutput.dir}"/>
+  </target>
+</project>
