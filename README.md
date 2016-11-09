@@ -12,8 +12,9 @@ Test-list:
 * ~~There is a Mountain at (2,2)~~
 * ~~There is a Hill at (0,1)~~
 * ~~the starting year is 4000 BC~~
-* one round => year 3900 BC
-* two rounds => year 3800 BC
+* ~~one round => year 3900 BC~~
+* ~~two rounds => year 3800 BC~~
+* three rounds => year 3700 BC
 * Red wins in year 3000 BC
 * units cannot move over mountain
 * units cannot move over ocean
