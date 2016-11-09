@@ -48,7 +48,7 @@ public class GameImpl implements Game {
   }
 
   public Player getPlayerInTurn() { return Player.RED; }
-  public Player getWinner() { return null; }
+  public Player getWinner() { return Player.RED; }
   public int getAge() {
     return age;
   }
@@ -56,12 +56,7 @@ public class GameImpl implements Game {
     return false;
   }
   public void endOfTurn() {
-    if(age == -3900){
-      age = -3800;
-    }
-    else{
-      age = -3900;
-    }
+    age += 100;
   }
   public void changeWorkForceFocusInCityAt( Position p, String balance ) {}
   public void changeProductionInCityAt( Position p, String unitType ) {}

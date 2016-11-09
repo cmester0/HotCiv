@@ -98,4 +98,18 @@ public class TestAlphaCiv {
     game.endOfTurn();
     assertThat(game.getAge(), is(-3800));
   }
+
+  @Test
+  public void threeRoundsIs3700BC(){
+    game.endOfTurn();
+    game.endOfTurn();
+    game.endOfTurn();
+    assertThat(game.getAge(), is(-3700));
+  }
+
+  @Test
+  public void redWinsAtAge3000BC(){
+    for(int i = 0; i < 10; i++) game.endOfTurn();
+    assertThat(game.getWinner(), is(Player.RED));
+  }
 }
