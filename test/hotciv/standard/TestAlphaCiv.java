@@ -69,26 +69,21 @@ public class TestAlphaCiv {
     assertThat(game.getTileAt(new Position(1,0)).getTypeString(), is("Ocean"));
   }
 
+  // There is a Mountain at (2,2)
   @Test
   public void mountainAt2Comma2(){
     assertThat(game.getTileAt(new Position(2,2)).getTypeString(), is("Mountain"));
   }
 
+  // There is a hill at (0,1)
   @Test
   public void hillAt0Comma1(){
     assertThat(game.getTileAt(new Position(0,1)).getTypeString(), is("Hill"));
   }
 
-  // Units cannot move over mountains
   @Test
-  public void unitCannotMoveOverMountain(){
-
-  }
-
-  // Red cannot move blue units
-  @Test
-  public void redCannotMoveBlue(){
-
+  public void startingYearIs4000BC(){
+    assertThat(game.getAge(), is(-4000));
   }
 
 }
