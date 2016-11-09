@@ -5,8 +5,9 @@ AlphaCiv features:
 * Basic environment set up
 
 Test-list:
-* Red is the first player in turn
-* Red's city is at (1,1)
+* ~~Red is the first player in turn~~
+* ~~Red's city is at (1,1)~~
+* Blue's city is at (4,1)
 * there is ocean at (1,0)
 * units cannot move over mountain
 * units cannot move over ocean
