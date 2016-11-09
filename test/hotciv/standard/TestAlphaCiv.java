@@ -86,4 +86,9 @@ public class TestAlphaCiv {
     assertThat(game.getAge(), is(-4000));
   }
 
+  @Test
+  public void oneRoundIs3900BC(){
+    game.endOfTurn();
+    assertThat(game.getAge(), is(-3900));
+  }
 }

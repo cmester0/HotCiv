@@ -30,6 +30,8 @@ import src.hotciv.framework.*;
 */
 
 public class GameImpl implements Game {
+  private int age = -4000;
+
   public Tile getTileAt( Position p ) {
     if(p.getColumn() == 0) {
       return new OceanTile();
@@ -47,11 +49,15 @@ public class GameImpl implements Game {
 
   public Player getPlayerInTurn() { return Player.RED; }
   public Player getWinner() { return null; }
-  public int getAge() { return -4000; }
+  public int getAge() {
+    return age;
+  }
   public boolean moveUnit( Position from, Position to ) {
     return false;
   }
-  public void endOfTurn() {}
+  public void endOfTurn() {
+    age = -3900;
+  }
   public void changeWorkForceFocusInCityAt( Position p, String balance ) {}
   public void changeProductionInCityAt( Position p, String unitType ) {}
   public void performUnitActionAt( Position p ) {}
