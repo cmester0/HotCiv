@@ -4,7 +4,7 @@
 * Test system has been set up
 * Basic environment set up
 
-## Test-list:
+### Test-list:
 * [x] ~~Red is the first player in turn~~
 * [x] ~~Red's city is at (1,1)~~
 * [x] ~~Blue's city is at (4,1)~~
