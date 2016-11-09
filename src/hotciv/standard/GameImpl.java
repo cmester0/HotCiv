@@ -56,7 +56,12 @@ public class GameImpl implements Game {
     return false;
   }
   public void endOfTurn() {
-    age = -3900;
+    if(age == -3900){
+      age = -3800;
+    }
+    else{
+      age = -3900;
+    }
   }
   public void changeWorkForceFocusInCityAt( Position p, String balance ) {}
   public void changeProductionInCityAt( Position p, String unitType ) {}
