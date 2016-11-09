@@ -5,7 +5,7 @@ AlphaCiv features:
 * Basic environment set up
 
 Test-list:
-* *[x]* ~~Red is the first player in turn~~
+* [x] ~~Red is the first player in turn~~
 * [x] ~~Red's city is at (1,1)~~
 * [x] ~~Blue's city is at (4,1)~~
 * [x] ~~there is ocean at (1,0)~~
