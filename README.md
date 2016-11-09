@@ -7,8 +7,9 @@ AlphaCiv features:
 Test-list:
 * ~~Red is the first player in turn~~
 * ~~Red's city is at (1,1)~~
-* Blue's city is at (4,1)
-* there is ocean at (1,0)
+* ~~Blue's city is at (4,1)~~
+* ~~there is ocean at (1,0)~~
+* ~~There is a Mountain at (2,2)~~
 * units cannot move over mountain
 * units cannot move over ocean
 * Red cannot move Blue's units
@@ -33,7 +34,6 @@ Test-list:
 * Blue has a Legion at (3,2)
 * Blue has a Settler at (4,3)
 * There is a Hill at (0,1)
-* There is a Mountain at (2,2)
 * Red producing 1 archer => 1 archer at (1,1)
 * Red producing 2 archer => archers at (1,1) and (2,0)
 * Red producing 5 archer => archers at (1,1), (2,0), (2,1), (1,3), and (0,3)
