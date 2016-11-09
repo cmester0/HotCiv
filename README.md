@@ -14,8 +14,8 @@ Test-list:
 * ~~the starting year is 4000 BC~~
 * ~~one round => year 3900 BC~~
 * ~~two rounds => year 3800 BC~~
-* three rounds => year 3700 BC
-* Red wins in year 3000 BC
+* ~~three rounds => year 3700 BC~~
+* ~~Red wins in year 3000 BC~~
 * units cannot move over mountain
 * units cannot move over ocean
 * Red cannot move Blue's units
