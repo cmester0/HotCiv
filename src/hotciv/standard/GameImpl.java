@@ -31,9 +31,11 @@ import src.hotciv.framework.*;
 
 public class GameImpl implements Game {
   public Tile getTileAt( Position p ) {
-    if(p.getColumn() == 1) {
+    if(p.getColumn() == 0) {
       return new OceanTile();
-    }else{
+    } else if(p.getColumn() == 1){
+      return new HillTile();
+    } else {
       return new MountainTile();
     }
   }
