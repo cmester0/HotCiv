@@ -30,7 +30,13 @@ import src.hotciv.framework.*;
 */
 
 public class GameImpl implements Game {
-  public Tile getTileAt( Position p ) { return new OceanTile(); }
+  public Tile getTileAt( Position p ) {
+    if(p.getColumn() == 1) {
+      return new OceanTile();
+    }else{
+      return new MountainTile();
+    }
+  }
   public Unit getUnitAt( Position p ) { return null; }
 
   public City getCityAt( Position p ) {

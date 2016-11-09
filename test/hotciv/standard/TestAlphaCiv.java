@@ -69,6 +69,11 @@ public class TestAlphaCiv {
     assertThat(game.getTileAt(new Position(0,1)).getTypeString(), is("Ocean"));
   }
 
+  @Test
+  public void mountainAt2Comma2(){
+    assertThat(game.getTileAt(new Position(2,2)).getTypeString(), is("Mountain"));
+  }
+
   // Units cannot move over mountains
   @Test
   public void unitCannotMoveOverMountain(){
