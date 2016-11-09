@@ -30,9 +30,13 @@ import src.hotciv.framework.*;
 */
 
 public class GameImpl implements Game {
-  public Tile getTileAt( Position p ) { return null; }
+  public Tile getTileAt( Position p ) { return new OceanTile(); }
   public Unit getUnitAt( Position p ) { return null; }
-  public City getCityAt( Position p ) { return null; }
+
+  public City getCityAt( Position p ) {
+    return new StandardCity(p);
+  }
+
   public Player getPlayerInTurn() { return Player.RED; }
   public Player getWinner() { return null; }
   public int getAge() { return 0; }
