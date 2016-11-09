@@ -55,13 +55,18 @@ public class TestAlphaCiv {
   // There is a red city at (1,1)
   @Test
   public void redCityAt1comma1(){
+    assertThat(game.getCityAt(new Position(1,1)).getOwner(), is(Player.RED));
+  }
 
+  @Test
+  public void blueCityIsAt4comma1(){
+    assertThat(game.getCityAt(new Position(4,1)).getOwner(), is(Player.BLUE));
   }
 
   // There is ocean at (1,0)
   @Test
   public void oceanAt1comma0(){
-
+    assertThat(game.getTileAt(new Position(0,1)).getTypeString(), is("Ocean"));
   }
 
   // Units cannot move over mountains
