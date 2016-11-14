@@ -68,33 +68,33 @@ public class TestAlphaCiv {
   // There is ocean at (1,0)
   @Test
   public void oceanAt1comma0(){
-    assertThat(game.getTileAt(new Position(1,0)).getTypeString(), is("Ocean"));
+    assertThat(game.getTileAt(new Position(1,0)).getTypeString(), is(GameConstants.OCEANS));
   }
 
   // There is a Mountain at (2,2)
   @Test
   public void mountainAt2Comma2(){
-    assertThat(game.getTileAt(new Position(2,2)).getTypeString(), is("Mountain"));
+    assertThat(game.getTileAt(new Position(2,2)).getTypeString(), is(GameConstants.MOUNTAINS));
   }
 
   // There is a hill at (0,1)
   @Test
   public void hillAt0Comma1(){
-    assertThat(game.getTileAt(new Position(0,1)).getTypeString(), is("Hill"));
+    assertThat(game.getTileAt(new Position(0,1)).getTypeString(), is(GameConstants.HILLS));
   }
 
   //The board consists mainly of Plains
   @Test
   public void gameIsMostlyPlains(){
-    assertThat(game.getTileAt(new Position(0,0)).getTypeString(), is("Plains"));
+    assertThat(game.getTileAt(new Position(0,0)).getTypeString(), is(GameConstants.PLAINS));
 
-    assertThat(game.getTileAt(new Position(2,0)).getTypeString(), is("Plains"));
+    assertThat(game.getTileAt(new Position(2,0)).getTypeString(), is(GameConstants.PLAINS));
 
-    assertThat(game.getTileAt(new Position(2,1)).getTypeString(), is("Plains"));
+    assertThat(game.getTileAt(new Position(2,1)).getTypeString(), is(GameConstants.PLAINS));
 
-    assertThat(game.getTileAt(new Position(8,6)).getTypeString(), is("Plains"));
+    assertThat(game.getTileAt(new Position(8,6)).getTypeString(), is(GameConstants.PLAINS));
 
-    assertThat(game.getTileAt(new Position(15,15)).getTypeString(), is("Plains"));
+    assertThat(game.getTileAt(new Position(15,15)).getTypeString(), is(GameConstants.PLAINS));
   }
 
   @Test
@@ -134,6 +134,21 @@ public class TestAlphaCiv {
     City city = new StandardCity(null);
 
     assertThat(city.getSize(), is(1));
+  }
+
+  @Test
+  public void citiesHave0ProductionAtStart(){
+    int prod  = game.getProductionOfCity(new StandardCity(null));
+
+    assertThat(prod, is(0));
+  }
+
+  @Test
+  public void citiesHave6ProductionAfter1Round(){
+    game.endOfTurn();
+
+    int prod  = game.getProductionOfCity(new StandardCity(null));
+    assertThat(prod, is(6));
   }
 
 }

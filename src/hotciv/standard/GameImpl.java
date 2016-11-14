@@ -34,13 +34,13 @@ public class GameImpl implements Game {
 
   public Tile getTileAt( Position p ) {
     if(p.getColumn() == 0 && p.getRow() == 1) {
-      return new StandardTile("Ocean");
+      return new StandardTile(GameConstants.OCEANS);
     } else if(p.getColumn() == 1 && p.getRow() == 0){
-      return new StandardTile("Hill");
+      return new StandardTile(GameConstants.HILLS);
     } else if(p.getColumn() == 2 && p.getRow() == 2) {
-      return new StandardTile("Mountain");
+      return new StandardTile(GameConstants.MOUNTAINS);
     } else {
-      return new StandardTile("Plains");
+      return new StandardTile(GameConstants.PLAINS);
     }
   }
   public Unit getUnitAt( Position p ) { return null; }
@@ -48,6 +48,7 @@ public class GameImpl implements Game {
   public City getCityAt( Position p ) {
     return new StandardCity(p);
   }
+
 
   public Player getPlayerInTurn() { return Player.RED; }
   public Player getWinner() { return Player.RED; }
@@ -63,4 +64,9 @@ public class GameImpl implements Game {
   public void changeWorkForceFocusInCityAt( Position p, String balance ) {}
   public void changeProductionInCityAt( Position p, String unitType ) {}
   public void performUnitActionAt( Position p ) {}
+
+  @Override
+  public int getProductionOfCity(City c) {
+    return age==-4000?0:6;
+  }
 }
