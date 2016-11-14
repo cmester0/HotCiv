@@ -16,11 +16,17 @@
 * [x] ~~two rounds => year 3800 BC~~
 * [x] ~~three rounds => year 3700 BC~~
 * [x] ~~Red wins in year 3000 BC~~
+* [x] ~~Plains everywhere except (1,1), (4,1), (1,0), (2,2)~~
+* [x] ~~cities' population size is always 1~~
+* [x] ~~red production of city is 0 'production' at the beginning of the game~~
+* [x] ~~red city produce 6 'production' after a round has ended~~
+* [x] ~~Cities produce archers at the beginning of the game~~
+* [x] ~~If red city production type is Archer, and we run two rounds, the difference should be 2~~
+* [x] ~~If red city production type is Archer, and we run four rounds, the difference should be 4~~
+* [x] ~~If red city production type is Settler, and we run four rounds, the difference should be 24~~
 * [ ] units cannot move over mountain
 * [ ] units cannot move over ocean
 * [ ] Red cannot move Blue's units
-* [ ] cities produce 6 'production' after a round has ended
-* [ ] cities' population size is always 1
 * [ ] after Red it is Blue that is in turn
 * [ ] Red's unit attack and destroy Blue's unit
 * [ ] the attacker of a battle always wins
@@ -37,4 +43,7 @@
 * [ ] Red producing 1 archer => 1 archer at (1,1)
 * [ ] Red producing 2 archer => archers at (1,1) and (2,0)
 * [ ] Red producing 5 archer => archers at (1,1), (2,0), (2,1), (1,3), and (0,3)
+* [ ] Production of red city (1,1) is 6 'production' after a round has ended
+* [ ] Red city produces a unit, does not remove production from blue city
+* [ ] If production is greater than 10 at end of turn, and production type is archer, then deduct 10 (and produce an archer)
 * [ ] ...
