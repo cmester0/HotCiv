@@ -34,11 +34,11 @@ public class GameImpl implements Game {
 
   public Tile getTileAt( Position p ) {
     if(p.getColumn() == 0) {
-      return new OceanTile();
+      return new StandardTile("Ocean");
     } else if(p.getColumn() == 1){
-      return new HillTile();
+      return new StandardTile("Hill");
     } else {
-      return new MountainTile();
+      return new StandardTile("Mountain");
     }
   }
   public Unit getUnitAt( Position p ) { return null; }
