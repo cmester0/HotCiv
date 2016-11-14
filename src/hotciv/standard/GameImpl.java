@@ -32,17 +32,20 @@ import java.util.HashMap;
 */
 
 public class GameImpl implements Game {
-  private int age = -4000,
-              productionRed = 0,
-              productionBlue = 0;
+  private int age = -4000;
 
   private HashMap<Position, City> cities;
+  private HashMap<Player, Integer> production;
 
   public GameImpl(){
     cities = new HashMap<Position, City>();
+    production = new HashMap<Player, Integer>();
 
     cities.put(new Position(1,1), new StandardCity(new Position(1,1)));
     cities.put(new Position(4,1), new StandardCity(new Position(4,1)));
+
+    for(Player p : Player.values())
+      production.put(p, 0);
   }
 
   public Tile getTileAt( Position p ) {
@@ -73,8 +76,21 @@ public class GameImpl implements Game {
   }
   public void endOfTurn() {
     age += 100;
-    productionRed=(productionRed+6)%(cities.get(new Position(1,1)).getProduction().equals(GameConstants.SETTLER)?30:10);
-    productionBlue=(productionBlue+6)%(cities.get(new Position(4,1)).getProduction().equals(GameConstants.SETTLER)?30:10);
+
+    for(City c : cities.values()) {
+      int newProd = production.get(c.getOwner()) + 6;
+
+      switch(c.getProduction()){
+        case GameConstants.SETTLER:
+          newProd %= 30;
+          break;
+        default:
+          newProd %= 10;
+          break;
+      }
+
+      production.put(c.getOwner(), newProd);
+    }
   }
   public void changeWorkForceFocusInCityAt( Position p, String balance ) {}
   public void changeProductionInCityAt( Position p, String unitType ) {
@@ -84,11 +100,6 @@ public class GameImpl implements Game {
 
   @Override
   public int getProductionAmountOfCity(City c) {
-    switch(c.getOwner()){
-      case RED:
-        return productionRed;
-      default:
-        return productionBlue;
-    }
+    return production.get(c.getOwner());
   }
 }
