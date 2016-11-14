@@ -1,6 +1,7 @@
 package src.hotciv.standard;
 
 import src.hotciv.framework.City;
+import src.hotciv.framework.GameConstants;
 import src.hotciv.framework.Player;
 import src.hotciv.framework.Position;
 
@@ -9,9 +10,15 @@ import src.hotciv.framework.Position;
  */
 public class StandardCity implements City {
     private Position p;
+    private String unitType;
 
-    public StandardCity(Position p) {
+    public StandardCity(Position p){
+        this(p, GameConstants.ARCHER);
+    }
+
+    public StandardCity(Position p, String unitType) {
         this.p = p;
+        this.unitType = unitType;
     }
 
     @Override
@@ -30,7 +37,7 @@ public class StandardCity implements City {
 
     @Override
     public String getProduction() {
-        return null;
+        return unitType;
     }
 
     @Override

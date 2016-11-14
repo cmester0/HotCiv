@@ -137,5 +137,5 @@ public interface Game {
    */
   public void performUnitActionAt( Position p );
 
-  public int getProductionOfCity(City c);
+  public int getProductionAmountOfCity(City c);
 }

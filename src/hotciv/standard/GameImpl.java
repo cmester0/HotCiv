@@ -30,7 +30,10 @@ import src.hotciv.framework.*;
 */
 
 public class GameImpl implements Game {
-  private int age = -4000;
+  private int age = -4000, production = 0;
+
+  private City redCity  = new StandardCity(new Position(1,1)),
+               blueCity = new StandardCity(new Position(4,1));
 
   public Tile getTileAt( Position p ) {
     if(p.getColumn() == 0 && p.getRow() == 1) {
@@ -46,7 +49,10 @@ public class GameImpl implements Game {
   public Unit getUnitAt( Position p ) { return null; }
 
   public City getCityAt( Position p ) {
-    return new StandardCity(p);
+    if(p.getRow()==1 && p.getColumn()==1) {
+      return redCity;
+    }
+    return blueCity;
   }
 
 
@@ -60,13 +66,19 @@ public class GameImpl implements Game {
   }
   public void endOfTurn() {
     age += 100;
+    production=(production+6)%(redCity.getProduction().equals(GameConstants.SETTLER)?30:10);
   }
   public void changeWorkForceFocusInCityAt( Position p, String balance ) {}
-  public void changeProductionInCityAt( Position p, String unitType ) {}
+  public void changeProductionInCityAt( Position p, String unitType ) {
+    if(p.getColumn() == 1 && p.getRow() == 1)
+      redCity = new StandardCity(p, unitType);
+    else
+      blueCity = new StandardCity(p, unitType);
+  }
   public void performUnitActionAt( Position p ) {}
 
   @Override
-  public int getProductionOfCity(City c) {
-    return age==-4000?0:6;
+  public int getProductionAmountOfCity(City c) {
+    return production;
   }
 }

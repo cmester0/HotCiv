@@ -42,10 +42,14 @@ import java.util.*;
 public class TestAlphaCiv {
   private Game game;
 
+  private City redCity, blueCity;
+
   /** Fixture for alphaciv testing. */
   @Before
   public void setUp() {
     game = new GameImpl();
+    redCity = game.getCityAt(new Position(1,1));
+    blueCity = game.getCityAt(new Position(4,1));
   }
 
   // FRS p. 455 states that 'Red is the first player to take a turn'.
@@ -57,12 +61,12 @@ public class TestAlphaCiv {
   // There is a red city at (1,1)
   @Test
   public void redCityAt1comma1(){
-    assertThat(game.getCityAt(new Position(1,1)).getOwner(), is(Player.RED));
+    assertThat(redCity.getOwner(), is(Player.RED));
   }
 
   @Test
   public void blueCityIsAt4comma1(){
-    assertThat(game.getCityAt(new Position(4,1)).getOwner(), is(Player.BLUE));
+    assertThat(blueCity.getOwner(), is(Player.BLUE));
   }
 
   // There is ocean at (1,0)
@@ -137,18 +141,73 @@ public class TestAlphaCiv {
   }
 
   @Test
-  public void citiesHave0ProductionAtStart(){
-    int prod  = game.getProductionOfCity(new StandardCity(null));
+  public void citiesProduceArchersAtFirst(){
+    City city = new StandardCity(null);
+
+    assertThat(city.getProduction(), is(notNullValue()));
+    assertThat(city.getProduction(), is(GameConstants.ARCHER));
+  }
+
+  @Test
+  public void changingProductionToSettlersOfRedCityActuallyChangesIt(){
+    game.changeProductionInCityAt(new Position(1,1), GameConstants.SETTLER);
+
+    assertThat(game.getCityAt(new Position(1,1)).getProduction(), is(GameConstants.SETTLER));
+  }
+
+  @Test
+  public void redCityHas0ProductionAtStart(){
+    int prod  = game.getProductionAmountOfCity(redCity);
 
     assertThat(prod, is(0));
   }
 
   @Test
-  public void citiesHave6ProductionAfter1Round(){
+  public void redCityHas6ProductionAfter1Round(){
     game.endOfTurn();
 
-    int prod  = game.getProductionOfCity(new StandardCity(null));
+    int prod  = game.getProductionAmountOfCity(redCity);
     assertThat(prod, is(6));
+  }
+
+  //6 + 6 - 1 archer (10) = 2 production
+  @Test
+  public void redCityHas2ProductionAfter2RoundsIfProducingArchers(){
+    game.endOfTurn();
+    game.endOfTurn();
+
+    int prod  = game.getProductionAmountOfCity(redCity);
+    assertThat(prod, is(6*2-10)); //6*2-10 = 2
+  }
+
+  //6*4 = 24 - 2 archers = 4
+  @Test
+  public void redCityHas4ProductionAfter4RoundsIfProducingArchers(){
+    for(int i=0; i<4; i++)
+      game.endOfTurn();
+
+    int prod  = game.getProductionAmountOfCity(redCity);
+    assertThat(prod, is(4));
+  }
+
+  @Test
+  public void redCityHas24ProductionAfter4RoundsIfProducingSettlers(){
+    game.changeProductionInCityAt(new Position(1,1), GameConstants.SETTLER);
+    for(int i=0; i<4; i++)
+      game.endOfTurn();
+
+    int prod  = game.getProductionAmountOfCity(redCity);
+    assertThat(prod, is(24));
+  }
+
+  @Test
+  public void redCityHas4ProductionAfter4RoundsIfBlueProducingSettlers(){
+    game.changeProductionInCityAt(new Position(4,1), GameConstants.SETTLER);
+    for(int i=0; i<4; i++)
+      game.endOfTurn();
+
+    int prod  = game.getProductionAmountOfCity(redCity);
+    assertThat(prod, is(4));
   }
 
 }
