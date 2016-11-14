@@ -42,14 +42,14 @@ import java.util.*;
 public class TestAlphaCiv {
   private Game game;
 
-  private City redCity, blueCity;
+  private Position redPosition, bluePosition;
 
   /** Fixture for alphaciv testing. */
   @Before
   public void setUp() {
     game = new GameImpl();
-    redCity = game.getCityAt(new Position(1,1));
-    blueCity = game.getCityAt(new Position(4,1));
+    redPosition = (new Position(1,1));
+    bluePosition = (new Position(4,1));
   }
 
   // FRS p. 455 states that 'Red is the first player to take a turn'.
@@ -61,12 +61,12 @@ public class TestAlphaCiv {
   // There is a red city at (1,1)
   @Test
   public void redCityAt1comma1(){
-    assertThat(redCity.getOwner(), is(Player.RED));
+    assertThat(game.getCityAt(redPosition).getOwner(), is(Player.RED));
   }
 
   @Test
   public void blueCityIsAt4comma1(){
-    assertThat(blueCity.getOwner(), is(Player.BLUE));
+    assertThat(game.getCityAt(bluePosition).getOwner(), is(Player.BLUE));
   }
 
   // There is ocean at (1,0)
@@ -157,7 +157,7 @@ public class TestAlphaCiv {
 
   @Test
   public void redCityHas0ProductionAtStart(){
-    int prod  = game.getProductionAmountOfCity(redCity);
+    int prod  = game.getProductionAmountOfCity(game.getCityAt(redPosition));
 
     assertThat(prod, is(0));
   }
@@ -166,7 +166,7 @@ public class TestAlphaCiv {
   public void redCityHas6ProductionAfter1Round(){
     game.endOfTurn();
 
-    int prod  = game.getProductionAmountOfCity(redCity);
+    int prod  = game.getProductionAmountOfCity(game.getCityAt(redPosition));
     assertThat(prod, is(6));
   }
 
@@ -176,7 +176,7 @@ public class TestAlphaCiv {
     game.endOfTurn();
     game.endOfTurn();
 
-    int prod  = game.getProductionAmountOfCity(redCity);
+    int prod  = game.getProductionAmountOfCity(game.getCityAt(redPosition));
     assertThat(prod, is(6*2-10)); //6*2-10 = 2
   }
 
@@ -186,7 +186,7 @@ public class TestAlphaCiv {
     for(int i=0; i<4; i++)
       game.endOfTurn();
 
-    int prod  = game.getProductionAmountOfCity(redCity);
+    int prod  = game.getProductionAmountOfCity(game.getCityAt(redPosition));
     assertThat(prod, is(4));
   }
 
@@ -196,7 +196,7 @@ public class TestAlphaCiv {
     for(int i=0; i<4; i++)
       game.endOfTurn();
 
-    int prod  = game.getProductionAmountOfCity(redCity);
+    int prod  = game.getProductionAmountOfCity(game.getCityAt(redPosition));
     assertThat(prod, is(24));
   }
 
@@ -206,7 +206,7 @@ public class TestAlphaCiv {
     for(int i=0; i<4; i++)
       game.endOfTurn();
 
-    int prod  = game.getProductionAmountOfCity(redCity);
+    int prod  = game.getProductionAmountOfCity(game.getCityAt(redPosition));
     assertThat(prod, is(4));
   }
 
@@ -216,8 +216,39 @@ public class TestAlphaCiv {
     for(int i=0; i<4; i++)
       game.endOfTurn();
 
-    int prod  = game.getProductionAmountOfCity(blueCity);
+    int prod  = game.getProductionAmountOfCity(game.getCityAt(bluePosition));
     assertThat(prod, is(4));
   }
 
+  @Test
+  public void at2RoundsRedProducesArcherAt1comma1(){
+    game.endOfTurn();
+    game.endOfTurn();
+    assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.ARCHER));
+  }
+
+  @Test
+  public void redChangeProductionToSettlerWait5Rounds(){
+    game.changeProductionInCityAt(redPosition,GameConstants.SETTLER);
+    game.endOfTurn();
+    game.endOfTurn();
+    game.endOfTurn();
+    game.endOfTurn();
+    game.endOfTurn();
+    assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.SETTLER));
+  }
+
+  @Test
+  public void at6RoundsRedProduces3ArchersAt1comma1And0comma2And1comma2(){
+    game.endOfTurn();
+    game.endOfTurn();
+    game.endOfTurn();
+    game.endOfTurn();
+    game.endOfTurn();
+    game.endOfTurn();
+
+    assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.ARCHER));
+    assertThat(game.getUnitAt(new Position(0,2)).getTypeString(), is(GameConstants.ARCHER));
+    assertThat(game.getUnitAt(new Position(1,2)).getTypeString(), is(GameConstants.ARCHER));
+  }
 }
