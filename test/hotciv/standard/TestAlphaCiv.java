@@ -210,4 +210,14 @@ public class TestAlphaCiv {
     assertThat(prod, is(4));
   }
 
+  @Test
+  public void blueCityHas4ProductionAfter4RoundsIfRedProducingSettlers(){
+    game.changeProductionInCityAt(new Position(1,1), GameConstants.SETTLER);
+    for(int i=0; i<4; i++)
+      game.endOfTurn();
+
+    int prod  = game.getProductionAmountOfCity(blueCity);
+    assertThat(prod, is(4));
+  }
+
 }

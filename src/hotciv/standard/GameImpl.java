@@ -32,7 +32,9 @@ import java.util.HashMap;
 */
 
 public class GameImpl implements Game {
-  private int age = -4000, production = 0;
+  private int age = -4000,
+              productionRed = 0,
+              productionBlue = 0;
 
   private HashMap<Position, City> cities;
 
@@ -71,7 +73,8 @@ public class GameImpl implements Game {
   }
   public void endOfTurn() {
     age += 100;
-    production=(production+6)%(cities.get(new Position(1,1)).getProduction().equals(GameConstants.SETTLER)?30:10);
+    productionRed=(productionRed+6)%(cities.get(new Position(1,1)).getProduction().equals(GameConstants.SETTLER)?30:10);
+    productionBlue=(productionBlue+6)%(cities.get(new Position(4,1)).getProduction().equals(GameConstants.SETTLER)?30:10);
   }
   public void changeWorkForceFocusInCityAt( Position p, String balance ) {}
   public void changeProductionInCityAt( Position p, String unitType ) {
@@ -81,6 +84,11 @@ public class GameImpl implements Game {
 
   @Override
   public int getProductionAmountOfCity(City c) {
-    return production;
+    switch(c.getOwner()){
+      case RED:
+        return productionRed;
+      default:
+        return productionBlue;
+    }
   }
 }
