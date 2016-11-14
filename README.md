@@ -16,6 +16,7 @@
 * [x] ~~two rounds => year 3800 BC~~
 * [x] ~~three rounds => year 3700 BC~~
 * [x] ~~Red wins in year 3000 BC~~
+* [x] ~~Plains everywhere except (1,1), (4,1), (1,0), (2,2)~~
 * [ ] units cannot move over mountain
 * [ ] units cannot move over ocean
 * [ ] Red cannot move Blue's units
