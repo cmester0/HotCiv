@@ -4,6 +4,8 @@ import src.hotciv.framework.*;
 
 import src.hotciv.standard.GameImpl;
 import org.junit.*;
+import src.hotciv.standard.StandardCity;
+
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
@@ -81,6 +83,20 @@ public class TestAlphaCiv {
     assertThat(game.getTileAt(new Position(0,1)).getTypeString(), is("Hill"));
   }
 
+  //The board consists mainly of Plains
+  @Test
+  public void gameIsMostlyPlains(){
+    assertThat(game.getTileAt(new Position(0,0)).getTypeString(), is("Plains"));
+
+    assertThat(game.getTileAt(new Position(2,0)).getTypeString(), is("Plains"));
+
+    assertThat(game.getTileAt(new Position(2,1)).getTypeString(), is("Plains"));
+
+    assertThat(game.getTileAt(new Position(8,6)).getTypeString(), is("Plains"));
+
+    assertThat(game.getTileAt(new Position(15,15)).getTypeString(), is("Plains"));
+  }
+
   @Test
   public void startingYearIs4000BC(){
     assertThat(game.getAge(), is(-4000));
@@ -112,4 +128,12 @@ public class TestAlphaCiv {
     for(int i = 0; i < 10; i++) game.endOfTurn();
     assertThat(game.getWinner(), is(Player.RED));
   }
+
+  @Test
+  public void cityHas1Population(){
+    City city = new StandardCity(null);
+
+    assertThat(city.getSize(), is(1));
+  }
+
 }
