@@ -2,6 +2,8 @@ package src.hotciv.standard;
 
 import src.hotciv.framework.*;
 
+import java.util.HashMap;
+
 /** Skeleton implementation of HotCiv.
  
    This source code is from the book 
@@ -32,8 +34,14 @@ import src.hotciv.framework.*;
 public class GameImpl implements Game {
   private int age = -4000, production = 0;
 
-  private City redCity  = new StandardCity(new Position(1,1)),
-               blueCity = new StandardCity(new Position(4,1));
+  private HashMap<Position, City> cities;
+
+  public GameImpl(){
+    cities = new HashMap<Position, City>();
+
+    cities.put(new Position(1,1), new StandardCity(new Position(1,1)));
+    cities.put(new Position(4,1), new StandardCity(new Position(4,1)));
+  }
 
   public Tile getTileAt( Position p ) {
     if(p.getColumn() == 0 && p.getRow() == 1) {
@@ -49,10 +57,7 @@ public class GameImpl implements Game {
   public Unit getUnitAt( Position p ) { return null; }
 
   public City getCityAt( Position p ) {
-    if(p.getRow()==1 && p.getColumn()==1) {
-      return redCity;
-    }
-    return blueCity;
+    return cities.get(p);
   }
 
 
@@ -66,14 +71,11 @@ public class GameImpl implements Game {
   }
   public void endOfTurn() {
     age += 100;
-    production=(production+6)%(redCity.getProduction().equals(GameConstants.SETTLER)?30:10);
+    production=(production+6)%(cities.get(new Position(1,1)).getProduction().equals(GameConstants.SETTLER)?30:10);
   }
   public void changeWorkForceFocusInCityAt( Position p, String balance ) {}
   public void changeProductionInCityAt( Position p, String unitType ) {
-    if(p.getColumn() == 1 && p.getRow() == 1)
-      redCity = new StandardCity(p, unitType);
-    else
-      blueCity = new StandardCity(p, unitType);
+    cities.put(p, new StandardCity(p, unitType));
   }
   public void performUnitActionAt( Position p ) {}
 
