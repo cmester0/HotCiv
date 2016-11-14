@@ -33,12 +33,14 @@ public class GameImpl implements Game {
   private int age = -4000;
 
   public Tile getTileAt( Position p ) {
-    if(p.getColumn() == 0) {
+    if(p.getColumn() == 0 && p.getRow() == 1) {
       return new StandardTile("Ocean");
-    } else if(p.getColumn() == 1){
+    } else if(p.getColumn() == 1 && p.getRow() == 0){
       return new StandardTile("Hill");
-    } else {
+    } else if(p.getColumn() == 2 && p.getRow() == 2) {
       return new StandardTile("Mountain");
+    } else {
+      return new StandardTile("Plains");
     }
   }
   public Unit getUnitAt( Position p ) { return null; }
