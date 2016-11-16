@@ -354,6 +354,47 @@ public class TestAlphaCiv {
     assertTrue(game.moveUnit(new Position(2,0), new Position(3,0)));
   }
 
+  @Test
+  public void redCannotMoveNonExistingUnit(){
+    assertFalse(game.moveUnit(new Position(2,1), new Position(2,0)));
+  }
+
+  @Test
+  public void redMoveArcherActuallyMovesArcher(){
+    game.moveUnit(new Position(2,0), new Position(3,0));
+    assertThat(game.getUnitAt(new Position(3,0)),is(notNullValue()));
+    assertThat(game.getUnitAt(new Position(2,0)),is(nullValue()));
+  }
+
+  @Test
+  public void cannotMoveUnitTwiceOneTurn(){
+    game.moveUnit(new Position(2,0), new Position(3,0));
+    assertFalse(game.moveUnit(new Position(3,0), new Position(2,0)));
+  }
+
+  @Test
+  public void moveCountResetsAfterARound(){
+    game.moveUnit(new Position(2,0), new Position(3,0));
+    endRound(1);
+    assertThat(game.getUnitAt(new Position(3,0)).getMoveCount(), is(1));
+  }
+
+  @Test
+  public void redCannotMoveBlueUnits(){
+    assertFalse(game.moveUnit(new Position(3,2), new Position(3,3)));
+  }
+
+  @Test
+  public void redCannotMoveUnitOntoAnotherUnit(){
+    endRound(2);
+    assertFalse(game.moveUnit(new Position(1,1),new Position(2,0)));
+  }
+
+  @Test
+  public void redCannotMoveUnitOntoMountain(){
+    endRound(2);
+    assertFalse(game.moveUnit(new Position(1,1), new Position(0,1)));
+  }
 
 
 }
