@@ -247,4 +247,15 @@ public class TestAlphaCiv {
 
     assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.LEGION));
   }
+
+  @Test
+  public void at5RoundsRedProducesALotOfArchers(){
+    endTurn(9);
+
+    assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.ARCHER));
+    assertThat(game.getUnitAt(new Position(0,2)).getTypeString(), is(GameConstants.ARCHER));
+    assertThat(game.getUnitAt(new Position(1,2)).getTypeString(), is(GameConstants.ARCHER));
+    assertThat(game.getUnitAt(new Position(3,1)).getTypeString(), is(GameConstants.ARCHER));
+    assertThat(game.getUnitAt(new Position(3,0)).getTypeString(), is(GameConstants.ARCHER));
+  }
 }

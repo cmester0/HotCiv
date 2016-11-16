@@ -111,8 +111,12 @@ public class GameImpl implements Game {
                             units.put(new Position(1, 1), new StandardUnit(GameConstants.ARCHER));
                         else if (getUnitAt(new Position(0, 2)) == null)
                             units.put(new Position(0, 2), new StandardUnit(GameConstants.ARCHER));
-                        else
+                        else if (getUnitAt(new Position(1, 2)) == null)
                             units.put(new Position(1, 2), new StandardUnit(GameConstants.ARCHER));
+                        else if (getUnitAt(new Position(3, 1)) == null)
+                            units.put(new Position(3, 1), new StandardUnit(GameConstants.ARCHER));
+                        else if (getUnitAt(new Position(3, 0)) == null)
+                            units.put(new Position(3, 0), new StandardUnit(GameConstants.ARCHER));
                     newProd %= 10;
                     break;
             }
