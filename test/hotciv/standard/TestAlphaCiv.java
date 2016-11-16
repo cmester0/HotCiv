@@ -336,4 +336,10 @@ public class TestAlphaCiv {
     assertThat(u.getOwner(),      is(Player.BLUE));
   }
 
+  @Test
+  public void blueIsAfterRed(){
+    game.endOfTurn();
+    assertThat(game.getPlayerInTurn(), is(Player.BLUE));
+  }
+
 }

@@ -38,6 +38,8 @@ public class GameImpl implements Game {
     private HashMap<Position, City> cities;
     private HashMap<Player, Integer> production;
 
+    private Player playerInTurn;
+
     public GameImpl() {
         cities = new HashMap<Position, City>();
         production = new HashMap<Player, Integer>();
@@ -49,6 +51,8 @@ public class GameImpl implements Game {
         units.put(new Position(2, 0), new StandardUnit(GameConstants.ARCHER, Player.RED));
         units.put(new Position(3, 2), new StandardUnit(GameConstants.LEGION, Player.BLUE));
         units.put(new Position(4, 3), new StandardUnit(GameConstants.SETTLER, Player.BLUE));
+
+        playerInTurn = Player.RED;
 
         for (Player p : Player.values())
             production.put(p, 0);
@@ -77,7 +81,7 @@ public class GameImpl implements Game {
 
 
     public Player getPlayerInTurn() {
-        return Player.RED;
+        return playerInTurn;
     }
 
     public Player getWinner() {
@@ -122,6 +126,9 @@ public class GameImpl implements Game {
     }
 
     public void endOfTurn() {
+
+        playerInTurn = Player.BLUE;
+
         age += 100;
 
         for (City c : cities.values()) {
