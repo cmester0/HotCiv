@@ -47,7 +47,6 @@
 * [x] ~~cannot move unit unto another unit~~
 * [x] ~~units cannot move over mountain~~
 * [x] ~~units cannot move over ocean~~
-* [ ] Red's unit attack and destroy Blue's unit
-* [ ] the attacker of a battle always wins
-* [ ] units cannot move unto each other
+* [x] ~~units cannot move unto each other~~
+* [x] ~~the attacker of a battle always wins~~
 * [ ] ...
