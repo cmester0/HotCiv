@@ -349,4 +349,7 @@ public class TestAlphaCiv {
     assertThat(game.getPlayerInTurn(), is(Player.RED));
   }
 
+
+
+
 }

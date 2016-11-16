@@ -31,19 +31,22 @@
 * [x] ~~Changing red production to Settler => Red produces settler at (1,1) after 5 turns~~
 * [x] ~~After 6 rounds Red producing 3 archer, and changes to Settler => archers at (1,1), (0,2) and (1,2)~~
 * [x] ~~If red production is Legion, then after 3 rounds Red produces 1 Legion at (1,1)~~
-* [x] ~~ Red producing 6 archer => archers at (1,1), (0,2), (1,2), (2,1), (2,0) and (0,0) ~~
-* [x] ~~ Red producing 5 legions => legions at (1,1), (0,2), (1,2), (2,1), and (2,0) ~~
-* [x] ~~ Red producing 5 settler => settler at (1,1), (0,2), (1,2), (2,1), and (2,0) ~~
+* [x] ~~ Red producing 6 archer => archers at (1,1), (0,2), (1,2), (2,1), and (0,0) ~~
+* [x] ~~ Red producing 5 legions => legions at (1,1), (0,2), (1,2), (2,1), and (0,0) ~~
+* [x] ~~ Red producing 5 settler => settler at (1,1), (0,2), (1,2), (2,1), and (0,0) ~~
 * [x] ~~ Blue produce 1 archer at (4,1) after 2 turns ~~
 * [x] ~~ Blue producing 6 archer => blue archer at (4,1), (3,2), (4,2), (5,2), (5,1), (5,0) and (4,0) ~~
+* [x] ~~ Red has an archer at (2,0) ~~
+* [x] ~~ Blue has a Legion at (3,2) ~~
+* [x] ~~ Blue has a Settler at (4,3) ~~
+* [x] ~~ after Red it is Blue that is in turn ~~
+* [x] ~~ after Blue it is Red that is in turn ~~
+* [x] after (after (after Red it is Blue) it is Red) it is Blue that is in turn
 * [ ] units cannot move over mountain
 * [ ] units cannot move over ocean
 * [ ] Red cannot move Blue's units
-* [ ] after Red it is Blue that is in turn
+* [ ] Blue cannot move Red's units
 * [ ] Red's unit attack and destroy Blue's unit
 * [ ] the attacker of a battle always wins
 * [ ] units cannot move unto each other
-* [ ] Red has an archer at (2,0)
-* [ ] Blue has a Legion at (3,2)
-* [ ] Blue has a Settler at (4,3)
 * [ ] ...
