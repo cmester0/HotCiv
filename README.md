@@ -43,18 +43,7 @@
 * [ ] Red's unit attack and destroy Blue's unit
 * [ ] the attacker of a battle always wins
 * [ ] units cannot move unto each other
-* [ ] cannot build an Archer with <10 production
-* [ ] building an Archer with >=10 production produces an Archer and deducts 10 production
-* [ ] cannot build a Legion with <15 production
-* [ ] cannot build a Settler with <30 production
-* [ ] building a Settler with >=30 production produces a Settler and deducts 30 production
 * [ ] Red has an archer at (2,0)
 * [ ] Blue has a Legion at (3,2)
 * [ ] Blue has a Settler at (4,3)
-* [ ] Production of red city (1,1) is 6 'production' after a round has ended
-<<<<<<< Updated upstream
-* [ ] Red city produces a unit, does not remove production from blue city
-=======
-* [ ] If production is greater than 10 at end of turn, and production type is archer, then deduct 10 (and produce an archer)
->>>>>>> Stashed changes
 * [ ] ...
