@@ -31,14 +31,16 @@
 * [x] ~~Changing red production to Settler => Red produces settler at (1,1) after 5 turns~~
 * [x] ~~After 6 rounds Red producing 3 archer, and changes to Settler => archers at (1,1), (0,2) and (1,2)~~
 * [x] ~~If red production is Legion, then after 3 rounds Red produces 1 Legion at (1,1)~~
-* [x] ~~ Red producing 6 archer => archers at (1,1), (0,2), (1,2), (2,1), (2,0) and (0,0) ~~
-* [x] ~~ Red producing 5 legions => legions at (1,1), (0,2), (1,2), (2,1), and (2,0) ~~
-* [x] ~~ Red producing 5 settler => settler at (1,1), (0,2), (1,2), (2,1), and (2,0) ~~
-* [x] ~~ Blue produce 1 archer at (4,1) after 2 turns ~~
-* [x] ~~ Blue producing 6 archer => blue archer at (4,1), (3,2), (4,2), (5,2), (5,1), (5,0) and (4,0) ~~
-* [x] ~~ Red can move initial archer one down ~~
-* [x] ~~ Red cannot move nonexisting unit ~~
-* [x] ~~ Red attempting to move archer actually moves the archer (and deletes old unit) ~~
+* [x] ~~Red producing 6 archer => archers at (1,1), (0,2), (1,2), (2,1), (2,0) and (0,0)~~
+* [x] ~~Red producing 5 legions => legions at (1,1), (0,2), (1,2), (2,1), and (2,0)~~
+* [x] ~~Red producing 5 settler => settler at (1,1), (0,2), (1,2), (2,1), and (2,0)~~
+* [x] ~~Blue produce 1 archer at (4,1) after 2 turns~~
+* [x] ~~Blue producing 6 archer => blue archer at (4,1), (3,2), (4,2), (5,2), (5,1), (5,0) and (4,0)~~
+* [x] ~~Red can move initial archer one down~~
+* [x] ~~Red cannot move nonexisting unit~~
+* [x] ~~Red attempting to move archer actually moves the archer (and deletes old unit)~~
+* [x] ~~Red cannot move Blue's units~~
+* [x] ~~Red cannot move its own units when it is Blue's turn~~
 * [ ] units cannot move over mountain
 * [ ] units cannot move over ocean
 * [ ] Red cannot move Blue's units
