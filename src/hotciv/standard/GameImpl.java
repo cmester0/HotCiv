@@ -93,7 +93,7 @@ public class GameImpl implements Game {
     }
 
     public boolean moveUnit(Position from, Position to) {
-        return true;
+        return units.get(from) != null;
     }
 
     private static final Position[] possibleRedPositions = new Position[]{

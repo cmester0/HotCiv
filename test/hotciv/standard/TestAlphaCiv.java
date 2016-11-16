@@ -354,5 +354,10 @@ public class TestAlphaCiv {
     assertTrue(game.moveUnit(new Position(2,0), new Position(3,0)));
   }
 
+  @Test
+  public void redCannotMoveNonExistingUnit(){
+    assertFalse(game.moveUnit(new Position(2,1), new Position(2,0)));
+  }
+
 
 }
