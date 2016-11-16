@@ -322,4 +322,18 @@ public class TestAlphaCiv {
     assertThat(u.getOwner(),      is(Player.RED));
   }
 
+  @Test
+  public void blueHasALegionAt3comma2(){
+    Unit u = game.getUnitAt(new Position(3,2));
+    assertThat(u.getTypeString(), is(GameConstants.LEGION));
+    assertThat(u.getOwner(),      is(Player.BLUE));
+  }
+
+  @Test
+  public void blueHasASettlerAt4comma3(){
+    Unit u = game.getUnitAt(new Position(4,3));
+    assertThat(u.getTypeString(), is(GameConstants.SETTLER));
+    assertThat(u.getOwner(),      is(Player.BLUE));
+  }
+
 }
