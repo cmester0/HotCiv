@@ -88,6 +88,20 @@ public class GameImpl implements Game {
         return false;
     }
 
+    private static final Position[] possiblePositions = new Position[]{
+            new Position(1,1),
+            new Position(0,2),
+            new Position(1,2),
+            new Position(3,1),
+            new Position(3,0)
+    };
+    private Position getAvailablePosition(){
+        for(Position p : possiblePositions)
+            if(this.getUnitAt(p) == null)
+                return p;
+        return null;
+    }
+
     public void endOfTurn() {
         age += 100;
 
@@ -102,21 +116,12 @@ public class GameImpl implements Game {
                     break;
                 case GameConstants.LEGION:
                     if(newProd >= 15)
-                        units.put(new Position(1,1), new StandardUnit(GameConstants.LEGION));
+                        units.put(getAvailablePosition(), new StandardUnit(GameConstants.LEGION));
                     newProd %= 15;
                     break;
                 default:
-                    if (newProd >= 10)
-                        if (getUnitAt(new Position(1, 1)) == null)
-                            units.put(new Position(1, 1), new StandardUnit(GameConstants.ARCHER));
-                        else if (getUnitAt(new Position(0, 2)) == null)
-                            units.put(new Position(0, 2), new StandardUnit(GameConstants.ARCHER));
-                        else if (getUnitAt(new Position(1, 2)) == null)
-                            units.put(new Position(1, 2), new StandardUnit(GameConstants.ARCHER));
-                        else if (getUnitAt(new Position(3, 1)) == null)
-                            units.put(new Position(3, 1), new StandardUnit(GameConstants.ARCHER));
-                        else if (getUnitAt(new Position(3, 0)) == null)
-                            units.put(new Position(3, 0), new StandardUnit(GameConstants.ARCHER));
+                    if (newProd >= 10 && c.getOwner() == Player.RED)
+                        units.put(getAvailablePosition(), new StandardUnit(GameConstants.ARCHER));
                     newProd %= 10;
                     break;
             }
