@@ -7,9 +7,11 @@ import src.hotciv.framework.Unit;
 public class StandardUnit implements Unit {
 
     private String type;
+    private Player player;
 
-    public StandardUnit(String type){
+    public StandardUnit(String type, Player p){
         this.type = type;
+        player = p;
     }
 
     @Override
@@ -19,7 +21,7 @@ public class StandardUnit implements Unit {
 
     @Override
     public Player getOwner() {
-        return null;
+        return player;
     }
 
     @Override

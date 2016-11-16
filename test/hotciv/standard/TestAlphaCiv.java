@@ -250,14 +250,15 @@ public class TestAlphaCiv {
 
 
   @Test
-  public void at9RoundsRedProducesALotOfArchers(){
-    endTurn(9);
+  public void at10RoundsRedProducesALotOfArchers(){
+    endTurn(10);
 
     assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.ARCHER));
     assertThat(game.getUnitAt(new Position(0,2)).getTypeString(), is(GameConstants.ARCHER));
     assertThat(game.getUnitAt(new Position(1,2)).getTypeString(), is(GameConstants.ARCHER));
-    assertThat(game.getUnitAt(new Position(3,1)).getTypeString(), is(GameConstants.ARCHER));
-    assertThat(game.getUnitAt(new Position(3,0)).getTypeString(), is(GameConstants.ARCHER));
+    assertThat(game.getUnitAt(new Position(2,1)).getTypeString(), is(GameConstants.ARCHER));
+    assertThat(game.getUnitAt(new Position(2,0)).getTypeString(), is(GameConstants.ARCHER));
+    assertThat(game.getUnitAt(new Position(0,0)).getTypeString(), is(GameConstants.ARCHER));
   }
 
   @Test
@@ -268,8 +269,8 @@ public class TestAlphaCiv {
     assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.LEGION));
     assertThat(game.getUnitAt(new Position(0,2)).getTypeString(), is(GameConstants.LEGION));
     assertThat(game.getUnitAt(new Position(1,2)).getTypeString(), is(GameConstants.LEGION));
-    assertThat(game.getUnitAt(new Position(3,1)).getTypeString(), is(GameConstants.LEGION));
-    assertThat(game.getUnitAt(new Position(3,0)).getTypeString(), is(GameConstants.LEGION));
+    assertThat(game.getUnitAt(new Position(2,1)).getTypeString(), is(GameConstants.LEGION));
+    assertThat(game.getUnitAt(new Position(2,0)).getTypeString(), is(GameConstants.LEGION));
   }
 
   @Test
@@ -280,8 +281,8 @@ public class TestAlphaCiv {
     assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.SETTLER));
     assertThat(game.getUnitAt(new Position(0,2)).getTypeString(), is(GameConstants.SETTLER));
     assertThat(game.getUnitAt(new Position(1,2)).getTypeString(), is(GameConstants.SETTLER));
-    assertThat(game.getUnitAt(new Position(3,1)).getTypeString(), is(GameConstants.SETTLER));
-    assertThat(game.getUnitAt(new Position(3,0)).getTypeString(), is(GameConstants.SETTLER));
+    assertThat(game.getUnitAt(new Position(2,1)).getTypeString(), is(GameConstants.SETTLER));
+    assertThat(game.getUnitAt(new Position(2,0)).getTypeString(), is(GameConstants.SETTLER));
   }
 
   @Test
@@ -289,6 +290,31 @@ public class TestAlphaCiv {
     endTurn(2);
 
     assertThat(game.getUnitAt(new Position(4,1)).getTypeString(), is(GameConstants.ARCHER));
+  }
+
+  @Test
+  public void at10RoundsBlueProducesALotOfBlueArchers(){
+    endTurn(10);
+
+    assertThat(game.getUnitAt(new Position(4,1)).getTypeString(), is(GameConstants.ARCHER));
+    assertThat(game.getUnitAt(new Position(4,1)).getOwner(),      is(Player.BLUE));
+
+    assertThat(game.getUnitAt(new Position(3,1)).getTypeString(), is(GameConstants.ARCHER));
+    assertThat(game.getUnitAt(new Position(3,1)).getOwner(),      is(Player.BLUE));
+
+    assertThat(game.getUnitAt(new Position(4,2)).getTypeString(), is(GameConstants.ARCHER));
+    assertThat(game.getUnitAt(new Position(4,2)).getOwner(),      is(Player.BLUE));
+
+    assertThat(game.getUnitAt(new Position(5,2)).getTypeString(), is(GameConstants.ARCHER));
+    assertThat(game.getUnitAt(new Position(5,2)).getOwner(),      is(Player.BLUE));
+
+    assertThat(game.getUnitAt(new Position(5,1)).getTypeString(), is(GameConstants.ARCHER));
+    assertThat(game.getUnitAt(new Position(5,1)).getOwner(),      is(Player.BLUE));
+
+    assertThat(game.getUnitAt(new Position(5,0)).getTypeString(), is(GameConstants.ARCHER));
+    assertThat(game.getUnitAt(new Position(5,0)).getOwner(),      is(Player.BLUE));
+
+
   }
 
 }

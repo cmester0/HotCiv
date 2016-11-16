@@ -92,11 +92,18 @@ public class GameImpl implements Game {
             new Position(1,1),
             new Position(0,2),
             new Position(1,2),
-            new Position(3,1),
-            new Position(3,0)
+            new Position(2,1),
+            new Position(2,0),
+            new Position(0,0)
     };
     private static final Position[] possibleBluePositions = new Position[]{
-            new Position(4,1)
+            new Position(4,1),
+            new Position(3,1),
+            new Position(4,2),
+            new Position(5,2),
+            new Position(5,1),
+            new Position(5,0),
+            new Position(4,0)
     };
     private Position getAvailablePosition(Player player){
         Position[] pos = possibleRedPositions;
@@ -119,17 +126,17 @@ public class GameImpl implements Game {
             switch (c.getProduction()) {
                 case GameConstants.SETTLER:
                     if (newProd >= 30)
-                        units.put(getAvailablePosition(c.getOwner()), new StandardUnit(GameConstants.SETTLER));
+                        units.put(getAvailablePosition(c.getOwner()), new StandardUnit(GameConstants.SETTLER, c.getOwner()));
                     newProd %= 30;
                     break;
                 case GameConstants.LEGION:
                     if(newProd >= 15)
-                        units.put(getAvailablePosition(c.getOwner()), new StandardUnit(GameConstants.LEGION));
+                        units.put(getAvailablePosition(c.getOwner()), new StandardUnit(GameConstants.LEGION, c.getOwner()));
                     newProd %= 15;
                     break;
                 default:
                     if (newProd >= 10)
-                        units.put(getAvailablePosition(c.getOwner()), new StandardUnit(GameConstants.ARCHER));
+                        units.put(getAvailablePosition(c.getOwner()), new StandardUnit(GameConstants.ARCHER, c.getOwner()));
                     newProd %= 10;
                     break;
             }
