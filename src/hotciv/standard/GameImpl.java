@@ -46,6 +46,8 @@ public class GameImpl implements Game {
         cities.put(new Position(1, 1), new StandardCity(new Position(1, 1)));
         cities.put(new Position(4, 1), new StandardCity(new Position(4, 1)));
 
+        units.put(new Position(2, 0), new StandardUnit(GameConstants.ARCHER, Player.RED));
+
         for (Player p : Player.values())
             production.put(p, 0);
 
