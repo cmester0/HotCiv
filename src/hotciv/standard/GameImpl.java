@@ -88,17 +88,25 @@ public class GameImpl implements Game {
         return false;
     }
 
-    private static final Position[] possiblePositions = new Position[]{
+    private static final Position[] possibleRedPositions = new Position[]{
             new Position(1,1),
             new Position(0,2),
             new Position(1,2),
             new Position(3,1),
             new Position(3,0)
     };
-    private Position getAvailablePosition(){
-        for(Position p : possiblePositions)
-            if(this.getUnitAt(p) == null)
+    private static final Position[] possibleBluePositions = new Position[]{
+            new Position(4,1)
+    };
+    private Position getAvailablePosition(Player player){
+        Position[] pos = possibleRedPositions;
+        if(player==Player.BLUE)
+            pos = possibleBluePositions;
+
+        for(Position p : pos)
+            if (getUnitAt(p) == null)
                 return p;
+
         return null;
     }
 
@@ -111,17 +119,17 @@ public class GameImpl implements Game {
             switch (c.getProduction()) {
                 case GameConstants.SETTLER:
                     if (newProd >= 30)
-                        units.put(getAvailablePosition(), new StandardUnit(GameConstants.SETTLER));
+                        units.put(getAvailablePosition(c.getOwner()), new StandardUnit(GameConstants.SETTLER));
                     newProd %= 30;
                     break;
                 case GameConstants.LEGION:
                     if(newProd >= 15)
-                        units.put(getAvailablePosition(), new StandardUnit(GameConstants.LEGION));
+                        units.put(getAvailablePosition(c.getOwner()), new StandardUnit(GameConstants.LEGION));
                     newProd %= 15;
                     break;
                 default:
-                    if (newProd >= 10 && c.getOwner() == Player.RED)
-                        units.put(getAvailablePosition(), new StandardUnit(GameConstants.ARCHER));
+                    if (newProd >= 10)
+                        units.put(getAvailablePosition(c.getOwner()), new StandardUnit(GameConstants.ARCHER));
                     newProd %= 10;
                     break;
             }

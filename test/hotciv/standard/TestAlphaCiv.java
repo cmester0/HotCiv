@@ -284,4 +284,11 @@ public class TestAlphaCiv {
     assertThat(game.getUnitAt(new Position(3,0)).getTypeString(), is(GameConstants.SETTLER));
   }
 
+  @Test
+  public void at2RoundsBlueProducesAnArcherAt4comma1(){
+    endTurn(2);
+
+    assertThat(game.getUnitAt(new Position(4,1)).getTypeString(), is(GameConstants.ARCHER));
+  }
+
 }
