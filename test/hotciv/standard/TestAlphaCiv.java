@@ -359,5 +359,12 @@ public class TestAlphaCiv {
     assertFalse(game.moveUnit(new Position(2,1), new Position(2,0)));
   }
 
+  @Test
+  public void redMoveArcherActuallyMovesArcher(){
+    Unit u = game.getUnitAt(new Position(2,0));
+    game.moveUnit(new Position(2,0), new Position(3,0));
+    assertThat(game.getUnitAt(new Position(3,0)),is(u));
+  }
+
 
 }
