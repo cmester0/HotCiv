@@ -349,4 +349,10 @@ public class TestAlphaCiv {
     assertThat(game.getPlayerInTurn(), is(Player.RED));
   }
 
+  @Test
+  public void redCanMoveArcherOneDown(){
+    assertTrue(game.moveUnit(new Position(2,0), new Position(3,0)));
+  }
+
+
 }
