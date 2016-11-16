@@ -135,7 +135,6 @@ public class GameImpl implements Game {
     }
 
     public void endOfRound(){
-
         age += 100;
 
         for (City c : cities.values()) {
@@ -170,14 +169,12 @@ public class GameImpl implements Game {
     }
 
     public void endOfTurn() {
-
         if(playerInTurn == Player.RED)
             playerInTurn = Player.BLUE;
         else {
             playerInTurn = Player.RED;
             endOfRound();
         }
-
     }
 
     public void changeWorkForceFocusInCityAt(Position p, String balance) {
