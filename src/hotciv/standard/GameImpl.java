@@ -96,7 +96,7 @@ public class GameImpl implements Game {
     public boolean moveUnit(Position from, Position to) {
         if(!(units.containsKey(from) && units.get(from).getMoveCount() > 0)) return false;
         if(getUnitAt(from).getOwner() != playerInTurn) return false;
-        if(getUnitAt(to) != null) return false;
+        if(getUnitAt(to) != null && getUnitAt(to).getOwner() == playerInTurn) return false;
         if(getTileAt(to).getTypeString() != GameConstants.PLAINS) return false;
 
         Unit u = units.get(from);

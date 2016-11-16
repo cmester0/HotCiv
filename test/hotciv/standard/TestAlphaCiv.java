@@ -396,5 +396,15 @@ public class TestAlphaCiv {
     assertFalse(game.moveUnit(new Position(1,1), new Position(0,1)));
   }
 
+  @Test
+  public void theAttackerOfABattleWins(){
+    game.moveUnit(new Position(2,0), new Position(3,0));
+    endRound(2);
+    game.endOfTurn();
+    game.moveUnit(new Position(4,1), new Position(3,0));
+    assertThat(game.getUnitAt(new Position(3,0)).getOwner(), is(Player.BLUE));
+  }
+
+
 
 }
