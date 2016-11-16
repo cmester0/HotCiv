@@ -30,6 +30,12 @@
 * [x] ~~Two rounds Red producing 1 archer => 1 archer at (1,1)~~
 * [x] ~~Changing red production to Settler => Red produces settler at (1,1) after 5 turns~~
 * [x] ~~After 6 rounds Red producing 3 archer, and changes to Settler => archers at (1,1), (0,2) and (1,2)~~
+* [x] ~~If red production is Legion, then after 3 rounds Red produces 1 Legion at (1,1)~~
+* [x] ~~ Red producing 6 archer => archers at (1,1), (0,2), (1,2), (2,1), (2,0) and (0,0) ~~
+* [x] ~~ Red producing 5 legions => legions at (1,1), (0,2), (1,2), (2,1), and (2,0) ~~
+* [x] ~~ Red producing 5 settler => settler at (1,1), (0,2), (1,2), (2,1), and (2,0) ~~
+* [x] ~~ Blue produce 1 archer at (4,1) after 2 turns ~~
+* [x] ~~ Blue producing 6 archer => blue archer at (4,1), (3,2), (4,2), (5,2), (5,1), (5,0) and (4,0) ~~
 * [ ] units cannot move over mountain
 * [ ] units cannot move over ocean
 * [ ] Red cannot move Blue's units
@@ -40,13 +46,15 @@
 * [ ] cannot build an Archer with <10 production
 * [ ] building an Archer with >=10 production produces an Archer and deducts 10 production
 * [ ] cannot build a Legion with <15 production
-* [ ] building a Legion with >=15 production produces a Legion and deducts 15 production
 * [ ] cannot build a Settler with <30 production
 * [ ] building a Settler with >=30 production produces a Settler and deducts 30 production
 * [ ] Red has an archer at (2,0)
 * [ ] Blue has a Legion at (3,2)
 * [ ] Blue has a Settler at (4,3)
-* [ ] Red producing 5 archer => archers at (1,1), (2,0), (2,1), (1,3), and (0,3)
 * [ ] Production of red city (1,1) is 6 'production' after a round has ended
+<<<<<<< Updated upstream
 * [ ] Red city produces a unit, does not remove production from blue city
+=======
+* [ ] If production is greater than 10 at end of turn, and production type is archer, then deduct 10 (and produce an archer)
+>>>>>>> Stashed changes
 * [ ] ...
