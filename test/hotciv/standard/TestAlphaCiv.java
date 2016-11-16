@@ -272,4 +272,16 @@ public class TestAlphaCiv {
     assertThat(game.getUnitAt(new Position(3,0)).getTypeString(), is(GameConstants.LEGION));
   }
 
+  @Test
+  public void at25RoundsRedProducesALotOfSettlers(){
+    game.changeProductionInCityAt(redPosition, GameConstants.SETTLER);
+    endTurn(25);
+
+    assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.SETTLER));
+    assertThat(game.getUnitAt(new Position(0,2)).getTypeString(), is(GameConstants.SETTLER));
+    assertThat(game.getUnitAt(new Position(1,2)).getTypeString(), is(GameConstants.SETTLER));
+    assertThat(game.getUnitAt(new Position(3,1)).getTypeString(), is(GameConstants.SETTLER));
+    assertThat(game.getUnitAt(new Position(3,0)).getTypeString(), is(GameConstants.SETTLER));
+  }
+
 }

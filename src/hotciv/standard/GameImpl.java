@@ -111,7 +111,7 @@ public class GameImpl implements Game {
             switch (c.getProduction()) {
                 case GameConstants.SETTLER:
                     if (newProd >= 30)
-                        units.put(new Position(1, 1), new StandardUnit(GameConstants.SETTLER));
+                        units.put(getAvailablePosition(), new StandardUnit(GameConstants.SETTLER));
                     newProd %= 30;
                     break;
                 case GameConstants.LEGION:
