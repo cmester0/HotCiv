@@ -6,12 +6,20 @@ import src.hotciv.framework.Unit;
 
 public class StandardUnit implements Unit {
 
+    int moveCount;
     private String type;
     private Player player;
 
     public StandardUnit(String type, Player p){
         this.type = type;
         player = p;
+        this.moveCount = 1;
+    }
+
+    public StandardUnit(String type, Player p, int moveCount){
+        this.type = type;
+        player = p;
+        this.moveCount = moveCount;
     }
 
     @Override
@@ -26,7 +34,7 @@ public class StandardUnit implements Unit {
 
     @Override
     public int getMoveCount() {
-        return 0;
+        return moveCount;
     }
 
     @Override

@@ -361,10 +361,15 @@ public class TestAlphaCiv {
 
   @Test
   public void redMoveArcherActuallyMovesArcher(){
-    Unit u = game.getUnitAt(new Position(2,0));
     game.moveUnit(new Position(2,0), new Position(3,0));
-    assertThat(game.getUnitAt(new Position(3,0)),is(u));
+    assertThat(game.getUnitAt(new Position(3,0)),is(notNullValue()));
+    assertThat(game.getUnitAt(new Position(2,0)),is(nullValue()));
   }
 
+  @Test
+  public void cannotMoveUnitTwiceOneTurn(){
+    game.moveUnit(new Position(2,0), new Position(3,0));
+    assertFalse(game.moveUnit(new Position(3,0), new Position(2,0)));
+  }
 
 }
