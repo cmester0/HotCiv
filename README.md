@@ -36,6 +36,9 @@
 * [x] ~~ Red producing 5 settler => settler at (1,1), (0,2), (1,2), (2,1), and (2,0) ~~
 * [x] ~~ Blue produce 1 archer at (4,1) after 2 turns ~~
 * [x] ~~ Blue producing 6 archer => blue archer at (4,1), (3,2), (4,2), (5,2), (5,1), (5,0) and (4,0) ~~
+* [x] ~~ Red can move initial archer one down ~~
+* [x] ~~ Red cannot move nonexisting unit ~~
+* [x] ~~ Red attempting to move archer actually moves the archer (and deletes old unit) ~~
 * [ ] units cannot move over mountain
 * [ ] units cannot move over ocean
 * [ ] Red cannot move Blue's units
