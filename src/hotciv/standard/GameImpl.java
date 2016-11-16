@@ -125,9 +125,7 @@ public class GameImpl implements Game {
         return null;
     }
 
-    public void endOfTurn() {
-
-        playerInTurn = Player.BLUE;
+    public void endOfRound(){
 
         age += 100;
 
@@ -154,6 +152,17 @@ public class GameImpl implements Game {
 
             production.put(c.getOwner(), newProd);
         }
+    }
+
+    public void endOfTurn() {
+
+        if(playerInTurn == Player.RED)
+            playerInTurn = Player.BLUE;
+        else {
+            playerInTurn = Player.RED;
+            endOfRound();
+        }
+
     }
 
     public void changeWorkForceFocusInCityAt(Position p, String balance) {

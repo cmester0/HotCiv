@@ -52,8 +52,8 @@ public class TestAlphaCiv {
     bluePosition = (new Position(4,1));
   }
 
-  private void endTurn(int n){
-    for(int i=0; i<n; i++)
+  private void endRound(int n){
+    for(int i=0; i<2*n; i++)
       game.endOfTurn();
   }
 
@@ -113,25 +113,25 @@ public class TestAlphaCiv {
 
   @Test
   public void oneRoundIs3900BC(){
-    game.endOfTurn();
+    endRound(1);
     assertThat(game.getAge(), is(-3900));
   }
 
   @Test
   public void twoRoundsIs3800BC(){
-    endTurn(2);
+    endRound(2);
     assertThat(game.getAge(), is(-3800));
   }
 
   @Test
   public void threeRoundsIs3700BC(){
-    endTurn(3);
+    endRound(3);
     assertThat(game.getAge(), is(-3700));
   }
 
   @Test
   public void redWinsAtAge3000BC(){
-    endTurn(10);
+    endRound(10);
     assertThat(game.getWinner(), is(Player.RED));
   }
 
@@ -166,7 +166,7 @@ public class TestAlphaCiv {
 
   @Test
   public void redCityHas6ProductionAfter1Round(){
-    game.endOfTurn();
+    endRound(1);
 
     int prod  = game.getProductionAmountOfCity(game.getCityAt(redPosition));
     assertThat(prod, is(6));
@@ -175,7 +175,7 @@ public class TestAlphaCiv {
   //6 + 6 - 1 archer (10) = 2 production
   @Test
   public void redCityHas2ProductionAfter2RoundsIfProducingArchers(){
-    endTurn(2);
+    endRound(2);
 
     int prod  = game.getProductionAmountOfCity(game.getCityAt(redPosition));
     assertThat(prod, is(6*2-10)); //6*2-10 = 2
@@ -184,7 +184,7 @@ public class TestAlphaCiv {
   //6*4 = 24 - 2 archers = 4
   @Test
   public void redCityHas4ProductionAfter4RoundsIfProducingArchers(){
-    endTurn(4);
+    endRound(4);
 
     int prod  = game.getProductionAmountOfCity(game.getCityAt(redPosition));
     assertThat(prod, is(4));
@@ -193,7 +193,7 @@ public class TestAlphaCiv {
   @Test
   public void redCityHas24ProductionAfter4RoundsIfProducingSettlers(){
     game.changeProductionInCityAt(new Position(1,1), GameConstants.SETTLER);
-    endTurn(4);
+    endRound(4);
 
     int prod  = game.getProductionAmountOfCity(game.getCityAt(redPosition));
     assertThat(prod, is(24));
@@ -202,7 +202,7 @@ public class TestAlphaCiv {
   @Test
   public void redCityHas4ProductionAfter4RoundsIfBlueProducingSettlers(){
     game.changeProductionInCityAt(new Position(4,1), GameConstants.SETTLER);
-    endTurn(4);
+    endRound(4);
 
     int prod  = game.getProductionAmountOfCity(game.getCityAt(redPosition));
     assertThat(prod, is(4));
@@ -211,7 +211,7 @@ public class TestAlphaCiv {
   @Test
   public void blueCityHas4ProductionAfter4RoundsIfRedProducingSettlers(){
     game.changeProductionInCityAt(new Position(1,1), GameConstants.SETTLER);
-    endTurn(4);
+    endRound(4);
 
     int prod  = game.getProductionAmountOfCity(game.getCityAt(bluePosition));
     assertThat(prod, is(4));
@@ -219,20 +219,20 @@ public class TestAlphaCiv {
 
   @Test
   public void at2RoundsRedProducesArcherAt1comma1(){
-    endTurn(2);
+    endRound(2);
     assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.ARCHER));
   }
 
   @Test
   public void redChangeProductionToSettlerWait5Rounds(){
     game.changeProductionInCityAt(redPosition,GameConstants.SETTLER);
-    endTurn(5);
+    endRound(5);
     assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.SETTLER));
   }
 
   @Test
   public void at6RoundsRedProduces3ArchersAt1comma1And0comma2And1comma2(){
-    endTurn(6);
+    endRound(6);
 
     assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.ARCHER));
     assertThat(game.getUnitAt(new Position(0,2)).getTypeString(), is(GameConstants.ARCHER));
@@ -243,7 +243,7 @@ public class TestAlphaCiv {
   public void at3RoundsRedProduces1LegionAt1comma1(){
     game.changeProductionInCityAt(redPosition, GameConstants.LEGION);
 
-    endTurn(3);
+    endRound(3);
 
     assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.LEGION));
   }
@@ -251,7 +251,7 @@ public class TestAlphaCiv {
 
   @Test
   public void at9RoundsRedProducesALotOfArchers(){
-    endTurn(9);
+    endRound(9);
 
     assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.ARCHER));
     assertThat(game.getUnitAt(new Position(0,2)).getTypeString(), is(GameConstants.ARCHER));
@@ -263,7 +263,7 @@ public class TestAlphaCiv {
   @Test
   public void at13RoundsRedProducesALotOfLegions(){
     game.changeProductionInCityAt(redPosition, GameConstants.LEGION);
-    endTurn(13);
+    endRound(13);
 
     assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.LEGION));
     assertThat(game.getUnitAt(new Position(0,2)).getTypeString(), is(GameConstants.LEGION));
@@ -275,7 +275,7 @@ public class TestAlphaCiv {
   @Test
   public void at25RoundsRedProducesALotOfSettlers(){
     game.changeProductionInCityAt(redPosition, GameConstants.SETTLER);
-    endTurn(25);
+    endRound(25);
 
     assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.SETTLER));
     assertThat(game.getUnitAt(new Position(0,2)).getTypeString(), is(GameConstants.SETTLER));
@@ -286,14 +286,14 @@ public class TestAlphaCiv {
 
   @Test
   public void at2RoundsBlueProducesAnArcherAt4comma1(){
-    endTurn(2);
+    endRound(2);
 
     assertThat(game.getUnitAt(new Position(4,1)).getTypeString(), is(GameConstants.ARCHER));
   }
 
   @Test
   public void at10RoundsBlueProducesALotOfBlueArchers(){
-    endTurn(10);
+    endRound(10);
 
     assertThat(game.getUnitAt(new Position(4,1)).getTypeString(), is(GameConstants.ARCHER));
     assertThat(game.getUnitAt(new Position(4,1)).getOwner(),      is(Player.BLUE));
@@ -340,6 +340,13 @@ public class TestAlphaCiv {
   public void blueIsAfterRed(){
     game.endOfTurn();
     assertThat(game.getPlayerInTurn(), is(Player.BLUE));
+  }
+
+  @Test
+  public void redIsAfterBlue(){
+    game.endOfTurn();
+    game.endOfTurn();
+    assertThat(game.getPlayerInTurn(), is(Player.RED));
   }
 
 }
