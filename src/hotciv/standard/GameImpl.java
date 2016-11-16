@@ -100,6 +100,11 @@ public class GameImpl implements Game {
                         units.put(new Position(1, 1), new StandardUnit(GameConstants.SETTLER));
                     newProd %= 30;
                     break;
+                case GameConstants.LEGION:
+                    if(newProd >= 15)
+                        units.put(new Position(1,1), new StandardUnit(GameConstants.LEGION));
+                    newProd %= 15;
+                    break;
                 default:
                     if (newProd >= 10)
                         if (getUnitAt(new Position(1, 1)) == null)

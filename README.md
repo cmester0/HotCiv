@@ -49,5 +49,4 @@
 * [ ] Red producing 5 archer => archers at (1,1), (2,0), (2,1), (1,3), and (0,3)
 * [ ] Production of red city (1,1) is 6 'production' after a round has ended
 * [ ] Red city produces a unit, does not remove production from blue city
-* [ ] If production is greater than 10 at end of turn, and production type is archer, then deduct 10 (and produce an archer)
 * [ ] ...

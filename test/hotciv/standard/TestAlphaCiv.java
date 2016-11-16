@@ -52,6 +52,11 @@ public class TestAlphaCiv {
     bluePosition = (new Position(4,1));
   }
 
+  private void endTurn(int n){
+    for(int i=0; i<n; i++)
+      game.endOfTurn();
+  }
+
   // FRS p. 455 states that 'Red is the first player to take a turn'.
   @Test
   public void shouldBeRedAsStartingPlayer() {
@@ -114,22 +119,19 @@ public class TestAlphaCiv {
 
   @Test
   public void twoRoundsIs3800BC(){
-    game.endOfTurn();
-    game.endOfTurn();
+    endTurn(2);
     assertThat(game.getAge(), is(-3800));
   }
 
   @Test
   public void threeRoundsIs3700BC(){
-    game.endOfTurn();
-    game.endOfTurn();
-    game.endOfTurn();
+    endTurn(3);
     assertThat(game.getAge(), is(-3700));
   }
 
   @Test
   public void redWinsAtAge3000BC(){
-    for(int i = 0; i < 10; i++) game.endOfTurn();
+    endTurn(10);
     assertThat(game.getWinner(), is(Player.RED));
   }
 
@@ -173,8 +175,7 @@ public class TestAlphaCiv {
   //6 + 6 - 1 archer (10) = 2 production
   @Test
   public void redCityHas2ProductionAfter2RoundsIfProducingArchers(){
-    game.endOfTurn();
-    game.endOfTurn();
+    endTurn(2);
 
     int prod  = game.getProductionAmountOfCity(game.getCityAt(redPosition));
     assertThat(prod, is(6*2-10)); //6*2-10 = 2
@@ -183,8 +184,7 @@ public class TestAlphaCiv {
   //6*4 = 24 - 2 archers = 4
   @Test
   public void redCityHas4ProductionAfter4RoundsIfProducingArchers(){
-    for(int i=0; i<4; i++)
-      game.endOfTurn();
+    endTurn(4);
 
     int prod  = game.getProductionAmountOfCity(game.getCityAt(redPosition));
     assertThat(prod, is(4));
@@ -193,8 +193,7 @@ public class TestAlphaCiv {
   @Test
   public void redCityHas24ProductionAfter4RoundsIfProducingSettlers(){
     game.changeProductionInCityAt(new Position(1,1), GameConstants.SETTLER);
-    for(int i=0; i<4; i++)
-      game.endOfTurn();
+    endTurn(4);
 
     int prod  = game.getProductionAmountOfCity(game.getCityAt(redPosition));
     assertThat(prod, is(24));
@@ -203,8 +202,7 @@ public class TestAlphaCiv {
   @Test
   public void redCityHas4ProductionAfter4RoundsIfBlueProducingSettlers(){
     game.changeProductionInCityAt(new Position(4,1), GameConstants.SETTLER);
-    for(int i=0; i<4; i++)
-      game.endOfTurn();
+    endTurn(4);
 
     int prod  = game.getProductionAmountOfCity(game.getCityAt(redPosition));
     assertThat(prod, is(4));
@@ -213,8 +211,7 @@ public class TestAlphaCiv {
   @Test
   public void blueCityHas4ProductionAfter4RoundsIfRedProducingSettlers(){
     game.changeProductionInCityAt(new Position(1,1), GameConstants.SETTLER);
-    for(int i=0; i<4; i++)
-      game.endOfTurn();
+    endTurn(4);
 
     int prod  = game.getProductionAmountOfCity(game.getCityAt(bluePosition));
     assertThat(prod, is(4));
@@ -222,33 +219,32 @@ public class TestAlphaCiv {
 
   @Test
   public void at2RoundsRedProducesArcherAt1comma1(){
-    game.endOfTurn();
-    game.endOfTurn();
+    endTurn(2);
     assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.ARCHER));
   }
 
   @Test
   public void redChangeProductionToSettlerWait5Rounds(){
     game.changeProductionInCityAt(redPosition,GameConstants.SETTLER);
-    game.endOfTurn();
-    game.endOfTurn();
-    game.endOfTurn();
-    game.endOfTurn();
-    game.endOfTurn();
+    endTurn(5);
     assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.SETTLER));
   }
 
   @Test
   public void at6RoundsRedProduces3ArchersAt1comma1And0comma2And1comma2(){
-    game.endOfTurn();
-    game.endOfTurn();
-    game.endOfTurn();
-    game.endOfTurn();
-    game.endOfTurn();
-    game.endOfTurn();
+    endTurn(6);
 
     assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.ARCHER));
     assertThat(game.getUnitAt(new Position(0,2)).getTypeString(), is(GameConstants.ARCHER));
     assertThat(game.getUnitAt(new Position(1,2)).getTypeString(), is(GameConstants.ARCHER));
+  }
+
+  @Test
+  public void at3RoundsRedProduces1LegionAt1comma1(){
+    game.changeProductionInCityAt(redPosition, GameConstants.LEGION);
+
+    endTurn(3);
+
+    assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.LEGION));
   }
 }
