@@ -384,4 +384,16 @@ public class TestAlphaCiv {
     assertFalse(game.moveUnit(new Position(3,2), new Position(3,3)));
   }
 
+  @Test
+  public void redCannotMoveUnitOntoAnotherUnit(){
+    endRound(2);
+    assertFalse(game.moveUnit(new Position(1,1),new Position(2,0)));
+  }
+
+  @Test
+  public void redCannotMoveUnitOntoMountain(){
+    endRound(2);
+    assertFalse(game.moveUnit(new Position(1,1), new Position(0,1)));
+  }
+
 }

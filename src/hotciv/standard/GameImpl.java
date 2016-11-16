@@ -94,16 +94,15 @@ public class GameImpl implements Game {
     }
 
     public boolean moveUnit(Position from, Position to) {
-        if(units.containsKey(from) && units.get(from).getMoveCount() > 0) {
-            if(getUnitAt(from).getOwner() != playerInTurn) return false;
+        if(!(units.containsKey(from) && units.get(from).getMoveCount() > 0)) return false;
+        if(getUnitAt(from).getOwner() != playerInTurn) return false;
+        if(getUnitAt(to) != null) return false;
+        if(getTileAt(to).getTypeString() != GameConstants.PLAINS) return false;
 
-            Unit u = units.get(from);
-            units.put(to, new StandardUnit(u.getTypeString(), u.getOwner(), 0));
-            units.remove(from);
-            return units.get(to) != null;
-        } else {
-            return false;
-        }
+        Unit u = units.get(from);
+        units.put(to, new StandardUnit(u.getTypeString(), u.getOwner(), 0));
+        units.remove(from);
+        return units.get(to) != null;
     }
 
     private static final Position[] possibleRedPositions = new Position[]{
