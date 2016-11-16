@@ -404,7 +404,4 @@ public class TestAlphaCiv {
     game.moveUnit(new Position(4,1), new Position(3,0));
     assertThat(game.getUnitAt(new Position(3,0)).getOwner(), is(Player.BLUE));
   }
-
-
-
 }
