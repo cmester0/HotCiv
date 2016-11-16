@@ -144,7 +144,7 @@ HotCiv build management for dSoftArk
 	     haltonfailure="yes">
 	<formatter type="plain"/>
 	<batchtest fork="yes" todir="${test-output-directory}">
-	  <fileset dir="test">
+	  <fileset dir="./">
 	    <include name="**/Test*.java"/>
 	  </fileset>
 	</batchtest>
