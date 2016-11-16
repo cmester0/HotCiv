@@ -36,19 +36,18 @@
 * [x] ~~Red producing 5 settler => settler at (1,1), (0,2), (1,2), (2,1), and (2,0)~~
 * [x] ~~Blue produce 1 archer at (4,1) after 2 turns~~
 * [x] ~~Blue producing 6 archer => blue archer at (4,1), (3,2), (4,2), (5,2), (5,1), (5,0) and (4,0)~~
+* [x] ~~Red has an archer at (2,0)~~
+* [x] ~~Blue has a Legion at (3,2)~~
+* [x] ~~Blue has a Settler at (4,3)~~
 * [x] ~~Red can move initial archer one down~~
 * [x] ~~Red cannot move nonexisting unit~~
 * [x] ~~Red attempting to move archer actually moves the archer (and deletes old unit)~~
 * [x] ~~Red cannot move Blue's units~~
 * [x] ~~Red cannot move its own units when it is Blue's turn~~
-* [ ] units cannot move over mountain
-* [ ] units cannot move over ocean
-* [ ] Red cannot move Blue's units
-* [ ] after Red it is Blue that is in turn
+* [x] ~~cannot move unit unto another unit~~
+* [x] ~~units cannot move over mountain~~
+* [x] ~~units cannot move over ocean~~
 * [ ] Red's unit attack and destroy Blue's unit
 * [ ] the attacker of a battle always wins
 * [ ] units cannot move unto each other
-* [ ] Red has an archer at (2,0)
-* [ ] Blue has a Legion at (3,2)
-* [ ] Blue has a Settler at (4,3)
 * [ ] ...
