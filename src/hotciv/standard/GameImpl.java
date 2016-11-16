@@ -3,6 +3,7 @@ package src.hotciv.standard;
 import src.hotciv.framework.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Skeleton implementation of HotCiv.
@@ -94,6 +95,8 @@ public class GameImpl implements Game {
 
     public boolean moveUnit(Position from, Position to) {
         if(units.containsKey(from) && units.get(from).getMoveCount() > 0) {
+            if(getUnitAt(from).getOwner() != playerInTurn) return false;
+
             Unit u = units.get(from);
             units.put(to, new StandardUnit(u.getTypeString(), u.getOwner(), 0));
             units.remove(from);
@@ -159,6 +162,12 @@ public class GameImpl implements Game {
 
             production.put(c.getOwner(), newProd);
         }
+
+        HashMap<Position, Unit> unitsTemp = new HashMap<Position, Unit>();
+        for(Map.Entry<Position, Unit> e : units.entrySet()){
+            unitsTemp.put(e.getKey(), new StandardUnit(e.getValue().getTypeString(), e.getValue().getOwner()));
+        }
+        units = unitsTemp;
     }
 
     public void endOfTurn() {

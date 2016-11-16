@@ -372,4 +372,16 @@ public class TestAlphaCiv {
     assertFalse(game.moveUnit(new Position(3,0), new Position(2,0)));
   }
 
+  @Test
+  public void moveCountResetsAfterARound(){
+    game.moveUnit(new Position(2,0), new Position(3,0));
+    endRound(1);
+    assertThat(game.getUnitAt(new Position(3,0)).getMoveCount(), is(1));
+  }
+
+  @Test
+  public void redCannotMoveBlueUnits(){
+    assertFalse(game.moveUnit(new Position(3,2), new Position(3,3)));
+  }
+
 }
