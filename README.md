@@ -27,7 +27,7 @@
 * [ ] Archer, uses fortify, has 6 defensive strength
 * [ ] Archer, uses fortify, uses fortify, has 3 defensive strength
 
-## BetaCiv0
+## BetaCiv
 
 ### Test-list
 * [x] ~~After 0 rounds, age is -4000~~
