@@ -412,4 +412,9 @@ public class TestAlphaCiv {
     assertThat(game.getAge(), is(0));
   }
 
+  @Test
+  public void winnerIsNullAtFirst(){
+    assertThat(game.getWinner(), is(nullValue()));
+  }
+
 }

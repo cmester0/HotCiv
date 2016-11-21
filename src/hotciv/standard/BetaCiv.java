@@ -9,8 +9,17 @@ import java.util.Map;
  */
 public class BetaCiv implements Civ {
 
+    private AlphaCiv alphaCiv;
+    private Player winner;
+
+    public BetaCiv(){
+        alphaCiv = new AlphaCiv();
+        winner = null;
+    }
+
     @Override
     public int getNextAge(int age) {
+        winner = Player.RED;
         if(age < -100)
             return age+100;
         else if(age == -100)
@@ -31,7 +40,7 @@ public class BetaCiv implements Civ {
 
     @Override
     public Player getWinner() {
-        return null;
+        return winner;
     }
 
     @Override
@@ -41,7 +50,7 @@ public class BetaCiv implements Civ {
 
     @Override
     public void setup(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles) {
-
+        alphaCiv.setup(units, cities, tiles);
     }
 
 }

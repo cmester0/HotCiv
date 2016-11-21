@@ -3,6 +3,7 @@ package test.hotciv.standard;
 import org.junit.Before;
 import org.junit.Test;
 import src.hotciv.framework.Game;
+import src.hotciv.framework.Player;
 import src.hotciv.framework.Position;
 import src.hotciv.standard.BetaCiv;
 import src.hotciv.standard.GameImpl;
@@ -74,9 +75,22 @@ public class TestBetaCiv {
     }
 
     @Test
-    public void after97RoundsAgeIs1971AD(){
+    public void after97RoundsAgeIs1971AD() {
         endRound(97);
         assertThat(game.getAge(), is(1971));
+    }
+
+    @Test
+    public void thereIsNoWinnerAtBeginning(){
+        assertThat(game.getWinner(), is(nullValue()));
+    }
+
+    @Test
+    public void redConquersBlueCityByMovingArcher(){
+        game.moveUnit(new Position(2,0), new Position(3,0));
+        endRound(1);
+        game.moveUnit(new Position(3,0), new Position(4,1));
+        assertThat(game.getWinner(), is(Player.RED));
     }
 
 }

@@ -10,14 +10,18 @@ import java.util.Map;
  */
 public class AlphaCiv implements Civ {
 
+    private Player winner = null;
+
     @Override
     public int getNextAge(int currentAge) {
+        if(currentAge+100 >= -3000)
+            winner = Player.RED;
         return currentAge+100;
     }
 
     @Override
     public Player getWinner() {
-        return Player.RED;
+        return winner;
     }
 
     @Override
@@ -35,9 +39,9 @@ public class AlphaCiv implements Civ {
         units.put(new Position(4, 3), new StandardUnit(GameConstants.SETTLER, Player.BLUE));
 
         for(int i=0; i<16; i++)
-        for(int j=0; j<16; j++){
+        for(int j=0; j<16; j++)
             tiles.put(new Position(i,j), new StandardTile(GameConstants.PLAINS));
-        }
+
         tiles.put(new Position(1,0), new StandardTile(GameConstants.OCEANS));
         tiles.put(new Position(0,1), new StandardTile(GameConstants.HILLS));
         tiles.put(new Position(2,2), new StandardTile(GameConstants.MOUNTAINS));
