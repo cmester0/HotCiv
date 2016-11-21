@@ -1,5 +1,48 @@
 # HotCiv
 
+## DeltaCiv
+
+* [ ] Blue city at (4,5)
+* [ ] Red city at (8,12)
+* [ ] Mountain at (0,5)
+* [ ] Hills at (1,4)
+* [ ] Ocean at (8,6)
+* [ ] Hills at (7, 13)
+* [ ] Forest at (9, 11)
+* [ ] Plains at (5,1)
+* [ ] Ocean at (0,0)
+* [ ] Ocean at (15,15)
+* [ ] Hills at (4,8)
+* [ ] Forest at (11,8)
+* [ ] There are 9 mountains
+* [ ] There are 10 hills
+* [ ] There are 12 forests
+
+## GammaCiv
+
+* [ ] Settler at (4,3) builds city => no unit at (4,3), but red city
+* [ ] Settler at (4,3), moves right, builds city => no unit at (4,4), but red city
+* [ ] Blue changes production to settler, waits 5 rounds, moves settler to (5,1), builds city => blue city at (5,1)
+* [ ] Archer has 3 defensive strength
+* [ ] Archer, uses fortify, has 6 defensive strength
+* [ ] Archer, uses fortify, uses fortify, has 3 defensive strength
+
+## BetaCiv
+
+### Test-list
+* [ ] After 38 rounds,  age is -100
+* [ ] After 39 rounds,  age is -1
+* [ ] After 40 rounds,  age is +1
+* [ ] After 41 rounds,  age is +50
+* [ ] After 42 rounds,  age is +100
+* [ ] After 85 rounds,  age is +1775
+* [ ] After 94 rounds,  age is +1905
+* [ ] After 108 rounds, age is +1971
+* [ ] After 109 rounds, age is +1972
+* [ ] Winner is null at beginning
+* [ ] Red archer moves (2,0) => (3,0) => (4,1) => red is winner
+* [ ] Blue legion moves (3,2) => (2,1) => (1,1) => blue is winner
+
 ## AlphaCiv features:
 * Test system has been set up
 * Basic environment set up
