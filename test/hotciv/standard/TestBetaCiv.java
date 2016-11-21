@@ -3,6 +3,7 @@ package test.hotciv.standard;
 import org.junit.Before;
 import org.junit.Test;
 import src.hotciv.framework.Game;
+import src.hotciv.framework.GameConstants;
 import src.hotciv.framework.Player;
 import src.hotciv.framework.Position;
 import src.hotciv.standard.BetaCiv;
@@ -87,10 +88,10 @@ public class TestBetaCiv {
 
     @Test
     public void redConquersBlueCityByMovingArcher(){
-        game.moveUnit(new Position(2,0), new Position(3,0));
+        assertThat(game.moveUnit(new Position(2,0), new Position(3,0)), is(true));
         endRound(1);
-        game.moveUnit(new Position(3,0), new Position(4,1));
-        assertThat(game.getWinner(), is(Player.RED));
+        assertThat(game.moveUnit(new Position(3,0), new Position(4,1)), is(true));
+        assertThat(game.getCityAt(new Position(4,1)).getOwner(), is(Player.RED));
     }
 
 }

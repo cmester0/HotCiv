@@ -2,6 +2,8 @@ package src.hotciv.standard;
 
 import src.hotciv.framework.*;
 
+import javax.swing.plaf.synth.SynthStyle;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -11,6 +13,9 @@ public class BetaCiv implements Civ {
 
     private AlphaCiv alphaCiv;
     private Player winner;
+
+    private Map<Position, City> cities;
+    private Map<Position, Unit> units;
 
     public BetaCiv(){
         alphaCiv = new AlphaCiv();
@@ -51,6 +56,15 @@ public class BetaCiv implements Civ {
     @Override
     public void setup(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles) {
         alphaCiv.setup(units, cities, tiles);
+
+        this.cities = cities;
+        this.units = units;
+    }
+
+    @Override
+    public void update() {
+        System.out.println("HERE");
+        cities.put(new Position(1,1), new StandardCity(Player.BLUE));
     }
 
 }

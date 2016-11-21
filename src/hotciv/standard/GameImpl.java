@@ -94,6 +94,9 @@ public class GameImpl implements Game {
         Unit u = units.get(from);
         units.put(to, new StandardUnit(u.getTypeString(), u.getOwner(), 0));
         units.remove(from);
+
+        civ.update();
+
         return units.get(to) != null;
     }
 
@@ -127,7 +130,6 @@ public class GameImpl implements Game {
     }
 
     public void endOfRound(){
-
         age = civ.getNextAge(age);
 
         for (City c : cities.values()) {
@@ -174,7 +176,8 @@ public class GameImpl implements Game {
     }
 
     public void changeProductionInCityAt(Position p, String unitType) {
-        cities.put(p, new StandardCity(p, unitType));
+        Player cityOwner = cities.get(p).getOwner();
+        cities.put(p, new StandardCity(cityOwner, unitType));
     }
 
     public void performUnitActionAt(Position p) {

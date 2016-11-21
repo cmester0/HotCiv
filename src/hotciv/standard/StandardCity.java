@@ -5,29 +5,27 @@ import src.hotciv.framework.GameConstants;
 import src.hotciv.framework.Player;
 import src.hotciv.framework.Position;
 
+import java.util.Map;
+
 /**
  * Created by Lasse Letager Hansen on 09-11-2016.
  */
 public class StandardCity implements City {
-    private Position p;
+    private Player owner;
     private String unitType;
 
-    public StandardCity(Position p){
-        this(p, GameConstants.ARCHER);
+    public StandardCity(Player owner){
+        this(owner, GameConstants.ARCHER);
     }
 
-    public StandardCity(Position p, String unitType) {
-        this.p = p;
+    public StandardCity(Player owner, String unitType) {
+        this.owner = owner;
         this.unitType = unitType;
     }
 
     @Override
     public Player getOwner() {
-        if(p.getRow() == 4) {
-            return Player.BLUE;
-        } else {
-            return Player.RED;
-        }
+        return owner;
     }
 
     @Override

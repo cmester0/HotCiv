@@ -1,7 +1,7 @@
 package src.hotciv.framework;
 
-import java.util.Collection;
-import java.util.HashMap;
+import src.hotciv.standard.GameImpl;
+
 import java.util.Map;
 
 /**
@@ -23,5 +23,9 @@ public interface Civ {
 
     public void setup(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles);
 
+    /**
+     * Updates the board according to the civ
+     */
+    public void update();
 
 }

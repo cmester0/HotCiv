@@ -2,7 +2,6 @@ package src.hotciv.standard;
 
 import src.hotciv.framework.*;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -31,8 +30,8 @@ public class AlphaCiv implements Civ {
 
     @Override
     public void setup(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles) {
-        cities.put(new Position(1, 1), new StandardCity(new Position(1, 1)));
-        cities.put(new Position(4, 1), new StandardCity(new Position(4, 1)));
+        cities.put(new Position(1, 1), new StandardCity(Player.RED));
+        cities.put(new Position(4, 1), new StandardCity(Player.BLUE));
 
         units.put(new Position(2, 0), new StandardUnit(GameConstants.ARCHER, Player.RED));
         units.put(new Position(3, 2), new StandardUnit(GameConstants.LEGION, Player.BLUE));
@@ -45,6 +44,11 @@ public class AlphaCiv implements Civ {
         tiles.put(new Position(1,0), new StandardTile(GameConstants.OCEANS));
         tiles.put(new Position(0,1), new StandardTile(GameConstants.HILLS));
         tiles.put(new Position(2,2), new StandardTile(GameConstants.MOUNTAINS));
+    }
+
+    @Override
+    public void update() {
+
     }
 
 }
