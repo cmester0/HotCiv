@@ -405,6 +405,4 @@ public class TestAlphaCiv {
     assertThat(game.getUnitAt(new Position(3,0)).getOwner(), is(Player.BLUE));
   }
 
-
-
 }
