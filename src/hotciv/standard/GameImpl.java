@@ -41,7 +41,12 @@ public class GameImpl implements Game {
 
     private Player playerInTurn;
 
-    public GameImpl() {
+    private boolean isBetaCiv;
+
+    public GameImpl(boolean isBetaCiv) {
+
+        this.isBetaCiv = isBetaCiv;
+
         cities = new HashMap<Position, City>();
         production = new HashMap<Player, Integer>();
         units = new HashMap<Position, Unit>();
@@ -90,7 +95,7 @@ public class GameImpl implements Game {
     }
 
     public int getAge() {
-        return age;
+        return !isBetaCiv?age:-1;
     }
 
     public boolean moveUnit(Position from, Position to) {

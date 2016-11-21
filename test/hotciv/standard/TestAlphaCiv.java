@@ -47,7 +47,7 @@ public class TestAlphaCiv {
   /** Fixture for alphaciv testing. */
   @Before
   public void setUp() {
-    game = new GameImpl();
+    game = new GameImpl(false);
     redPosition = (new Position(1,1));
     bluePosition = (new Position(4,1));
   }
@@ -403,6 +403,12 @@ public class TestAlphaCiv {
     game.endOfTurn();
     game.moveUnit(new Position(4,1), new Position(3,0));
     assertThat(game.getUnitAt(new Position(3,0)).getOwner(), is(Player.BLUE));
+  }
+
+  @Test
+  public void after40RoundsAgeIs0(){
+    endRound(40);
+    assertThat(game.getAge(), is(0));
   }
 
 }

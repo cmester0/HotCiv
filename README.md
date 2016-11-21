@@ -30,15 +30,15 @@
 ## BetaCiv
 
 ### Test-list
-* [ ] After 38 rounds,  age is -100
-* [ ] After 39 rounds,  age is -1
-* [ ] After 40 rounds,  age is +1
-* [ ] After 41 rounds,  age is +50
-* [ ] After 42 rounds,  age is +100
-* [ ] After 85 rounds,  age is +1775
-* [ ] After 94 rounds,  age is +1905
-* [ ] After 108 rounds, age is +1971
-* [ ] After 109 rounds, age is +1972
+* [ ] After 39 rounds,  age is -100
+* [ ] After 40 rounds,  age is -1
+* [ ] After 41 rounds,  age is +1
+* [ ] After 42 rounds,  age is +50
+* [ ] After 43 rounds,  age is +100
+* [ ] After 86 rounds,  age is +1775
+* [ ] After 95 rounds,  age is +1905
+* [ ] After 109 rounds, age is +1971
+* [ ] After 110 rounds, age is +1972
 * [ ] Winner is null at beginning
 * [ ] Red archer moves (2,0) => (3,0) => (4,1) => red is winner
 * [ ] Blue legion moves (3,2) => (2,1) => (1,1) => blue is winner
