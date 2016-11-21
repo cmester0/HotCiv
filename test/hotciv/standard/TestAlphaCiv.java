@@ -2,6 +2,7 @@ package test.hotciv.standard;
 
 import src.hotciv.framework.*;
 
+import src.hotciv.standard.AlphaCiv;
 import src.hotciv.standard.GameImpl;
 import org.junit.*;
 import src.hotciv.standard.StandardCity;
@@ -47,7 +48,7 @@ public class TestAlphaCiv {
   /** Fixture for alphaciv testing. */
   @Before
   public void setUp() {
-    game = new GameImpl(false);
+    game = new GameImpl(new AlphaCiv());
     redPosition = (new Position(1,1));
     bluePosition = (new Position(4,1));
   }

@@ -37,44 +37,31 @@ public class GameImpl implements Game {
 
     private HashMap<Position, Unit> units;
     private HashMap<Position, City> cities;
+    private HashMap<Position, Tile> tiles;
     private HashMap<Player, Integer> production;
 
     private Player playerInTurn;
 
-    private boolean isBetaCiv;
+    private Civ civ;
 
-    public GameImpl(boolean isBetaCiv) {
-
-        this.isBetaCiv = isBetaCiv;
-
-        cities = new HashMap<Position, City>();
+    public GameImpl(Civ civ) {
         production = new HashMap<Player, Integer>();
-        units = new HashMap<Position, Unit>();
+        cities     = new HashMap<Position, City>();
+        units      = new HashMap<Position, Unit>();
+        tiles      = new HashMap<Position, Tile>();
 
-        cities.put(new Position(1, 1), new StandardCity(new Position(1, 1)));
-        cities.put(new Position(4, 1), new StandardCity(new Position(4, 1)));
+        this.civ = civ;
 
-        units.put(new Position(2, 0), new StandardUnit(GameConstants.ARCHER, Player.RED));
-        units.put(new Position(3, 2), new StandardUnit(GameConstants.LEGION, Player.BLUE));
-        units.put(new Position(4, 3), new StandardUnit(GameConstants.SETTLER, Player.BLUE));
+        civ.setup(units, cities, tiles);
 
         playerInTurn = Player.RED;
 
         for (Player p : Player.values())
             production.put(p, 0);
-
     }
 
     public Tile getTileAt(Position p) {
-        if (p.getColumn() == 0 && p.getRow() == 1) {
-            return new StandardTile(GameConstants.OCEANS);
-        } else if (p.getColumn() == 1 && p.getRow() == 0) {
-            return new StandardTile(GameConstants.HILLS);
-        } else if (p.getColumn() == 2 && p.getRow() == 2) {
-            return new StandardTile(GameConstants.MOUNTAINS);
-        } else {
-            return new StandardTile(GameConstants.PLAINS);
-        }
+        return tiles.get(p);
     }
 
     public Unit getUnitAt(Position p) {
@@ -91,11 +78,11 @@ public class GameImpl implements Game {
     }
 
     public Player getWinner() {
-        return Player.RED;
+        return civ.getWinner();
     }
 
     public int getAge() {
-        return !isBetaCiv?age:-1;
+        return age;
     }
 
     public boolean moveUnit(Position from, Position to) {
@@ -140,7 +127,8 @@ public class GameImpl implements Game {
     }
 
     public void endOfRound(){
-        age += 100;
+
+        age = civ.getNextAge(age);
 
         for (City c : cities.values()) {
             int newProd = production.get(c.getOwner()) + 6;
