@@ -1,5 +1,6 @@
 package src.hotciv.standard;
 
+import javafx.geometry.Pos;
 import src.hotciv.framework.*;
 
 import javax.swing.plaf.synth.SynthStyle;
@@ -63,8 +64,18 @@ public class BetaCiv implements Civ {
 
     @Override
     public void update() {
-        System.out.println("HERE");
-        cities.put(new Position(1,1), new StandardCity(Player.BLUE));
+        for(Map.Entry<Position, City> c : cities.entrySet()) {
+            Position cityPos = c.getKey();
+            Unit unitAtCityPos = units.get(cityPos);
+
+            if(unitAtCityPos != null) {
+                String unitType = unitAtCityPos.getTypeString();
+                if(unitType.equals(GameConstants.SETTLER)) continue;
+
+                Player unitOwner = unitAtCityPos.getOwner();
+                cities.put(cityPos, new StandardCity(unitOwner));
+            }
+        }
     }
 
 }

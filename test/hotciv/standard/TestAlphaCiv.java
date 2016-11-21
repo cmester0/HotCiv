@@ -331,10 +331,10 @@ public class TestAlphaCiv {
   }
 
   @Test
-  public void blueHasASettlerAt4comma3(){
+  public void redHasASettlerAt4comma3(){
     Unit u = game.getUnitAt(new Position(4,3));
     assertThat(u.getTypeString(), is(GameConstants.SETTLER));
-    assertThat(u.getOwner(),      is(Player.BLUE));
+    assertThat(u.getOwner(),      is(Player.RED));
   }
 
   @Test

@@ -27,7 +27,7 @@
 * [ ] Archer, uses fortify, has 6 defensive strength
 * [ ] Archer, uses fortify, uses fortify, has 3 defensive strength
 
-## BetaCiv
+## BetaCiv0
 
 ### Test-list
 * [x] ~~After 0 rounds, age is -4000~~
@@ -39,8 +39,9 @@
 * [x] ~~After 83 rounds, age is +1905~~
 * [x] ~~After 97 rounds, age is +1971~~
 * [x] ~~No winner at beginning of the game~~
-* [ ] Red archer moves (2,0) => (3,0) => (4,1) => red is winner
-* [ ] Blue legion moves (3,2) => (2,1) => (1,1) => blue is winner
+* [x] ~~Red archer moves (2,0) => (3,0) => (4,1) => red is winner~~
+* [x] ~~Blue legion moves (3,2) => (2,1) => (1,1) => blue is winner~~
+* [x] ~~Settlers cannot conquer cities~~
 
 ## AlphaCiv features:
 * Test system has been set up

@@ -35,7 +35,7 @@ public class AlphaCiv implements Civ {
 
         units.put(new Position(2, 0), new StandardUnit(GameConstants.ARCHER, Player.RED));
         units.put(new Position(3, 2), new StandardUnit(GameConstants.LEGION, Player.BLUE));
-        units.put(new Position(4, 3), new StandardUnit(GameConstants.SETTLER, Player.BLUE));
+        units.put(new Position(4, 3), new StandardUnit(GameConstants.SETTLER, Player.RED));
 
         for(int i=0; i<16; i++)
         for(int j=0; j<16; j++)

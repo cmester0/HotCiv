@@ -160,7 +160,8 @@ public class GameImpl implements Game {
         for(Map.Entry<Position, Unit> e : units.entrySet()){
             unitsTemp.put(e.getKey(), new StandardUnit(e.getValue().getTypeString(), e.getValue().getOwner()));
         }
-        units = unitsTemp;
+        units.clear();
+        units.putAll(unitsTemp);
     }
 
     public void endOfTurn() {
