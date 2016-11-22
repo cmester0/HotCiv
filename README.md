@@ -20,11 +20,11 @@
 
 ## GammaCiv
 
-* [x] Settler at (4,3) builds city => no unit at (4,3), but red city
-* [x] Settler at (4,3), moves right, builds city => no unit at (4,4), but red city
-* [x] Unit action at (0,0) does nothing
-* [x] Unit action at archer (2,2) does not produce a city
-* [x] Blue changes production to settler, waits 5 rounds, moves settler to (5,1), builds city => blue city at (5,1)
+* [x] ~~Settler at (4,3) builds city => no unit at (4,3), but red city~~
+* [x] ~~Settler at (4,3), moves right, builds city => no unit at (4,4), but red city~~
+* [x] ~~Unit action at (0,0) does nothing~~
+* [x] ~~Unit action at archer (2,2) does not produce a city~~
+* [x] ~~Blue changes production to settler, waits 5 rounds, moves settler to (5,1), builds city => blue city at (5,1)~~
 * [ ] Archer has 3 defensive strength
 * [ ] Archer, uses fortify, has 6 defensive strength
 * [ ] Archer, uses fortify, uses fortify, has 3 defensive strength
