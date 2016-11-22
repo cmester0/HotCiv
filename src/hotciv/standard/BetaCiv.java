@@ -1,9 +1,7 @@
 package src.hotciv.standard;
 
-import javafx.geometry.Pos;
 import src.hotciv.framework.*;
 
-import javax.swing.plaf.synth.SynthStyle;
 import java.util.HashMap;
 import java.util.Map;
 

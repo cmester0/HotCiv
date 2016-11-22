@@ -182,6 +182,7 @@ public class GameImpl implements Game {
     }
 
     public void performUnitActionAt(Position p) {
+        civ.performUnitActionAt(p);
     }
 
     @Override
