@@ -25,9 +25,9 @@
 * [x] ~~Unit action at (0,0) does nothing~~
 * [x] ~~Unit action at archer (2,2) does not produce a city~~
 * [x] ~~Blue changes production to settler, waits 5 rounds, moves settler to (5,1), builds city => blue city at (5,1)~~
-* [ ] Archer has 3 defensive strength
-* [ ] Archer, uses fortify, has 6 defensive strength
-* [ ] Archer, uses fortify, uses fortify, has 3 defensive strength
+* [x] ~~Archer at (2,0) has 3 defensive strength~~
+* [x] ~~Archer at (2,0), uses fortify, has 6 defensive strength~~
+* [x] ~~Archer at (2,0), uses fortify, uses fortify, has 3 defensive strength~~
 
 ## BetaCiv
 

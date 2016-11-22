@@ -31,9 +31,16 @@ public class GammaCiv implements Civ {
     @Override
     public void performUnitActionAt(Position p) {
         Unit u = units.get(p);
-        if(u != null && u.getTypeString() == GameConstants.SETTLER) {
+        if(u==null)return;
+
+        if(u.getTypeString() == GameConstants.SETTLER) {
             units.remove(p);
             cities.put(p, new StandardCity(u.getOwner()));
+        }
+        if(u.getTypeString() == GameConstants.ARCHER) {
+            units.remove(p);
+            int defensiveStrength = u.getDefensiveStrength()==3?6:3;
+            units.put(p, new StandardUnit(GameConstants.ARCHER, u.getOwner(), u.getMoveCount(), defensiveStrength));
         }
     }
 

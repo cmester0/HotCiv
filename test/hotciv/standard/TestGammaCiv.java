@@ -74,4 +74,22 @@ public class TestGammaCiv {
         assertThat(game.getCityAt(new Position(5,1)).getOwner(), is(Player.BLUE));
     }
 
+    @Test
+    public void archerAt2comma0Has3DefensiveStrength(){
+        assertThat(game.getUnitAt(new Position(2,0)).getDefensiveStrength(), is(3));
+    }
+
+    @Test
+    public void archerAt2comma0Has6DefensiveStrengthAfterFortification(){
+        game.performUnitActionAt(new Position(2,0));
+        assertThat(game.getUnitAt(new Position(2,0)).getDefensiveStrength(), is(6));
+    }
+
+    @Test
+    public void archerAt2comma0Has3DefensiveStrengthAfter2Fortification(){
+        game.performUnitActionAt(new Position(2,0));
+        game.performUnitActionAt(new Position(2,0));
+        assertThat(game.getUnitAt(new Position(2,0)).getDefensiveStrength(), is(3));
+    }
+
 }

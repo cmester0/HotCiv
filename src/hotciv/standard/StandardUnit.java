@@ -6,21 +6,25 @@ import src.hotciv.framework.Unit;
 
 public class StandardUnit implements Unit {
 
-    int moveCount;
+    private int moveCount, defensiveStrength;
     private String type;
     private Player player;
 
     public StandardUnit(String type, Player p){
-        this.type = type;
-        player = p;
-        this.moveCount = 1;
+        this(type, p, 1);
     }
 
     public StandardUnit(String type, Player p, int moveCount){
+        this(type,p,moveCount,3);
+    }
+
+    public StandardUnit(String type, Player p, int moveCount, int defensiveStrength){
         this.type = type;
         player = p;
         this.moveCount = moveCount;
+        this.defensiveStrength = defensiveStrength;
     }
+
 
     @Override
     public String getTypeString() {
@@ -39,7 +43,7 @@ public class StandardUnit implements Unit {
 
     @Override
     public int getDefensiveStrength() {
-        return 0;
+        return defensiveStrength;
     }
 
     @Override
