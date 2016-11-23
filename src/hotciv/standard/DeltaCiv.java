@@ -9,19 +9,21 @@ import java.util.Map;
  * Created by Lasse Letager Hansen on 23-11-2016.
  */
 public class DeltaCiv implements Civ {
+    AlphaCiv alphaCiv;
+
     @Override
     public int getNextAge(int currentAge) {
-        return 0;
+        return alphaCiv.getNextAge(currentAge);
     }
 
     @Override
     public Player getWinner() {
-        return null;
+        return alphaCiv.getWinner();
     }
 
     @Override
     public void performUnitActionAt(Position p) {
-
+        alphaCiv.performUnitActionAt(p);
     }
 
     @Override
@@ -77,6 +79,6 @@ public class DeltaCiv implements Civ {
 
     @Override
     public void update() {
-
+        alphaCiv.update();
     }
 }
