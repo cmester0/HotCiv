@@ -2,21 +2,21 @@
 
 ## DeltaCiv
 
-* [ ] Blue city at (4,5)
-* [ ] Red city at (8,12)
-* [ ] Mountain at (0,5)
-* [ ] Hills at (1,4)
-* [ ] Ocean at (8,6)
-* [ ] Mountain at (7, 13)
-* [ ] Forest at (9, 11)
-* [ ] Plains at (5,1)
-* [ ] Ocean at (0,0)
-* [ ] Ocean at (15,15)
-* [ ] Hills at (4,8)
-* [ ] Forest at (8,13)
-* [ ] There are 9 mountains
-* [ ] There are 10 hills
-* [ ] There are 12 forests
+* [x] ~~Blue city at (4,5)~~
+* [x] ~~Red city at (8,12)~~
+* [x] ~~Mountain at (0,5)~~
+* [x] ~~Hills at (1,4)~~
+* [x] ~~Ocean at (8,6)~~
+* [x] ~~Mountain at (7, 13)~~
+* [x] ~~Forest at (9, 11)~~
+* [x] ~~Plains at (5,1)~~
+* [x] ~~Ocean at (0,0)~~
+* [x] ~~Ocean at (15,15)~~
+* [x] ~~Hills at (4,8)~~
+* [x] ~~Forest at (8,13)~~
+* [x] ~~There are 9 mountains~~
+* [x] ~~There are 10 hills~~
+* [x] ~~There are 12 forests~~
 
 ## GammaCiv
 
