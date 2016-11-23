@@ -41,6 +41,8 @@
 * [x] ~~After 83 rounds, age is +1905~~
 * [x] ~~After 97 rounds, age is +1971~~
 * [x] ~~No winner at beginning of the game~~
+* [x] ~~Red archer moves (2,0) => (3,0) => (4,1) => red city at (4,1)~~
+* [x] ~~Blue legion moves (3,2) => (2,1) => (1,1) => blue city at (1,1)~~
 * [x] ~~Red archer moves (2,0) => (3,0) => (4,1) => red is winner~~
 * [x] ~~Blue legion moves (3,2) => (2,1) => (1,1) => blue is winner~~
 * [x] ~~Settlers cannot conquer cities~~

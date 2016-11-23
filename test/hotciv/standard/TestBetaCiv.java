@@ -110,4 +110,22 @@ public class TestBetaCiv {
         game.moveUnit(new Position(4,2), new Position(4,1));
         assertThat(game.getCityAt(bluePosition).getOwner(), is(Player.BLUE));
     }
+
+    @Test
+    public void redConquersBlueCityAndWinsTheGame(){
+        game.moveUnit(new Position(2,0), new Position(3,0));
+        endRound(1);
+        game.moveUnit(new Position(3,0), new Position(4,1));
+        assertThat(game.getWinner(), is(Player.RED));
+    }
+
+    @Test
+    public void blueConquersRedCityAndWinsTheGame(){
+        game.endOfTurn();
+        game.moveUnit(new Position(3,2), new Position(2,1));
+        endRound(1);
+        game.moveUnit(new Position(2,1), new Position(1,1));
+        assertThat(game.getWinner(), is(Player.BLUE));
+    }
+
 }

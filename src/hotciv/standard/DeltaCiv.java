@@ -11,6 +11,10 @@ import java.util.Map;
 public class DeltaCiv implements Civ {
     AlphaCiv alphaCiv;
 
+    public DeltaCiv(){
+        alphaCiv = new AlphaCiv();
+    }
+
     @Override
     public int getNextAge(int currentAge) {
         return alphaCiv.getNextAge(currentAge);

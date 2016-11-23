@@ -23,7 +23,6 @@ public class BetaCiv implements Civ {
 
     @Override
     public int getNextAge(int age) {
-        winner = Player.RED;
         if(age < -100)
             return age+100;
         else if(age == -100)
@@ -72,6 +71,7 @@ public class BetaCiv implements Civ {
 
                 Player unitOwner = unitAtCityPos.getOwner();
                 cities.put(cityPos, new StandardCity(unitOwner));
+                winner = unitOwner;
             }
         }
     }
