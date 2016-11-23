@@ -8,7 +8,6 @@ import java.util.Map;
  * Created by ssodelta on 11/21/16.
  */
 public interface Civ {
-
     public int getNextAge(int currentAge);
 
     public Player getWinner();
@@ -27,5 +26,4 @@ public interface Civ {
      * Updates the board according to the civ
      */
     public void update();
-
 }

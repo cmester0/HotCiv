@@ -7,13 +7,13 @@
 * [ ] Mountain at (0,5)
 * [ ] Hills at (1,4)
 * [ ] Ocean at (8,6)
-* [ ] Hills at (7, 13)
+* [ ] Mountain at (7, 13)
 * [ ] Forest at (9, 11)
 * [ ] Plains at (5,1)
 * [ ] Ocean at (0,0)
 * [ ] Ocean at (15,15)
 * [ ] Hills at (4,8)
-* [ ] Forest at (11,8)
+* [ ] Forest at (8,13)
 * [ ] There are 9 mountains
 * [ ] There are 10 hills
 * [ ] There are 12 forests
