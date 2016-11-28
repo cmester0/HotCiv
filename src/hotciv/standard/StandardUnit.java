@@ -48,6 +48,6 @@ public class StandardUnit implements Unit {
 
     @Override
     public int getAttackingStrength() {
-        return 0;
+        return 2;
     }
 }
