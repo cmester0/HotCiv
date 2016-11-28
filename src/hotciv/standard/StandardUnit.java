@@ -48,8 +48,13 @@ public class StandardUnit implements Unit {
 
     @Override
     public int getAttackingStrength() {
-        if(getTypeString().equals(GameConstants.LEGION)) return 4;
-        if(getTypeString().equals(GameConstants.SETTLER)) return 0;
-        return 2;
+        switch (getTypeString()){
+            case GameConstants.LEGION:
+                return 4;
+            case GameConstants.ARCHER:
+                return 2;
+            default:
+                return 0;
+        }
     }
 }
