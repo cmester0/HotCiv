@@ -83,7 +83,17 @@ public class GameImpl implements Game {
                     break;
             }
 
-            units.put(p, new StandardUnit(u, cities.get(p) != null, tileMultiplier));
+            int count = -1;
+            for(int i = -1; i < 2; i++) {
+                for (int j = -1; j < 2; j++) {
+                    Position adjacent = new Position(p.getRow() + i, p.getColumn() + j);
+                    Unit adjacentUnit = units.get(adjacent);
+                    if(adjacentUnit != null && adjacentUnit.getOwner().equals(u.getOwner()))
+                        count++;
+                }
+            }
+
+            units.put(p, new StandardUnit(u, cities.get(p) != null, tileMultiplier, count));
             u = units.get(p);
         }
 

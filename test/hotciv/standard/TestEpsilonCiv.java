@@ -47,7 +47,7 @@ public class TestEpsilonCiv {
 
     @Test
     public void combinedAttackStrengthOfAUnitInACityIsTripled(){
-        endRound(2);
+        game.moveUnit(new Position(2,0), redPosition);
         Unit u = game.getUnitAt(redPosition);
 
         // base attack strength of archer is 2, and multiplier of 3 from city
@@ -63,5 +63,16 @@ public class TestEpsilonCiv {
 
         // base attack strength of archer is 2, and multiplier of 2 from terrain
         assertThat(u.getAttackingStrength(), is(2*2));
+    }
+
+    @Test
+    public void legionInCityWithTwoAdjecentFriendlyUnitsIs18(){
+        game.changeProductionInCityAt(redPosition, GameConstants.LEGION);
+
+        // wait until two legions spawn
+        endRound(6);
+
+        Unit u = game.getUnitAt(redPosition);
+        assertThat(u.getAttackingStrength(), is(18));
     }
 }

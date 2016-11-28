@@ -11,6 +11,7 @@ public class StandardUnit implements Unit {
     private Player player;
     private boolean cityBonus;
     private int terrainBonus;
+    private int adjacentCount;
 
     public StandardUnit(String type, Player p){
         this(type, p, 1);
@@ -21,10 +22,11 @@ public class StandardUnit implements Unit {
     }
 
 
-    public StandardUnit(Unit u, boolean cityBonus, int terrainBonus){
+    public StandardUnit(Unit u, boolean cityBonus, int terrainBonus, int adjecentCount){
         this(u.getTypeString(), u.getOwner(), u.getMoveCount(), u.getDefensiveStrength());
         this.cityBonus = cityBonus;
         this.terrainBonus = terrainBonus;
+        this.adjacentCount = adjecentCount;
     }
 
     public StandardUnit(String type, Player p, int moveCount, int defensiveStrength){
@@ -72,6 +74,6 @@ public class StandardUnit implements Unit {
                 break;
         }
 
-        return baseStrength * terrainBonus * (cityBonus ? 3 : 1);
+        return (baseStrength + adjacentCount) * terrainBonus * (cityBonus ? 3 : 1);
     }
 }
