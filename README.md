@@ -2,8 +2,9 @@
 
 ## EpsilonCiv
 * [x] ~~Base attack of archer is 2~~
-* [ ] Base attack of legion is 4
-* [ ] Base attack of settler is 0
+* [x] ~~Base attack of legion is 4~~
+* [x] ~~Base attack of settler is 0~~
+* [x] ~~Combined attack strength of a unit in a city is tripled~~
 
 ## DeltaCiv
 

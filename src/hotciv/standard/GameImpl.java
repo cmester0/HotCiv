@@ -65,6 +65,12 @@ public class GameImpl implements Game {
     }
 
     public Unit getUnitAt(Position p) {
+        Unit u = units.get(p);
+
+        if(cities.get(p) != null && u != null) {
+            units.put(p, new StandardUnit(u.getTypeString(), u.getOwner(), u.getMoveCount(), true));
+        }
+
         return units.get(p);
     }
 

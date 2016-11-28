@@ -12,11 +12,19 @@ package test.hotciv.standard;
  * Created by Lasse Letager Hansen on 28-11-2016.
  */
 public class TestEpsilonCiv {
-    Game game;
+    private Game game;
+    private Position redPosition, bluePosition;
 
     @Before
     public void setUp() {
         game = new GameImpl(new EpsilonCiv());
+        redPosition = (new Position(1,1));
+        bluePosition = (new Position(4,1));
+    }
+
+    private void endRound(int n){
+        for(int i=0; i<2*n; i++)
+            game.endOfTurn();
     }
 
     @Test
@@ -35,5 +43,14 @@ public class TestEpsilonCiv {
     public void baseAttackOfSettlerIs0(){
         Unit u = new StandardUnit(GameConstants.SETTLER, Player.RED);
         assertThat(u.getAttackingStrength(), is(0));
+    }
+
+    @Test
+    public void combinedAttackStrengthOfAUnitInACityIsTripled(){
+        endRound(2);
+        Unit u = game.getUnitAt(redPosition);
+
+        // base attack strength of 2, and multiplier of 3 from city
+        assertThat(u.getAttackingStrength(), is(2*3));
     }
 }

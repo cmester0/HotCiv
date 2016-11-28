@@ -28,11 +28,6 @@ public class TestDeltaCiv {
         game = new GameImpl(new DeltaCiv());
     }
 
-    private void endRound(int n){
-        for(int i=0; i<2*n; i++)
-            game.endOfTurn();
-    }
-
     private int countNumberOfTilesOfType(String type){
         int counter = 0;
 
