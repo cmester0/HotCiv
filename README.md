@@ -1,5 +1,10 @@
 # HotCiv
 
+## EpsilonCiv
+* [x] ~~Base attack of archer is 2~~
+* [ ] Base attack of legion is 4
+* [ ] Base attack of settler is 0
+
 ## DeltaCiv
 
 * [x] ~~Blue city at (4,5)~~
