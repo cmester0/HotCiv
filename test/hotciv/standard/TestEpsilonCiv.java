@@ -1,12 +1,12 @@
 package test.hotciv.standard;
 
-        import org.junit.Before;
-        import org.junit.Test;
-        import src.hotciv.framework.*;
-        import src.hotciv.standard.*;
+import org.junit.Before;
+import org.junit.Test;
+import src.hotciv.framework.*;
+import src.hotciv.standard.*;
 
-        import static org.junit.Assert.*;
-        import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 
 /**
  * Created by Lasse Letager Hansen on 28-11-2016.
@@ -92,5 +92,25 @@ public class TestEpsilonCiv {
     public void baseDefenceOfSettlerIs3(){
         Unit u = new StandardUnit(GameConstants.SETTLER, Player.RED);
         assertThat(u.getDefensiveStrength(), is(3));
+    }
+
+    @Test
+    public void defenceOfUnitOnHillIsDouble(){
+        endRound(2);
+        game.moveUnit(new Position(1,1), new Position(0,1));
+        Unit u = game.getUnitAt(new Position(0,1));
+
+
+        // base attack strength of archer is 2, and multiplier of 2 from terrain
+        assertThat(u.getDefensiveStrength(), is(3*2));
+    }
+
+    @Test
+    public void defenceOfUnitInCityIsTripled(){
+        game.moveUnit(new Position(2,0), redPosition);
+        Unit u = game.getUnitAt(redPosition);
+
+        // base attack strength of archer is 2, and multiplier of 3 from city
+        assertThat(u.getDefensiveStrength(), is(3*3));
     }
 }

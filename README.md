@@ -1,11 +1,27 @@
 # HotCiv
 
+## EtaCiv
+*
+
+## ZetaCiv
+* [x] ~~There is no winner at the beginning of the game~~
+* [x] ~~If red conquers blue city at round 1, then red wins the game~~
+* [x] ~~If red conquers blue city at round 20, then red wins the game~~
+* [x] ~~If red conquers blue city at round 21, then red does not win the game~~
+* [ ] If a player wins 3 attacks after round 20, that player wins the game
+
 ## EpsilonCiv
 * [x] ~~Base attack of archer is 2~~
 * [x] ~~Base attack of legion is 4~~
 * [x] ~~Base attack of settler is 0~~
 * [x] ~~Combined attack strength of a unit in a city is tripled~~
 * [x] ~~Combined attack strength of a unit on a hill is doubled~~
+* [x] ~~Base defence of archer is 3~~
+* [x] ~~Base defence of legion is 2~~
+* [x] ~~Base defence of settler is 3~~
+* [x] ~~Combined defence of unit on a hill is doubled~~
+* [x] ~~Combined defence of a unit in a city is tripled~~
+* [ ] If a player wins 3 attacks, then that player wins the game
 
 ## DeltaCiv
 

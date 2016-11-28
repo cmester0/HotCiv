@@ -66,7 +66,7 @@ public class StandardUnit implements Unit {
 
     @Override
     public int getDefensiveStrength() {
-        return defensiveStrength;
+        return (defensiveStrength + adjacentCount) * terrainBonus * (cityBonus ? 3 : 1);
     }
 
     @Override
