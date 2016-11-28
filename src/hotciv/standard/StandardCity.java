@@ -13,14 +13,22 @@ import java.util.Map;
 public class StandardCity implements City {
     private Player owner;
     private String unitType;
+    private String workforceFocus;
+    private int size;
 
     public StandardCity(Player owner){
         this(owner, GameConstants.ARCHER);
     }
 
     public StandardCity(Player owner, String unitType) {
+        this(owner, unitType, GameConstants.productionFocus, 1);
+    }
+
+    public StandardCity(Player owner, String unitType, String workforceFocus, int size) {
+        this.size = size;
         this.owner = owner;
         this.unitType = unitType;
+        this.workforceFocus = workforceFocus;
     }
 
     @Override
@@ -30,7 +38,7 @@ public class StandardCity implements City {
 
     @Override
     public int getSize() {
-        return 1;
+        return size;
     }
 
     @Override
@@ -40,6 +48,6 @@ public class StandardCity implements City {
 
     @Override
     public String getWorkforceFocus() {
-        return null;
+        return workforceFocus;
     }
 }

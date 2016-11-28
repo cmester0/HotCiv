@@ -8,7 +8,7 @@ import java.util.Map;
  * Created by Lasse Letager Hansen on 28-11-2016.
  */
 public class EpsilonCiv implements Civ {
-    AlphaCiv alphaCiv;
+    private AlphaCiv alphaCiv;
 
     public EpsilonCiv(){
         alphaCiv = new AlphaCiv();

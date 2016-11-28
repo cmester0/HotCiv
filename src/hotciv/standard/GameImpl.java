@@ -39,6 +39,7 @@ public class GameImpl implements Game {
     private HashMap<Position, City> cities;
     private HashMap<Position, Tile> tiles;
     private HashMap<Player, Integer> production;
+    private HashMap<Position, Integer> food;
 
     private Player playerInTurn;
 
@@ -49,6 +50,7 @@ public class GameImpl implements Game {
         cities     = new HashMap<Position, City>();
         units      = new HashMap<Position, Unit>();
         tiles      = new HashMap<Position, Tile>();
+        food       = new HashMap<Position, Integer>();
 
         this.civ = civ;
 
@@ -58,6 +60,9 @@ public class GameImpl implements Game {
 
         for (Player p : Player.values())
             production.put(p, 0);
+
+        for(Position cityPos : cities.keySet())
+            food.put(cityPos, 0);
     }
 
     public Tile getTileAt(Position p) {
@@ -196,6 +201,30 @@ public class GameImpl implements Game {
         }
         units.clear();
         units.putAll(unitsTemp);
+
+        HashMap<Position, City> cityTemp = new HashMap<Position, City>();
+        for(Map.Entry<Position, City> e : cities.entrySet()) {
+            City c = e.getValue();
+            Position p = e.getKey();
+
+            if(!c.getWorkforceFocus().equals(GameConstants.foodFocus)) continue;
+
+            int newFood = food.get(p);
+            newFood++;
+
+            boolean shouldGrow = newFood >= c.getSize() * 3 + 5;
+            boolean smallEnoughToGrow = c.getSize() < 9;
+
+            if(shouldGrow && smallEnoughToGrow){
+                food.put(p, 0);
+                cityTemp.put(p, new StandardCity(c.getOwner(), c.getProduction(), c.getWorkforceFocus(), c.getSize() + 1));
+            }
+            else {
+                food.put(p, newFood);
+            }
+        }
+
+        cities.putAll(cityTemp);
     }
 
     public void endOfTurn() {
@@ -207,7 +236,10 @@ public class GameImpl implements Game {
         }
     }
 
-    public void changeWorkForceFocusInCityAt(Position p, String balance) {
+    @Override
+    public void changeWorkforceFocusInCityAt(Position p, String balance) {
+        City c = cities.get(p);
+        cities.put(p, new StandardCity(c.getOwner(), c.getProduction(), balance, c.getSize()));
     }
 
     public void changeProductionInCityAt(Position p, String unitType) {
@@ -223,4 +255,10 @@ public class GameImpl implements Game {
     public int getProductionAmountOfCity(City c) {
         return production.get(c.getOwner());
     }
+
+    @Override
+    public int getFoodAmountOfCityAt(Position p) {
+        return food.get(p);
+    }
+
 }

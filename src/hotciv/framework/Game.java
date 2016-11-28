@@ -117,7 +117,7 @@ public interface Game {
    * GameConstants.productionFocus and 
    * GameConstants.foodFocus.
    */
-  public void changeWorkForceFocusInCityAt( Position p, String balance );
+  public void changeWorkforceFocusInCityAt( Position p, String balance );
   
   /** change the type of unit a city will produce next. 
    * Precondition: there is a city at location 'p'.
@@ -137,7 +137,12 @@ public interface Game {
    */
   public void performUnitActionAt( Position p );
 
+  /**
+   *
+   * @param c
+   * @return
+   */
   public int getProductionAmountOfCity(City c);
 
-
+  public int getFoodAmountOfCityAt(Position p);
 }

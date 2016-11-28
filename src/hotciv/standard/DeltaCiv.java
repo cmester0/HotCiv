@@ -9,7 +9,7 @@ import java.util.Map;
  * Created by Lasse Letager Hansen on 23-11-2016.
  */
 public class DeltaCiv implements Civ {
-    AlphaCiv alphaCiv;
+    private AlphaCiv alphaCiv;
 
     public DeltaCiv(){
         alphaCiv = new AlphaCiv();

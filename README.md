@@ -1,7 +1,7 @@
 # HotCiv
 
 ## EtaCiv
-*
+* [ ]
 
 ## ZetaCiv
 * [x] ~~There is no winner at the beginning of the game~~
