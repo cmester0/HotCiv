@@ -75,4 +75,22 @@ public class TestEpsilonCiv {
         Unit u = game.getUnitAt(redPosition);
         assertThat(u.getAttackingStrength(), is(18));
     }
+
+    @Test
+    public void baseDefenceOfArcherIs3(){
+        Unit u = new StandardUnit(GameConstants.ARCHER, Player.RED);
+        assertThat(u.getDefensiveStrength(), is(3));
+    }
+
+    @Test
+    public void baseDefenceOfLegionIs2(){
+        Unit u = new StandardUnit(GameConstants.LEGION, Player.RED);
+        assertThat(u.getDefensiveStrength(), is(2));
+    }
+
+    @Test
+    public void baseDefenceOfSettlerIs3(){
+        Unit u = new StandardUnit(GameConstants.SETTLER, Player.RED);
+        assertThat(u.getDefensiveStrength(), is(3));
+    }
 }

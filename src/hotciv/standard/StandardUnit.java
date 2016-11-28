@@ -17,23 +17,33 @@ public class StandardUnit implements Unit {
         this(type, p, 1);
     }
 
-    public StandardUnit(String type, Player p, int moveCount){
-        this(type,p,moveCount,3);
-    }
-
-
     public StandardUnit(Unit u, boolean cityBonus, int terrainBonus, int adjecentCount){
-        this(u.getTypeString(), u.getOwner(), u.getMoveCount(), u.getDefensiveStrength());
+        this(u.getTypeString(), u.getOwner(), u.getMoveCount());
         this.cityBonus = cityBonus;
         this.terrainBonus = terrainBonus;
         this.adjacentCount = adjecentCount;
+        this.defensiveStrength = u.getDefensiveStrength();
     }
 
-    public StandardUnit(String type, Player p, int moveCount, int defensiveStrength){
+    public StandardUnit(String type, Player p, int moveCount){
+        this(type,p,moveCount,0);
+    }
+
+    public StandardUnit(String type, Player p, int moveCount, int additionalDefensiveStrength){
         this.type = type;
         player = p;
         this.moveCount = moveCount;
-        this.defensiveStrength = defensiveStrength;
+
+        switch (type) {
+            case GameConstants.LEGION:
+                this.defensiveStrength = 2;
+                break;
+            default:
+                this.defensiveStrength = 3;
+                break;
+        }
+
+        this.defensiveStrength += additionalDefensiveStrength;
 
         this.cityBonus = false;
         this.terrainBonus = 1;

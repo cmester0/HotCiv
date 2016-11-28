@@ -39,7 +39,7 @@ public class GammaCiv implements Civ {
         }
         if(u.getTypeString() == GameConstants.ARCHER) {
             units.remove(p);
-            int defensiveStrength = u.getDefensiveStrength()==3?6:3;
+            int defensiveStrength = u.getDefensiveStrength()==3?3:0;
             units.put(p, new StandardUnit(GameConstants.ARCHER, u.getOwner(), u.getMoveCount(), defensiveStrength));
         }
     }
