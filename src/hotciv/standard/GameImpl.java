@@ -125,6 +125,7 @@ public class GameImpl implements Game {
 
     private static final Position[] possibleRedPositions = new Position[]{
             new Position(1,1),
+            new Position(0,1),
             new Position(0,2),
             new Position(1,2),
             new Position(2,1),

@@ -236,8 +236,8 @@ public class TestAlphaCiv {
     endRound(6);
 
     assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.ARCHER));
+    assertThat(game.getUnitAt(new Position(0,1)).getTypeString(), is(GameConstants.ARCHER));
     assertThat(game.getUnitAt(new Position(0,2)).getTypeString(), is(GameConstants.ARCHER));
-    assertThat(game.getUnitAt(new Position(1,2)).getTypeString(), is(GameConstants.ARCHER));
   }
 
   @Test
@@ -255,10 +255,10 @@ public class TestAlphaCiv {
     endRound(9);
 
     assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.ARCHER));
+    assertThat(game.getUnitAt(new Position(0,1)).getTypeString(), is(GameConstants.ARCHER));
     assertThat(game.getUnitAt(new Position(0,2)).getTypeString(), is(GameConstants.ARCHER));
     assertThat(game.getUnitAt(new Position(1,2)).getTypeString(), is(GameConstants.ARCHER));
     assertThat(game.getUnitAt(new Position(2,1)).getTypeString(), is(GameConstants.ARCHER));
-    assertThat(game.getUnitAt(new Position(0,0)).getTypeString(), is(GameConstants.ARCHER));
   }
 
   @Test
@@ -267,10 +267,10 @@ public class TestAlphaCiv {
     endRound(13);
 
     assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.LEGION));
+    assertThat(game.getUnitAt(new Position(0,1)).getTypeString(), is(GameConstants.LEGION));
     assertThat(game.getUnitAt(new Position(0,2)).getTypeString(), is(GameConstants.LEGION));
     assertThat(game.getUnitAt(new Position(1,2)).getTypeString(), is(GameConstants.LEGION));
     assertThat(game.getUnitAt(new Position(2,1)).getTypeString(), is(GameConstants.LEGION));
-    assertThat(game.getUnitAt(new Position(0,0)).getTypeString(), is(GameConstants.LEGION));
   }
 
   @Test
@@ -279,10 +279,10 @@ public class TestAlphaCiv {
     endRound(25);
 
     assertThat(game.getUnitAt(new Position(1,1)).getTypeString(), is(GameConstants.SETTLER));
+    assertThat(game.getUnitAt(new Position(0,1)).getTypeString(), is(GameConstants.SETTLER));
     assertThat(game.getUnitAt(new Position(0,2)).getTypeString(), is(GameConstants.SETTLER));
     assertThat(game.getUnitAt(new Position(1,2)).getTypeString(), is(GameConstants.SETTLER));
     assertThat(game.getUnitAt(new Position(2,1)).getTypeString(), is(GameConstants.SETTLER));
-    assertThat(game.getUnitAt(new Position(0,0)).getTypeString(), is(GameConstants.SETTLER));
   }
 
   @Test
