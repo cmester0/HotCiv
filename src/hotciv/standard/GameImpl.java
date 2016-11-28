@@ -67,11 +67,27 @@ public class GameImpl implements Game {
     public Unit getUnitAt(Position p) {
         Unit u = units.get(p);
 
-        if(cities.get(p) != null && u != null) {
-            units.put(p, new StandardUnit(u.getTypeString(), u.getOwner(), u.getMoveCount(), true));
+        if(u != null) {
+            Tile t = getTileAt(p);
+
+            int tileMultiplier;
+            switch (t.getTypeString()){
+                case GameConstants.FOREST:
+                    tileMultiplier = 2;
+                    break;
+                case GameConstants.HILLS:
+                    tileMultiplier = 2;
+                    break;
+                default:
+                    tileMultiplier = 1;
+                    break;
+            }
+
+            units.put(p, new StandardUnit(u, cities.get(p) != null, tileMultiplier));
+            u = units.get(p);
         }
 
-        return units.get(p);
+        return u;
     }
 
     public City getCityAt(Position p) {
@@ -95,7 +111,8 @@ public class GameImpl implements Game {
         if(!(units.containsKey(from) && units.get(from).getMoveCount() > 0)) return false;
         if(getUnitAt(from).getOwner() != playerInTurn) return false;
         if(getUnitAt(to) != null && getUnitAt(to).getOwner() == playerInTurn) return false;
-        if(getTileAt(to).getTypeString() != GameConstants.PLAINS) return false;
+        if(getTileAt(to).getTypeString() == GameConstants.MOUNTAINS) return false;
+        if(getTileAt(to).getTypeString() == GameConstants.OCEANS) return false;
 
         Unit u = units.get(from);
         units.put(to, new StandardUnit(u.getTypeString(), u.getOwner(), 0));

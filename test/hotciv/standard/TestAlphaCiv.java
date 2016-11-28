@@ -394,7 +394,7 @@ public class TestAlphaCiv {
   @Test
   public void redCannotMoveUnitOntoMountain(){
     endRound(2);
-    assertFalse(game.moveUnit(new Position(1,1), new Position(0,1)));
+    assertFalse(game.moveUnit(new Position(1,1), new Position(2,2)));
   }
 
   @Test

@@ -50,7 +50,18 @@ public class TestEpsilonCiv {
         endRound(2);
         Unit u = game.getUnitAt(redPosition);
 
-        // base attack strength of 2, and multiplier of 3 from city
+        // base attack strength of archer is 2, and multiplier of 3 from city
         assertThat(u.getAttackingStrength(), is(2*3));
+    }
+
+    @Test
+    public void strengthOfUnitOnHillIsDoubled(){
+        endRound(2);
+        game.moveUnit(new Position(1,1), new Position(0,1));
+        Unit u = game.getUnitAt(new Position(0,1));
+
+
+        // base attack strength of archer is 2, and multiplier of 2 from terrain
+        assertThat(u.getAttackingStrength(), is(2*2));
     }
 }

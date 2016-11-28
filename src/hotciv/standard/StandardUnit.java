@@ -10,6 +10,7 @@ public class StandardUnit implements Unit {
     private String type;
     private Player player;
     private boolean cityBonus;
+    private int terrainBonus;
 
     public StandardUnit(String type, Player p){
         this(type, p, 1);
@@ -20,9 +21,10 @@ public class StandardUnit implements Unit {
     }
 
 
-    public StandardUnit(String type, Player p, int moveCount, boolean cityBonus){
-        this(type, p, moveCount, 3);
+    public StandardUnit(Unit u, boolean cityBonus, int terrainBonus){
+        this(u.getTypeString(), u.getOwner(), u.getMoveCount(), u.getDefensiveStrength());
         this.cityBonus = cityBonus;
+        this.terrainBonus = terrainBonus;
     }
 
     public StandardUnit(String type, Player p, int moveCount, int defensiveStrength){
@@ -30,7 +32,9 @@ public class StandardUnit implements Unit {
         player = p;
         this.moveCount = moveCount;
         this.defensiveStrength = defensiveStrength;
+
         this.cityBonus = false;
+        this.terrainBonus = 1;
     }
 
     @Override
@@ -55,7 +59,7 @@ public class StandardUnit implements Unit {
 
     @Override
     public int getAttackingStrength() {
-        int baseStrength = 0;
+        int baseStrength;
         switch (getTypeString()){
             case GameConstants.LEGION:
                 baseStrength = 4;
@@ -63,8 +67,11 @@ public class StandardUnit implements Unit {
             case GameConstants.ARCHER:
                 baseStrength = 2;
                 break;
+            default:
+                baseStrength = 0;
+                break;
         }
 
-        return baseStrength * (cityBonus ? 3 : 1);
+        return baseStrength * terrainBonus * (cityBonus ? 3 : 1);
     }
 }
