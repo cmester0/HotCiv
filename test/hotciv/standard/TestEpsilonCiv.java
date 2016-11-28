@@ -66,7 +66,7 @@ public class TestEpsilonCiv {
     }
 
     @Test
-    public void legionInCityWithTwoAdjecentFriendlyUnitsIs18(){
+    public void legionInCityWithTwoAdjacentFriendlyUnitsIs18(){
         game.changeProductionInCityAt(redPosition, GameConstants.LEGION);
 
         // wait until two legions spawn
