@@ -55,4 +55,49 @@ public class TestZetaCiv {
         game.moveUnit(new Position(3,0), new Position(4,1));
         assertThat(game.getWinner(), is(nullValue()));
     }
+
+    @Test
+    public void blueWins3AttacksAndWinsTheGameFromRound21(){
+        endRound(21); // Make some units, to fight
+        game.endOfTurn(); // Blues turn
+
+        // Move one unit, through three battles
+        game.moveUnit(new Position(3,1), new Position(2,1));
+        endRound(1);
+        game.moveUnit(new Position(2,1), new Position(1,2));
+        endRound(1);
+        game.moveUnit(new Position(1,2), new Position(0,2));
+
+        assertThat(game.getWinner(), is(Player.BLUE));
+    }
+
+    @Test
+    public void redWins3AttacksAndWinsTheGameFromRound21(){
+        endRound(21); // Make some units, to fight
+
+        // Move one unit, through three battles
+        game.moveUnit(new Position(2,0), new Position(3,1));
+        endRound(1);
+        game.moveUnit(new Position(3,1), new Position(3,2));
+        endRound(1);
+        game.moveUnit(new Position(3,2), new Position(4,2));
+
+        assertThat(game.getWinner(), is(Player.RED));
+    }
+
+    @Test
+    public void blueWins3AttacksDoesNotWinTheGameBeforeRound21(){
+        endRound(10); // Make some units, to fight
+        game.endOfTurn(); // Blues turn
+
+        System.out.println("------------------EERRROORTEST--------------------");
+        // Move one unit, through three battles
+        game.moveUnit(new Position(3,1), new Position(2,1));
+        endRound(1);
+        game.moveUnit(new Position(2,1), new Position(1,2));
+        endRound(1);
+        game.moveUnit(new Position(1,2), new Position(0,2));
+        assertThat(game.getWinner(), is(nullValue()));
+    }
+
 }

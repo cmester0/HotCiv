@@ -128,4 +128,9 @@ public class TestBetaCiv {
         assertThat(game.getWinner(), is(Player.BLUE));
     }
 
+    @Test
+    public void thereIsNoWinnerIfWaiting(){
+        endRound(25);
+        assertThat(game.getWinner(), is(nullValue()));
+    }
 }

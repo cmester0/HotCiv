@@ -8,7 +8,8 @@
 * [x] ~~If red conquers blue city at round 1, then red wins the game~~
 * [x] ~~If red conquers blue city at round 20, then red wins the game~~
 * [x] ~~If red conquers blue city at round 21, then red does not win the game~~
-* [ ] If a player wins 3 attacks after round 20, that player wins the game
+* [x] ~~If a player wins 3 attacks after round 20, that player wins the game~~
+* [x] ~~If a player wins 3 attacks before round 20, then there is no winner set~~
 
 ## EpsilonCiv
 * [x] ~~Base attack of archer is 2~~
@@ -71,6 +72,8 @@
 * [x] ~~Red archer moves (2,0) => (3,0) => (4,1) => red is winner~~
 * [x] ~~Blue legion moves (3,2) => (2,1) => (1,1) => blue is winner~~
 * [x] ~~Settlers cannot conquer cities~~
+---
+* [x] ~~Waiting does not cause a winner~~
 
 ## AlphaCiv features:
 * Test system has been set up

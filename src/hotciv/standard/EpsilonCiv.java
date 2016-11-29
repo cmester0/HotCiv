@@ -28,8 +28,6 @@ public class EpsilonCiv implements Civ {
 
     @Override
     public Player getWinner() {
-        System.out.println("Red: " + redWinCount + ", Blue: " + blueWinCount);
-
         if(redWinCount >= 3)
             return Player.RED;
         if(blueWinCount >= 3)

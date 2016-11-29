@@ -161,4 +161,22 @@ public class TestEpsilonCiv {
 
         assertThat(game.getWinner(), is(Player.BLUE));
     }
+
+    @Test
+    public void winning3DefencesDoesNotWinTheGame(){
+        endRound(10);
+        game.endOfTurn();
+
+        for(int i = 0; i < 3; i++) { // Attacker should win the next three battles
+            die.addNumber(1); // first roll (attacker) will be 5
+            die.addNumber(1); // second roll (defender) will be 1
+        }
+
+        for(int i = 0; i < 3; i++) { // 3 attacks where blue loses
+            game.moveUnit(new Position(3, 1), new Position(2, 1));
+            endRound(2);
+        }
+
+        assertThat(game.getWinner(), is(nullValue()));
+    }
 }

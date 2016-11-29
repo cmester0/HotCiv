@@ -1,6 +1,7 @@
 package src.hotciv.standard;
 
 import src.hotciv.framework.*;
+import test.hotciv.standard.LoadedDie;
 
 import java.util.Map;
 
@@ -13,13 +14,16 @@ public class ZetaCiv implements Civ {
     private EpsilonCiv epsilonCiv;
 
     private int rounds;
+    private int redWins;
+    private int blueWins;
 
     public ZetaCiv(){
         alphaCiv = new AlphaCiv();
         betaCiv = new BetaCiv();
-        epsilonCiv = new EpsilonCiv(() -> (int)(Math.random() * 5) + 1);
 
         rounds = 0;
+        redWins = 0;
+        blueWins = 0;
     }
 
     @Override
@@ -31,9 +35,14 @@ public class ZetaCiv implements Civ {
     @Override
     public Player getWinner() {
         if(rounds <= 20) {
+            System.out.println("BETACIV WINNER: " + betaCiv.getWinner());
             return betaCiv.getWinner();
         }else{
-            return epsilonCiv.getWinner();
+            if(redWins >= 3)
+                return Player.RED;
+            if(blueWins >= 3)
+                return Player.BLUE;
+            return null;
         }
     }
 
@@ -54,6 +63,18 @@ public class ZetaCiv implements Civ {
 
     @Override
     public boolean outcomeOfBattle(Unit attacker, Unit defender) {
-        return alphaCiv.outcomeOfBattle(attacker, defender);
+        boolean winner = alphaCiv.outcomeOfBattle(attacker, defender);
+        if(winner && rounds > 20){
+            switch (attacker.getOwner()){
+                case RED:
+                    redWins++;
+                    break;
+                case BLUE:
+                    blueWins++;
+                    break;
+            }
+        }
+
+        return winner;
     }
 }

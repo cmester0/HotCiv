@@ -70,8 +70,12 @@ public class BetaCiv implements Civ {
                 if(unitType.equals(GameConstants.SETTLER)) continue;
 
                 Player unitOwner = unitAtCityPos.getOwner();
-                cities.put(cityPos, new StandardCity(unitOwner));
-                winner = unitOwner;
+                Player cityOwner = cities.get(cityPos).getOwner();
+
+                if(unitOwner != cityOwner) {
+                    winner = unitOwner;
+                    cities.put(cityPos, new StandardCity(unitOwner));
+                }
             }
         }
     }
