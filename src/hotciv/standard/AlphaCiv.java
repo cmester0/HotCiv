@@ -38,8 +38,8 @@ public class AlphaCiv implements Civ {
         units.put(new Position(4, 3), new StandardUnit(GameConstants.SETTLER, Player.RED));
 
         for(int i=0; i<16; i++)
-        for(int j=0; j<16; j++)
-            tiles.put(new Position(i,j), new StandardTile(GameConstants.PLAINS));
+            for(int j=0; j<16; j++)
+                tiles.put(new Position(i,j), new StandardTile(GameConstants.PLAINS));
 
         tiles.put(new Position(1,0), new StandardTile(GameConstants.OCEANS));
         tiles.put(new Position(0,1), new StandardTile(GameConstants.HILLS));
@@ -49,6 +49,11 @@ public class AlphaCiv implements Civ {
     @Override
     public void update() {
 
+    }
+
+    @Override
+    public boolean outcomeOfBattle(Unit attacker, Unit defender) {
+        return true; // Attacker always wins
     }
 
 }

@@ -4,6 +4,7 @@ import src.hotciv.framework.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Skeleton implementation of HotCiv.
@@ -123,14 +124,19 @@ public class GameImpl implements Game {
     }
 
     public boolean moveUnit(Position from, Position to) {
+        Unit fromUnit = getUnitAt(from);
+        Unit toUnit = getUnitAt(to);
+
         if(!(units.containsKey(from) && units.get(from).getMoveCount() > 0)) return false;
-        if(getUnitAt(from).getOwner() != playerInTurn) return false;
-        if(getUnitAt(to) != null && getUnitAt(to).getOwner() == playerInTurn) return false;
+        if(fromUnit.getOwner() != playerInTurn) return false;
+        if(toUnit != null && toUnit.getOwner() == playerInTurn) return false;
         if(getTileAt(to).getTypeString() == GameConstants.MOUNTAINS) return false;
         if(getTileAt(to).getTypeString() == GameConstants.OCEANS) return false;
 
-        Unit u = units.get(from);
-        units.put(to, new StandardUnit(u.getTypeString(), u.getOwner(), 0));
+        if(toUnit == null || civ.outcomeOfBattle(fromUnit, toUnit)){
+            units.put(to, new StandardUnit(fromUnit.getTypeString(), fromUnit.getOwner(), 0));
+        }
+
         units.remove(from);
 
         civ.update();
@@ -174,22 +180,13 @@ public class GameImpl implements Game {
         for (City c : cities.values()) {
             int newProd = production.get(c.getOwner()) + 6;
 
-            switch (c.getProduction()) {
-                case GameConstants.SETTLER:
-                    if (newProd >= 30)
-                        units.put(getAvailablePosition(c.getOwner()), new StandardUnit(GameConstants.SETTLER, c.getOwner()));
-                    newProd %= 30;
-                    break;
-                case GameConstants.LEGION:
-                    if(newProd >= 15)
-                        units.put(getAvailablePosition(c.getOwner()), new StandardUnit(GameConstants.LEGION, c.getOwner()));
-                    newProd %= 15;
-                    break;
-                default:
-                    if (newProd >= 10)
-                        units.put(getAvailablePosition(c.getOwner()), new StandardUnit(GameConstants.ARCHER, c.getOwner()));
-                    newProd %= 10;
-                    break;
+            AtomicInteger ai = new AtomicInteger(newProd);
+            Unit u = UnitFactory.createUnit(c, ai);
+            newProd = ai.get();
+
+            if(u != null){
+                Position p = getAvailablePosition(c.getOwner());
+                units.put(p, u);
             }
 
             production.put(c.getOwner(), newProd);

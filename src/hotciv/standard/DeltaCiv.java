@@ -85,4 +85,9 @@ public class DeltaCiv implements Civ {
     public void update() {
         alphaCiv.update();
     }
+
+    @Override
+    public boolean outcomeOfBattle(Unit attacker, Unit defender) {
+        return outcomeOfBattle(attacker, defender);
+    }
 }

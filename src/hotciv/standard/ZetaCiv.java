@@ -17,7 +17,7 @@ public class ZetaCiv implements Civ {
     public ZetaCiv(){
         alphaCiv = new AlphaCiv();
         betaCiv = new BetaCiv();
-        epsilonCiv = new EpsilonCiv();
+        epsilonCiv = new EpsilonCiv(() -> (int)(Math.random() * 5) + 1);
 
         rounds = 0;
     }
@@ -50,5 +50,10 @@ public class ZetaCiv implements Civ {
     @Override
     public void update() {
         if(rounds <= 20) betaCiv.update();
+    }
+
+    @Override
+    public boolean outcomeOfBattle(Unit attacker, Unit defender) {
+        return alphaCiv.outcomeOfBattle(attacker, defender);
     }
 }

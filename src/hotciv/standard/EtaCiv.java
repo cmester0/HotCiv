@@ -38,4 +38,9 @@ public class EtaCiv implements Civ {
     public void update() {
         alphaCiv.update();
     }
+
+    @Override
+    public boolean outcomeOfBattle(Unit attacker, Unit defender) {
+        return alphaCiv.outcomeOfBattle(attacker, defender);
+    }
 }

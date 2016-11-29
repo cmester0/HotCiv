@@ -76,4 +76,9 @@ public class BetaCiv implements Civ {
         }
     }
 
+    @Override
+    public boolean outcomeOfBattle(Unit attacker, Unit defender) {
+        return alphaCiv.outcomeOfBattle(attacker, defender);
+    }
+
 }

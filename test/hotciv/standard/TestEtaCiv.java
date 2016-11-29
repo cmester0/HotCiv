@@ -87,13 +87,4 @@ public class TestEtaCiv {
         endRound(300);
         assertThat(game.getCityAt(redPosition).getSize(), is(9));
     }
-
-    @Ignore
-    @Test
-    public void productionChangesBasedOnEnvironment(){
-        endRound(1); // City size 1
-
-        City redCity = game.getCityAt(redPosition);
-        assertThat(game.getProductionAmountOfCity(redCity), is(3));
-    }
 }

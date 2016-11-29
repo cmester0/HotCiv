@@ -5,7 +5,6 @@ import src.hotciv.framework.Player;
 import src.hotciv.framework.Unit;
 
 public class StandardUnit implements Unit {
-
     private int moveCount, defensiveStrength;
     private String type;
     private Player player;

@@ -26,4 +26,7 @@ public interface Civ {
      * Updates the board according to the civ
      */
     public void update();
+
+
+    public boolean outcomeOfBattle(Unit attacker, Unit defender);
 }
