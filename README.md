@@ -21,7 +21,9 @@
 * [x] ~~Base defence of settler is 3~~
 * [x] ~~Combined defence of unit on a hill is doubled~~
 * [x] ~~Combined defence of a unit in a city is tripled~~
-* [ ] If a player wins 3 attacks, then that player wins the game
+* [x] ~~If the die roll is the same for attacker and defender, then the attacker wins if atkStrength > defStrength, if not he loses~~
+* [x] ~~If a player wins 3 attacks, then that player wins the game~~
+* [x] ~~Winning 3 battles does not win the game~~
 
 ## DeltaCiv
 
