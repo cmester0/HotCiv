@@ -90,7 +90,6 @@ public class TestZetaCiv {
         endRound(10); // Make some units, to fight
         game.endOfTurn(); // Blues turn
 
-        System.out.println("------------------EERRROORTEST--------------------");
         // Move one unit, through three battles
         game.moveUnit(new Position(3,1), new Position(2,1));
         endRound(1);

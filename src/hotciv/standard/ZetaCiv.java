@@ -11,7 +11,6 @@ import java.util.Map;
 public class ZetaCiv implements Civ {
     private AlphaCiv alphaCiv;
     private BetaCiv betaCiv;
-    private EpsilonCiv epsilonCiv;
 
     private int rounds;
     private int redWins;
@@ -35,7 +34,6 @@ public class ZetaCiv implements Civ {
     @Override
     public Player getWinner() {
         if(rounds <= 20) {
-            System.out.println("BETACIV WINNER: " + betaCiv.getWinner());
             return betaCiv.getWinner();
         }else{
             if(redWins >= 3)
