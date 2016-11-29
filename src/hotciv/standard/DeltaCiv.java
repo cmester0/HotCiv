@@ -88,6 +88,6 @@ public class DeltaCiv implements Civ {
 
     @Override
     public boolean outcomeOfBattle(Unit attacker, Unit defender) {
-        return outcomeOfBattle(attacker, defender);
+        return alphaCiv.outcomeOfBattle(attacker, defender);
     }
 }
