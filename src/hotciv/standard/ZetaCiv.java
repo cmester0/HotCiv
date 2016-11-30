@@ -17,8 +17,7 @@ public class ZetaCiv implements Civ {
     private int blueWins;
 
     public ZetaCiv(){
-        alphaCiv = new AbstractCiv(new AlphaCivFactory());
-        betaCiv = new AbstractCiv(new BetaCivFactory());
+        CivFactory factory = new ZetaCivFactory();
 
         rounds = 0;
         redWins = 0;
@@ -42,11 +41,6 @@ public class ZetaCiv implements Civ {
                 return Player.BLUE;
             return null;
         }
-    }
-
-    @Override
-    public void performUnitActionAt(Position p) {
-        alphaCiv.performUnitActionAt(p);
     }
 
     @Override

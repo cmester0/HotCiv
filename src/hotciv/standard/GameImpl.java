@@ -245,7 +245,18 @@ public class GameImpl implements Game {
     }
 
     public void performUnitActionAt(Position p) {
-        civ.performUnitActionAt(p);
+        Unit u = units.get(p);
+        if(u==null)return;
+
+        if(u.getTypeString().equals(GameConstants.SETTLER)) {
+            units.remove(p);
+            cities.put(p, new StandardCity(u.getOwner()));
+        }
+        if(u.getTypeString().equals(GameConstants.ARCHER)) {
+            units.remove(p);
+            int defensiveStrength = u.getDefensiveStrength()==3?3:0;
+            units.put(p, new StandardUnit(GameConstants.ARCHER, u.getOwner(), u.getMoveCount(), defensiveStrength));
+        }
     }
 
     @Override

@@ -32,11 +32,6 @@ public class AbstractCiv implements Civ {
     }
 
     @Override
-    public void performUnitActionAt(Position p) {
-
-    }
-
-    @Override
     public void setup(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles) {
         units.putAll(startingLayoutStrategy.createUnits());
         cities.putAll(startingLayoutStrategy.createCities());

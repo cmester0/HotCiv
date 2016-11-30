@@ -6,8 +6,9 @@ import src.hotciv.framework.Game;
 import src.hotciv.framework.GameConstants;
 import src.hotciv.framework.Player;
 import src.hotciv.framework.Position;
+import src.hotciv.standard.AbstractCiv;
 import src.hotciv.standard.GameImpl;
-import src.hotciv.standard.GammaCiv;
+import src.hotciv.standard.GammeCivFactory;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -25,7 +26,7 @@ public class TestGammaCiv {
     /** Fixture for alphaciv testing. */
     @Before
     public void setUp() {
-        game = new GameImpl(new GammaCiv());
+        game = new GameImpl(new AbstractCiv(new GammeCivFactory()));
         redPosition = (new Position(1,1));
         bluePosition = (new Position(4,1));
     }
