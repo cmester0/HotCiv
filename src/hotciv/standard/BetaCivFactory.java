@@ -18,11 +18,11 @@ public class BetaCivFactory implements CivFactory {
 
     @Override
     public StartingLayoutStrategy createStartingLayoutStrategy() {
-        return null;
+        return new StandardStartingLayoutStrategy();
     }
 
     @Override
     public BattleStrategy createBattleStrategy() {
-        return null;
+        return new AttackerWinsStrategy();
     }
 }

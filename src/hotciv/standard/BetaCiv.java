@@ -13,20 +13,16 @@ public class BetaCiv implements Civ {
 
     private final WinnerStrategy winnerStrategy;
     private final AgeingStrategy ageingStrategy;
-
-    private AbstractCiv alphaCiv;
-    private Player winner;
-
-    private Map<Position, City> cities;
-    private Map<Position, Unit> units;
+    private final BattleStrategy battleStrategy;
+    private final StartingLayoutStrategy startingLayoutStrategy;
 
     public BetaCiv(){
-        alphaCiv = new AbstractCiv(new AlphaCivFactory());
         CivFactory factory = new BetaCivFactory();
-        winner = null;
 
         ageingStrategy = factory.createAgeingStrategy();
         winnerStrategy = factory.createWinnerStrategy();
+        battleStrategy = factory.createBattleStrategy();
+        startingLayoutStrategy = factory.createStartingLayoutStrategy();
     }
 
     @Override
@@ -46,10 +42,9 @@ public class BetaCiv implements Civ {
 
     @Override
     public void setup(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles) {
-        alphaCiv.setup(units, cities, tiles);
-
-        this.cities = cities;
-        this.units = units;
+        units.putAll(startingLayoutStrategy.createUnits());
+        cities.putAll(startingLayoutStrategy.createCities());
+        tiles.putAll(startingLayoutStrategy.createMap());
     }
 
     @Override
@@ -59,7 +54,7 @@ public class BetaCiv implements Civ {
 
     @Override
     public boolean outcomeOfBattle(Unit attacker, Unit defender) {
-        return alphaCiv.outcomeOfBattle(attacker, defender);
+        return battleStrategy.getOutcomeOfBattle(attacker, defender);
     }
 
 }
