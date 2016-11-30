@@ -1,7 +1,11 @@
 # HotCiv
 
 ## EtaCiv
-* [ ]
+* [x] ~~Workforce focus in cities is production at the start of the game~~
+* [x] ~~Changing the workforce focus actually changes it~~
+* [x] ~~Changing workforce focus to food actually makes food~~
+* [x] ~~Gathering food increases city size~~
+* [x] ~~Cities cannot exceed a size of nine~~
 
 ## ZetaCiv
 * [x] ~~There is no winner at the beginning of the game~~
@@ -10,6 +14,7 @@
 * [x] ~~If red conquers blue city at round 21, then red does not win the game~~
 * [x] ~~If a player wins 3 attacks after round 20, that player wins the game~~
 * [x] ~~If a player wins 3 attacks before round 20, then there is no winner set~~
+
 
 ## EpsilonCiv
 * [x] ~~Base attack of archer is 2~~
