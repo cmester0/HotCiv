@@ -199,6 +199,7 @@ public class GameImpl implements Game {
         units.clear();
         units.putAll(unitsTemp);
 
+        // Should be only for EtaCiv
         HashMap<Position, City> cityTemp = new HashMap<Position, City>();
         for(Map.Entry<Position, City> e : cities.entrySet()) {
             City c = e.getValue();
@@ -244,6 +245,7 @@ public class GameImpl implements Game {
         cities.put(p, new StandardCity(cityOwner, unitType));
     }
 
+    // Should be only for GammaCiv
     public void performUnitActionAt(Position p) {
         Unit u = units.get(p);
         if(u==null)return;

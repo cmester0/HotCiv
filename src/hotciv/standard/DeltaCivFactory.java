@@ -6,14 +6,20 @@ import src.hotciv.framework.*;
  * Created by Lasse Letager Hansen on 30-11-2016.
  */
 public class DeltaCivFactory implements CivFactory {
+    AlphaCivFactory alphaCivFactory;
+
+    public DeltaCivFactory(){
+        alphaCivFactory = new AlphaCivFactory();
+    }
+
     @Override
     public AgeingStrategy createAgeingStrategy() {
-        return new StandardAging();
+        return alphaCivFactory.createAgeingStrategy();
     }
 
     @Override
     public WinnerStrategy createWinnerStrategy() {
-        return new TimeBasedWinningStrategy();
+        return alphaCivFactory.createWinnerStrategy();
     }
 
     @Override
@@ -23,6 +29,6 @@ public class DeltaCivFactory implements CivFactory {
 
     @Override
     public BattleStrategy createBattleStrategy() {
-        return new AttackerWinsStrategy();
+        return alphaCivFactory.createBattleStrategy();
     }
 }

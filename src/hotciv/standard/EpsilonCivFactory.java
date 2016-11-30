@@ -8,9 +8,15 @@ import java.sql.Time;
  * Created by Lasse Letager Hansen on 30-11-2016.
  */
 public class EpsilonCivFactory implements CivFactory {
+    AlphaCivFactory alphaCivFactory;
+
+    public EpsilonCivFactory(){
+        alphaCivFactory = new AlphaCivFactory();
+    }
+
     @Override
     public AgeingStrategy createAgeingStrategy() {
-        return new StandardAging();
+        return alphaCivFactory.createAgeingStrategy();
     }
 
     @Override
@@ -20,7 +26,7 @@ public class EpsilonCivFactory implements CivFactory {
 
     @Override
     public StartingLayoutStrategy createStartingLayoutStrategy() {
-        return new StandardStartingLayoutStrategy();
+        return alphaCivFactory.createStartingLayoutStrategy();
     }
 
     @Override

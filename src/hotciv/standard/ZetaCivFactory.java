@@ -6,9 +6,15 @@ import src.hotciv.framework.*;
  * Created by Lasse Letager Hansen on 30-11-2016.
  */
 public class ZetaCivFactory implements CivFactory {
+    AlphaCivFactory alphaCivFactory;
+
+    public ZetaCivFactory(){
+        alphaCivFactory = new AlphaCivFactory();
+    }
+
     @Override
     public AgeingStrategy createAgeingStrategy() {
-        return new StandardAging();
+        return alphaCivFactory.createAgeingStrategy();
     }
 
     @Override
@@ -18,12 +24,12 @@ public class ZetaCivFactory implements CivFactory {
 
     @Override
     public StartingLayoutStrategy createStartingLayoutStrategy() {
-        return new StandardStartingLayoutStrategy();
+        return alphaCivFactory.createStartingLayoutStrategy();
     }
 
     @Override
     public BattleStrategy createBattleStrategy() {
-        return new AttackerWinsStrategy();
+        return alphaCivFactory.createBattleStrategy();
     }
 }
 
