@@ -8,13 +8,13 @@ import java.util.Map;
  * Created by Lasse Letager Hansen on 28-11-2016.
  */
 public class EpsilonCiv implements Civ {
-    private AlphaCiv alphaCiv;
+    private AbstractCiv alphaCiv;
     private Die die;
     private int blueWinCount;
     private int redWinCount;
 
     public EpsilonCiv(Die die){
-        alphaCiv = new AlphaCiv();
+        alphaCiv = new AbstractCiv(new AlphaCivFactory());
         this.die = die;
 
         blueWinCount = 0;
@@ -46,8 +46,8 @@ public class EpsilonCiv implements Civ {
     }
 
     @Override
-    public void update() {
-        alphaCiv.update();
+    public void update(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles) {
+        alphaCiv.update(units, cities, tiles);
     }
 
     @Override

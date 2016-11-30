@@ -9,6 +9,6 @@ import src.hotciv.framework.Unit;
 public class AttackerWinsStrategy implements BattleStrategy {
     @Override
     public boolean getOutcomeOfBattle(Unit attacker, Unit defender) {
-        return true;
+        return true; // Attacker always wins
     }
 }

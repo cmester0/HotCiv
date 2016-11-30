@@ -130,8 +130,8 @@ public class GameImpl implements Game {
         if(!(units.containsKey(from) && units.get(from).getMoveCount() > 0)) return false;
         if(fromUnit.getOwner() != playerInTurn) return false;
         if(toUnit != null && toUnit.getOwner() == playerInTurn) return false;
-        if(getTileAt(to).getTypeString() == GameConstants.MOUNTAINS) return false;
-        if(getTileAt(to).getTypeString() == GameConstants.OCEANS) return false;
+        if(getTileAt(to).getTypeString().equals(GameConstants.MOUNTAINS)) return false;
+        if(getTileAt(to).getTypeString().equals(GameConstants.OCEANS)) return false;
 
         if(toUnit == null || civ.outcomeOfBattle(fromUnit, toUnit)){
             units.put(to, new StandardUnit(fromUnit.getTypeString(), fromUnit.getOwner(), 0));
@@ -139,7 +139,7 @@ public class GameImpl implements Game {
 
         units.remove(from);
 
-        civ.update();
+        civ.update(units, cities, tiles);
 
         return units.get(to) != null;
     }

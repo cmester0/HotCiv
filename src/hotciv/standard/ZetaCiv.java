@@ -9,7 +9,7 @@ import java.util.Map;
  * Created by Lasse Letager Hansen on 28-11-2016.
  */
 public class ZetaCiv implements Civ {
-    private AlphaCiv alphaCiv;
+    private AbstractCiv alphaCiv;
     private BetaCiv betaCiv;
 
     private int rounds;
@@ -17,7 +17,7 @@ public class ZetaCiv implements Civ {
     private int blueWins;
 
     public ZetaCiv(){
-        alphaCiv = new AlphaCiv();
+        alphaCiv = new AbstractCiv(new AlphaCivFactory());
         betaCiv = new BetaCiv();
 
         rounds = 0;
@@ -55,8 +55,8 @@ public class ZetaCiv implements Civ {
     }
 
     @Override
-    public void update() {
-        if(rounds <= 20) betaCiv.update();
+    public void update(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles) {
+        if(rounds <= 20) betaCiv.update(units, cities, tiles);
     }
 
     @Override

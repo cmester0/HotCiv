@@ -1,5 +1,6 @@
 package src.hotciv.standard;
 
+import jdk.nashorn.internal.runtime.regexp.JoniRegExp;
 import src.hotciv.framework.*;
 
 import java.util.HashMap;
@@ -10,40 +11,32 @@ import java.util.Map;
  */
 public class BetaCiv implements Civ {
 
-    private AlphaCiv alphaCiv;
+    private final WinnerStrategy winnerStrategy;
+    private final AgeingStrategy ageingStrategy;
+
+    private AbstractCiv alphaCiv;
     private Player winner;
 
     private Map<Position, City> cities;
     private Map<Position, Unit> units;
 
     public BetaCiv(){
-        alphaCiv = new AlphaCiv();
+        alphaCiv = new AbstractCiv(new AlphaCivFactory());
+        CivFactory factory = new BetaCivFactory();
         winner = null;
+
+        ageingStrategy = factory.createAgeingStrategy();
+        winnerStrategy = factory.createWinnerStrategy();
     }
 
     @Override
-    public int getNextAge(int age) {
-        if(age < -100)
-            return age+100;
-        else if(age == -100)
-            return -1;
-        else if(age==-1)
-            return 1;
-        else if(age==1)
-            return 50;
-        else if(age < 1750)
-            return age+50;
-        else if(age < 1900)
-            return age+25;
-        else if(age < 1970)
-            return age+5;
-        else
-            return age+1;
+    public int getNextAge(int currentAge) {
+        return ageingStrategy.getNextAge(currentAge);
     }
 
     @Override
     public Player getWinner() {
-        return winner;
+        return winnerStrategy.getWinner();
     }
 
     @Override
@@ -60,24 +53,8 @@ public class BetaCiv implements Civ {
     }
 
     @Override
-    public void update() {
-        for(Map.Entry<Position, City> c : cities.entrySet()) {
-            Position cityPos = c.getKey();
-            Unit unitAtCityPos = units.get(cityPos);
-
-            if(unitAtCityPos != null) {
-                String unitType = unitAtCityPos.getTypeString();
-                if(unitType.equals(GameConstants.SETTLER)) continue;
-
-                Player unitOwner = unitAtCityPos.getOwner();
-                Player cityOwner = cities.get(cityPos).getOwner();
-
-                if(unitOwner != cityOwner) {
-                    winner = unitOwner;
-                    cities.put(cityPos, new StandardCity(unitOwner));
-                }
-            }
-        }
+    public void update(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles) {
+        winnerStrategy.checkWorld(units, cities, null);
     }
 
     @Override

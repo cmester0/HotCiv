@@ -9,13 +9,13 @@ import java.util.Map;
  */
 public class GammaCiv implements Civ {
 
-    private AlphaCiv alphaCiv;
+    private AbstractCiv alphaCiv;
 
     private Map<Position, City> cities;
     private Map<Position, Unit> units;
 
     public GammaCiv(){
-        alphaCiv = new AlphaCiv();
+        alphaCiv = new AbstractCiv(new AlphaCivFactory());
     }
 
     @Override
@@ -33,11 +33,11 @@ public class GammaCiv implements Civ {
         Unit u = units.get(p);
         if(u==null)return;
 
-        if(u.getTypeString() == GameConstants.SETTLER) {
+        if(u.getTypeString().equals(GameConstants.SETTLER)) {
             units.remove(p);
             cities.put(p, new StandardCity(u.getOwner()));
         }
-        if(u.getTypeString() == GameConstants.ARCHER) {
+        if(u.getTypeString().equals(GameConstants.ARCHER)) {
             units.remove(p);
             int defensiveStrength = u.getDefensiveStrength()==3?3:0;
             units.put(p, new StandardUnit(GameConstants.ARCHER, u.getOwner(), u.getMoveCount(), defensiveStrength));
@@ -53,8 +53,8 @@ public class GammaCiv implements Civ {
     }
 
     @Override
-    public void update() {
-        alphaCiv.update();
+    public void update(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles) {
+        alphaCiv.update(units, cities, tiles);
     }
 
     @Override

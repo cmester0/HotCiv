@@ -47,8 +47,8 @@ public class AbstractCiv implements Civ {
     }
 
     @Override
-    public void update() {
-
+    public void update(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles) {
+        winnerStrategy.checkWorld(units, cities, tiles);
     }
 
     @Override

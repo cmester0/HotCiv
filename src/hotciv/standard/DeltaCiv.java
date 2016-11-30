@@ -9,10 +9,10 @@ import java.util.Map;
  * Created by Lasse Letager Hansen on 23-11-2016.
  */
 public class DeltaCiv implements Civ {
-    private AlphaCiv alphaCiv;
+    private AbstractCiv alphaCiv;
 
     public DeltaCiv(){
-        alphaCiv = new AlphaCiv();
+        alphaCiv = new AbstractCiv(new AlphaCivFactory());
     }
 
     @Override
@@ -82,8 +82,8 @@ public class DeltaCiv implements Civ {
     }
 
     @Override
-    public void update() {
-        alphaCiv.update();
+    public void update(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles) {
+        alphaCiv.update(units, cities, tiles);
     }
 
     @Override
