@@ -6,7 +6,6 @@ import src.hotciv.framework.Game;
 import src.hotciv.framework.GameConstants;
 import src.hotciv.framework.Player;
 import src.hotciv.framework.Position;
-import src.hotciv.standard.BetaCiv;
 import src.hotciv.standard.GameImpl;
 import src.hotciv.standard.GammaCiv;
 

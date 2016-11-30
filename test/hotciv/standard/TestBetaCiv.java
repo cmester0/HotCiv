@@ -3,10 +3,10 @@ package test.hotciv.standard;
 import org.junit.Before;
 import org.junit.Test;
 import src.hotciv.framework.Game;
-import src.hotciv.framework.GameConstants;
 import src.hotciv.framework.Player;
 import src.hotciv.framework.Position;
-import src.hotciv.standard.BetaCiv;
+import src.hotciv.standard.AbstractCiv;
+import src.hotciv.standard.BetaCivFactory;
 import src.hotciv.standard.GameImpl;
 
 import static org.junit.Assert.*;
@@ -24,7 +24,7 @@ public class TestBetaCiv {
     /** Fixture for alphaciv testing. */
     @Before
     public void setUp() {
-        game = new GameImpl(new BetaCiv());
+        game = new GameImpl(new AbstractCiv(new BetaCivFactory()));
         redPosition = (new Position(1,1));
         bluePosition = (new Position(4,1));
     }
