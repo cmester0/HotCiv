@@ -9,18 +9,27 @@ import java.util.Map;
  */
 public class AlphaCiv implements Civ {
 
+    CivFactory factory;
+    AgeingStrategy ageingStrategy;
+    WinnerStrategy winnerStrategy;
     private Player winner = null;
+
+    public AlphaCiv(){
+        factory = new AlphaCivFactory();
+        ageingStrategy = factory.createAgeingStrategy();
+        winnerStrategy = factory.createWinnerStrategy();
+    }
 
     @Override
     public int getNextAge(int currentAge) {
-        if(currentAge+100 >= -3000)
-            winner = Player.RED;
-        return currentAge+100;
+        int nextAge = ageingStrategy.getNextAge(currentAge);
+        winnerStrategy.setAge(nextAge);
+        return nextAge;
     }
 
     @Override
     public Player getWinner() {
-        return winner;
+        return winnerStrategy.getWinner();
     }
 
     @Override
@@ -30,20 +39,12 @@ public class AlphaCiv implements Civ {
 
     @Override
     public void setup(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles) {
-        cities.put(new Position(1, 1), new StandardCity(Player.RED));
-        cities.put(new Position(4, 1), new StandardCity(Player.BLUE));
+        StartingLayoutStrategy layoutStrategy = factory.createStartingLayoutStrategy();
+        layoutStrategy.createCities();
 
-        units.put(new Position(2, 0), new StandardUnit(GameConstants.ARCHER, Player.RED));
-        units.put(new Position(3, 2), new StandardUnit(GameConstants.LEGION, Player.BLUE));
-        units.put(new Position(4, 3), new StandardUnit(GameConstants.SETTLER, Player.RED));
-
-        for(int i=0; i<16; i++)
-            for(int j=0; j<16; j++)
-                tiles.put(new Position(i,j), new StandardTile(GameConstants.PLAINS));
-
-        tiles.put(new Position(1,0), new StandardTile(GameConstants.OCEANS));
-        tiles.put(new Position(0,1), new StandardTile(GameConstants.HILLS));
-        tiles.put(new Position(2,2), new StandardTile(GameConstants.MOUNTAINS));
+        cities.putAll(layoutStrategy.createCities());
+        units.putAll(layoutStrategy.createUnits());
+        tiles.putAll(layoutStrategy.createMap());
     }
 
     @Override
