@@ -1,9 +1,6 @@
 package src.hotciv.standard;
 
-import jdk.nashorn.internal.runtime.regexp.JoniRegExp;
 import src.hotciv.framework.*;
-
-import javax.xml.parsers.FactoryConfigurationError;
 import java.util.Map;
 
 /**

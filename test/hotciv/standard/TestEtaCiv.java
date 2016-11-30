@@ -18,7 +18,7 @@ public class TestEtaCiv {
 
     @Before
     public void setUp() {
-        game = new GameImpl(new EtaCiv());
+        game = new GameImpl(new AbstractCiv(new EtaCivFactory()));
         redPosition = (new Position(1, 1));
         bluePosition = (new Position(4, 1));
     }
