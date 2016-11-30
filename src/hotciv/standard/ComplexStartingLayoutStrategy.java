@@ -6,39 +6,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Lasse Letager Hansen on 23-11-2016.
+ * Created by Lasse Letager Hansen on 30-11-2016.
  */
-public class DeltaCiv implements Civ {
-    private AbstractCiv alphaCiv;
-
-    public DeltaCiv(){
-        alphaCiv = new AbstractCiv(new AlphaCivFactory());
-    }
+public class ComplexStartingLayoutStrategy implements StartingLayoutStrategy {
 
     @Override
-    public int getNextAge(int currentAge) {
-        return alphaCiv.getNextAge(currentAge);
-    }
-
-    @Override
-    public Player getWinner() {
-        return alphaCiv.getWinner();
-    }
-
-    @Override
-    public void performUnitActionAt(Position p) {
-        alphaCiv.performUnitActionAt(p);
-    }
-
-    @Override
-    public void setup(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles) {
-        cities.put(new Position(4,5), new StandardCity(Player.BLUE));
-        cities.put(new Position(8,12), new StandardCity(Player.RED));
-        tiles.putAll(defineWorld());
-    }
-
-    /** Define the world as the DeltaCiv layout */
-    private Map<Position,Tile> defineWorld() {
+    public Map<Position, Tile> createMap() {
         // Basically we use a 'data driven' approach - code the
         // layout in a simple semi-visual representation, and
         // convert it to the actual Game representation.
@@ -82,12 +55,17 @@ public class DeltaCiv implements Civ {
     }
 
     @Override
-    public void update(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles) {
-        alphaCiv.update(units, cities, tiles);
+    public Map<Position, City> createCities() {
+        Map<Position, City> cities = new HashMap<Position, City>();
+
+        cities.put(new Position(4,5), new StandardCity(Player.BLUE));
+        cities.put(new Position(8,12), new StandardCity(Player.RED));
+
+        return cities;
     }
 
     @Override
-    public boolean outcomeOfBattle(Unit attacker, Unit defender) {
-        return alphaCiv.outcomeOfBattle(attacker, defender);
+    public Map<Position, Unit> createUnits() {
+        return new HashMap<Position, Unit>(); // Should not be empty?
     }
 }

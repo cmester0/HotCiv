@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class ZetaCiv implements Civ {
     private AbstractCiv alphaCiv;
-    private BetaCiv betaCiv;
+    private AbstractCiv betaCiv;
 
     private int rounds;
     private int redWins;
@@ -18,7 +18,7 @@ public class ZetaCiv implements Civ {
 
     public ZetaCiv(){
         alphaCiv = new AbstractCiv(new AlphaCivFactory());
-        betaCiv = new BetaCiv();
+        betaCiv = new AbstractCiv(new BetaCivFactory());
 
         rounds = 0;
         redWins = 0;

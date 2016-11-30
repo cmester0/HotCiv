@@ -6,7 +6,8 @@ import src.hotciv.framework.Game;
 import src.hotciv.framework.GameConstants;
 import src.hotciv.framework.Player;
 import src.hotciv.framework.Position;
-import src.hotciv.standard.DeltaCiv;
+import src.hotciv.standard.AbstractCiv;
+import src.hotciv.standard.DeltaCivFactory;
 import src.hotciv.standard.GameImpl;
 
 import static org.junit.Assert.*;
@@ -21,10 +22,9 @@ public class TestDeltaCiv {
 
     private Position redPosition, bluePosition;
 
-    /** Fixture for alphaciv testing. */
     @Before
     public void setUp() {
-        game = new GameImpl(new DeltaCiv());
+        game = new GameImpl(new AbstractCiv(new DeltaCivFactory()));
     }
 
     private int countNumberOfTilesOfType(String type){
@@ -90,7 +90,5 @@ public class TestDeltaCiv {
     public void thereAre12ForrestInTheWorld(){
         assertThat(countNumberOfTilesOfType(GameConstants.FOREST), is(14));
     }
-
-    // 9 10 12, mountain hills forrest
 
 }

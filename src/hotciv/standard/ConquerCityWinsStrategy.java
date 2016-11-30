@@ -42,4 +42,7 @@ public class ConquerCityWinsStrategy implements WinnerStrategy {
             }
         }
     }
+
+    @Override
+    public void addAttackWin(Player p) { }
 }

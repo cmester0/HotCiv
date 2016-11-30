@@ -13,26 +13,33 @@ public class EpsilonCiv implements Civ {
     private int blueWinCount;
     private int redWinCount;
 
+    private final AgeingStrategy ageingStrategy;
+    private final WinnerStrategy winnerStrategy;
+    private final StartingLayoutStrategy startingLayoutStrategy;
+    private final BattleStrategy battleStrategy;
+
     public EpsilonCiv(Die die){
         alphaCiv = new AbstractCiv(new AlphaCivFactory());
         this.die = die;
 
         blueWinCount = 0;
         redWinCount = 0;
+
+        CivFactory factory = new EpsilonCivFactory();
+        ageingStrategy = factory.createAgeingStrategy();
+        winnerStrategy = factory.createWinnerStrategy();
+        startingLayoutStrategy = factory.createStartingLayoutStrategy();
+        battleStrategy = factory.createBattleStrategy();
     }
 
     @Override
     public int getNextAge(int currentAge) {
-        return alphaCiv.getNextAge(currentAge);
+        return ageingStrategy.getNextAge(currentAge);
     }
 
     @Override
     public Player getWinner() {
-        if(redWinCount >= 3)
-            return Player.RED;
-        if(blueWinCount >= 3)
-            return Player.BLUE;
-        return null;
+        return winnerStrategy.getWinner();
     }
 
     @Override
@@ -42,17 +49,18 @@ public class EpsilonCiv implements Civ {
 
     @Override
     public void setup(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles) {
-        alphaCiv.setup(units, cities, tiles);
+        units.putAll(startingLayoutStrategy.createUnits());
+        cities.putAll(startingLayoutStrategy.createCities());
+        tiles.putAll(startingLayoutStrategy.createMap());
     }
 
     @Override
     public void update(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles) {
-        alphaCiv.update(units, cities, tiles);
+        winnerStrategy.checkWorld(units, cities,tiles);
     }
 
     @Override
     public boolean outcomeOfBattle(Unit attacker, Unit defender) {
-
         int atkRoll = die.rollDie();
         int defRoll = die.rollDie();
 
@@ -60,17 +68,8 @@ public class EpsilonCiv implements Civ {
         int defenceStrength = defender.getDefensiveStrength() * defRoll;
 
         boolean attackerWins = attackStrength > defenceStrength;
-
-        if(attackerWins){
-            switch (attacker.getOwner()){
-                case RED:
-                    redWinCount++;
-                    break;
-                case BLUE:
-                    blueWinCount++;
-                    break;
-            }
-        }
+        if(attackerWins)
+            winnerStrategy.addAttackWin(attacker.getOwner());
 
         return attackerWins;
     }

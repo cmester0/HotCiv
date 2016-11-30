@@ -29,4 +29,7 @@ public class TimeBasedWinningStrategy implements WinnerStrategy {
     @Override
     public void checkWorld(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles) { }
 
+    @Override
+    public void addAttackWin(Player p) { }
+
 }
