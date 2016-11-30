@@ -12,7 +12,6 @@ public class Winning3BattlesWinsStrategy implements WinnerStrategy {
     int redWins;
     int blueWins;
     Player winner;
-    int age;
 
     public Winning3BattlesWinsStrategy(){
         redWins = 0;
@@ -26,9 +25,7 @@ public class Winning3BattlesWinsStrategy implements WinnerStrategy {
     }
 
     @Override
-    public void setAge(int age) {
-        this.age = age;
-    }
+    public void setAge(int age) { }
 
     @Override
     public void checkWorld(Map<Position, Unit> units, Map<Position, City> cities, Map<Position, Tile> tiles) {

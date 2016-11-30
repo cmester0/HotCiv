@@ -8,21 +8,22 @@ import src.hotciv.framework.*;
 public class ZetaCivFactory implements CivFactory {
     @Override
     public AgeingStrategy createAgeingStrategy() {
-        return null;
+        return new StandardAging();
     }
 
     @Override
     public WinnerStrategy createWinnerStrategy() {
-        return null;
+        return new ConquerCityAndWinning3BattlesStrategy();
     }
 
     @Override
     public StartingLayoutStrategy createStartingLayoutStrategy() {
-        return null;
+        return new StandardStartingLayoutStrategy();
     }
 
     @Override
     public BattleStrategy createBattleStrategy() {
-        return null;
+        return new AttackerWinsStrategy();
     }
 }
+
