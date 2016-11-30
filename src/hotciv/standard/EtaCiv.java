@@ -10,8 +10,19 @@ import java.util.Map;
 public class EtaCiv implements Civ {
     private AbstractCiv alphaCiv;
 
+    private final AgeingStrategy ageingStrategy;
+    private final WinnerStrategy winnerStrategy;
+    private final StartingLayoutStrategy startingLayoutStrategy;
+    private final BattleStrategy battleStrategy;
+
     public EtaCiv(){
         alphaCiv = new AbstractCiv(new AlphaCivFactory());
+
+        CivFactory factory = new EtaCivFactory();
+        ageingStrategy = factory.createAgeingStrategy();
+        winnerStrategy = factory.createWinnerStrategy();
+        startingLayoutStrategy = factory.createStartingLayoutStrategy();
+        battleStrategy = factory.createBattleStrategy();
     }
 
     @Override

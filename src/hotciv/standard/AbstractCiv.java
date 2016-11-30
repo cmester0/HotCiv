@@ -53,6 +53,11 @@ public class AbstractCiv implements Civ {
 
     @Override
     public boolean outcomeOfBattle(Unit attacker, Unit defender) {
-        return battleStrategy.getOutcomeOfBattle(attacker, defender);
+        boolean attackerWins = battleStrategy.getOutcomeOfBattle(attacker, defender);
+
+        if(attackerWins)
+            winnerStrategy.addAttackWin(attacker.getOwner());
+
+        return attackerWins;
     }
 }

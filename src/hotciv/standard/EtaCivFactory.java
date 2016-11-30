@@ -2,29 +2,27 @@ package src.hotciv.standard;
 
 import src.hotciv.framework.*;
 
-import java.sql.Time;
-
 /**
  * Created by Lasse Letager Hansen on 30-11-2016.
  */
-public class EpsilonCivFactory implements CivFactory {
+public class EtaCivFactory implements CivFactory {
     @Override
     public AgeingStrategy createAgeingStrategy() {
-        return new StandardAging();
+        return null;
     }
 
     @Override
     public WinnerStrategy createWinnerStrategy() {
-        return new Winning3BattlesWinsStrategy();
+        return null;
     }
 
     @Override
     public StartingLayoutStrategy createStartingLayoutStrategy() {
-        return new StandardStartingLayoutStrategy();
+        return null;
     }
 
     @Override
     public BattleStrategy createBattleStrategy() {
-        return new FightBattleStrategy();
+        return null;
     }
 }

@@ -15,13 +15,14 @@ import static org.hamcrest.CoreMatchers.*;
 public class TestEpsilonCiv {
     private Game game;
     private Position redPosition, bluePosition;
-    private LoadedDie die;
+    LoadedDie die;
 
     @Before
     public void setUp() {
         die = new LoadedDie();
+        GameConstants.die = die;
 
-        game = new GameImpl(new EpsilonCiv(die));
+        game = new GameImpl(new AbstractCiv(new EpsilonCivFactory()));
         redPosition = (new Position(1,1));
         bluePosition = (new Position(4,1));
     }
