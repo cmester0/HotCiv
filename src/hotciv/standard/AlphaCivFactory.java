@@ -22,6 +22,9 @@ public class AlphaCivFactory implements CivFactory {
         return new StandardStartingLayoutStrategy();
     }
 
-
+    @Override
+    public BattleStrategy createBattleStrategy() {
+        return new AttackerWinsStrategy();
+    }
 
 }

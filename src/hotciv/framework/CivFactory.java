@@ -7,4 +7,5 @@ public interface CivFactory {
     AgeingStrategy createAgeingStrategy();
     WinnerStrategy createWinnerStrategy();
     StartingLayoutStrategy createStartingLayoutStrategy();
+    BattleStrategy createBattleStrategy();
 }

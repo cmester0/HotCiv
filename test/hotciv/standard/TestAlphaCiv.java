@@ -2,10 +2,8 @@ package test.hotciv.standard;
 
 import src.hotciv.framework.*;
 
-import src.hotciv.standard.AlphaCiv;
-import src.hotciv.standard.GameImpl;
+import src.hotciv.standard.*;
 import org.junit.*;
-import src.hotciv.standard.StandardCity;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -48,7 +46,7 @@ public class TestAlphaCiv {
   /** Fixture for alphaciv testing. */
   @Before
   public void setUp() {
-    game = new GameImpl(new AlphaCiv());
+    game = new GameImpl(new AbstractCiv(new AlphaCivFactory()));
     redPosition = (new Position(1,1));
     bluePosition = (new Position(4,1));
   }
