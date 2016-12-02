@@ -77,7 +77,9 @@
 * [x] ~~Red archer moves (2,0) => (3,0) => (4,1) => red is winner~~
 * [x] ~~Blue legion moves (3,2) => (2,1) => (1,1) => blue is winner~~
 * [x] ~~Settlers cannot conquer cities~~
+
 ---
+
 * [x] ~~Waiting does not cause a winner~~
 
 ## AlphaCiv features:
