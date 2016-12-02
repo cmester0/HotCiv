@@ -129,6 +129,8 @@
 * [x] ~~units cannot move over ocean~~
 * [x] ~~units cannot move unto each other~~
 * [x] ~~the attacker of a battle always wins~~
+
 ---
+
 * [x] ~~After 40 rounds age is 0~~
 * [x] ~~Winner is null at beginning~~
