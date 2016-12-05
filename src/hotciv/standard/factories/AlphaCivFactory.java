@@ -1,6 +1,7 @@
-package src.hotciv.standard;
+package src.hotciv.standard.factories;
 
 import src.hotciv.framework.*;
+import src.hotciv.standard.strategies.*;
 
 /**
  * Created by Lasse Letager Hansen on 30-11-2016.

@@ -1,4 +1,4 @@
-package src.hotciv.standard;
+package src.hotciv.standard.strategies;
 
 import src.hotciv.framework.BattleStrategy;
 import src.hotciv.framework.GameConstants;

@@ -1,17 +1,16 @@
-package src.hotciv.standard;
+package src.hotciv.standard.strategies;
 
 import src.hotciv.framework.*;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by Lasse Letager Hansen on 30-11-2016.
  */
 public class Winning3BattlesWinsStrategy implements WinnerStrategy {
-    int redWins;
-    int blueWins;
-    Player winner;
+    private int redWins;
+    private int blueWins;
+    private Player winner;
 
     public Winning3BattlesWinsStrategy(){
         redWins = 0;

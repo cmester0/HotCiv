@@ -1,8 +1,9 @@
-package src.hotciv.standard;
+package src.hotciv.standard.factories;
 
 import src.hotciv.framework.City;
 import src.hotciv.framework.GameConstants;
 import src.hotciv.framework.Unit;
+import src.hotciv.standard.StandardUnit;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

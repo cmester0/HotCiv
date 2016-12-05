@@ -2,13 +2,9 @@ package test.hotciv.standard;
 
 import org.junit.Before;
 import org.junit.Test;
-import src.hotciv.framework.Game;
-import src.hotciv.framework.GameConstants;
-import src.hotciv.framework.Player;
-import src.hotciv.framework.Position;
-import src.hotciv.standard.AbstractCiv;
-import src.hotciv.standard.DeltaCivFactory;
-import src.hotciv.standard.GameImpl;
+import src.hotciv.framework.*;
+import src.hotciv.standard.*;
+import src.hotciv.standard.factories.DeltaCivFactory;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;

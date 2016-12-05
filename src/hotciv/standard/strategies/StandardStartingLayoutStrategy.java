@@ -1,6 +1,9 @@
-package src.hotciv.standard;
+package src.hotciv.standard.strategies;
 
 import src.hotciv.framework.*;
+import src.hotciv.standard.StandardTile;
+import src.hotciv.standard.StandardCity;
+import src.hotciv.standard.StandardUnit;
 
 import java.util.HashMap;
 import java.util.Map;

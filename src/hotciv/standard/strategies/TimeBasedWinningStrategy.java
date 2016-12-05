@@ -1,4 +1,4 @@
-package src.hotciv.standard;
+package src.hotciv.standard.strategies;
 
 import src.hotciv.framework.*;
 
@@ -8,8 +8,8 @@ import java.util.Map;
  * Created by Lasse Letager Hansen on 30-11-2016.
  */
 public class TimeBasedWinningStrategy implements WinnerStrategy {
-    Player winner;
-    int age;
+    private Player winner;
+    private int age;
 
     public TimeBasedWinningStrategy(){
         winner = null;

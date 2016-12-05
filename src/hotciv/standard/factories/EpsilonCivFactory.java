@@ -1,14 +1,16 @@
-package src.hotciv.standard;
+package src.hotciv.standard.factories;
 
 import src.hotciv.framework.*;
+
+import src.hotciv.standard.strategies.*;
 
 /**
  * Created by Lasse Letager Hansen on 30-11-2016.
  */
-public class DeltaCivFactory implements CivFactory {
-    AlphaCivFactory alphaCivFactory;
+public class EpsilonCivFactory implements CivFactory {
+    private AlphaCivFactory alphaCivFactory;
 
-    public DeltaCivFactory(){
+    public EpsilonCivFactory(){
         alphaCivFactory = new AlphaCivFactory();
     }
 
@@ -19,16 +21,16 @@ public class DeltaCivFactory implements CivFactory {
 
     @Override
     public WinnerStrategy createWinnerStrategy() {
-        return alphaCivFactory.createWinnerStrategy();
+        return new Winning3BattlesWinsStrategy();
     }
 
     @Override
     public StartingLayoutStrategy createStartingLayoutStrategy() {
-        return new ComplexStartingLayoutStrategy();
+        return alphaCivFactory.createStartingLayoutStrategy();
     }
 
     @Override
     public BattleStrategy createBattleStrategy() {
-        return alphaCivFactory.createBattleStrategy();
+        return new FightBattleStrategy();
     }
 }

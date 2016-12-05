@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import src.hotciv.framework.*;
 import src.hotciv.standard.*;
+import src.hotciv.standard.factories.ZetaCivFactory;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;

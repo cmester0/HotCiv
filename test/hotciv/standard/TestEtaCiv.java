@@ -1,10 +1,10 @@
 package test.hotciv.standard;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import src.hotciv.framework.*;
 import src.hotciv.standard.*;
+import src.hotciv.standard.factories.EtaCivFactory;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -18,7 +18,9 @@ public class TestEtaCiv {
 
     @Before
     public void setUp() {
-        game = new GameImpl(new AbstractCiv(new EtaCivFactory()));
+        CivFactory factory = new EtaCivFactory();
+        Civ civ = new AbstractCiv(factory);
+        game = new GameImpl(civ);
         redPosition = (new Position(1, 1));
         bluePosition = (new Position(4, 1));
     }

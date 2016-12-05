@@ -6,7 +6,7 @@ import src.hotciv.framework.Game;
 import src.hotciv.framework.Player;
 import src.hotciv.framework.Position;
 import src.hotciv.standard.AbstractCiv;
-import src.hotciv.standard.BetaCivFactory;
+import src.hotciv.standard.factories.BetaCivFactory;
 import src.hotciv.standard.GameImpl;
 
 import static org.junit.Assert.*;

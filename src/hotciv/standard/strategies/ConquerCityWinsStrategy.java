@@ -1,6 +1,7 @@
-package src.hotciv.standard;
+package src.hotciv.standard.strategies;
 
 import src.hotciv.framework.*;
+import src.hotciv.standard.StandardCity;
 
 import java.util.Map;
 
@@ -8,7 +9,7 @@ import java.util.Map;
  * Created by Lasse Letager Hansen on 30-11-2016.
  */
 public class ConquerCityWinsStrategy implements WinnerStrategy {
-    Player winner;
+    private Player winner;
 
     public ConquerCityWinsStrategy(){
         winner = null;

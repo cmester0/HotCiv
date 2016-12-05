@@ -1,10 +1,10 @@
 package test.hotciv.standard;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import src.hotciv.framework.*;
 import src.hotciv.standard.*;
+import src.hotciv.standard.factories.EpsilonCivFactory;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -15,7 +15,7 @@ import static org.hamcrest.CoreMatchers.*;
 public class TestEpsilonCiv {
     private Game game;
     private Position redPosition, bluePosition;
-    LoadedDie die;
+    private LoadedDie die;
 
     @Before
     public void setUp() {

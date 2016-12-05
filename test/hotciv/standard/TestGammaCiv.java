@@ -8,7 +8,7 @@ import src.hotciv.framework.Player;
 import src.hotciv.framework.Position;
 import src.hotciv.standard.AbstractCiv;
 import src.hotciv.standard.GameImpl;
-import src.hotciv.standard.GammaCivFactory;
+import src.hotciv.standard.factories.GammaCivFactory;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -17,8 +17,6 @@ import static org.hamcrest.CoreMatchers.*;
  * Created by Lasse Letager Hansen on 21-11-2016.
  */
 public class TestGammaCiv {
-
-
     private Game game;
 
     private Position redPosition, bluePosition;
