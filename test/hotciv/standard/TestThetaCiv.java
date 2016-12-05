@@ -41,4 +41,27 @@ public class TestThetaCiv {
         assertThat(game.getUnitAt(redPosition).getTypeString(), is("bomb"));
     }
 
+    @Test
+    public void bombDisappearsOnExplosion(){
+        game.changeProductionInCityAt(redPosition, "bomb");
+        endRound(11);
+        game.performUnitActionAt(redPosition);
+        assertThat(game.getUnitAt(redPosition), is(nullValue()));
+    }
+
+
+    @Test
+    public void unitsAroundBombDisappearsOnExplosion(){
+        game.changeProductionInCityAt(redPosition, "bomb");
+        endRound(11);
+        game.changeProductionInCityAt(redPosition, GameConstants.ARCHER);
+        endRound(2 * 4); // (2 * 4 * 6) / 10 = 4.8 => 4 units
+        game.performUnitActionAt(redPosition);
+
+        assertThat(game.getUnitAt(new Position(0,1)), is(nullValue()));
+        assertThat(game.getUnitAt(new Position(0,2)), is(nullValue()));
+        assertThat(game.getUnitAt(new Position(1,2)), is(nullValue()));
+        assertThat(game.getUnitAt(new Position(2,1)), is(nullValue()));
+        assertThat(game.getUnitAt(new Position(2,0)), is(nullValue()));
+    }
 }

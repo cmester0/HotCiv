@@ -265,6 +265,15 @@ public class GameImpl implements Game {
             int defensiveStrength = u.getDefensiveStrength()==3?3:0;
             units.put(p, new StandardUnit(GameConstants.ARCHER, u.getOwner(), u.getMoveCount(), defensiveStrength));
         }
+
+        if(u.getTypeString().equals("bomb")){
+            for(int i = -1; i < 2; i++){
+                for(int j = -1; j < 2; j++){
+                    Position toRemove = new Position(p.getRow() + i, p.getColumn() + j);
+                    units.remove(toRemove);
+                }
+            }
+        }
     }
 
     @Override
