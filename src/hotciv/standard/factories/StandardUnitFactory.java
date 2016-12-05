@@ -3,6 +3,7 @@ package src.hotciv.standard.factories;
 import src.hotciv.framework.City;
 import src.hotciv.framework.GameConstants;
 import src.hotciv.framework.Unit;
+import src.hotciv.framework.UnitFactory;
 import src.hotciv.standard.StandardUnit;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -10,8 +11,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Created by Lasse Letager Hansen on 28-11-2016.
  */
-public class UnitFactory {
-    public static Unit createUnit(City c, AtomicInteger newProd){
+public class StandardUnitFactory implements UnitFactory {
+    public Unit createUnit(City c, AtomicInteger newProd){
         Unit u = null;
         switch (c.getProduction()) {
             case GameConstants.SETTLER:

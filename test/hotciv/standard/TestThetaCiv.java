@@ -33,4 +33,12 @@ public class TestThetaCiv {
         Unit bomb = new StandardUnit("bomb", Player.RED);
         assertThat(bomb.getDefensiveStrength(), is(1));
     }
+
+    @Test
+    public void citiesCanProduceBombs(){
+        game.changeProductionInCityAt(redPosition, "bomb");
+        endRound(11);
+        assertThat(game.getUnitAt(redPosition).getTypeString(), is("bomb"));
+    }
+
 }

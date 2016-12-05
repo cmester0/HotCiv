@@ -1,7 +1,8 @@
 package src.hotciv.standard;
 
 import src.hotciv.framework.*;
-import src.hotciv.standard.factories.UnitFactory;
+import src.hotciv.standard.factories.BombUnitFactory;
+import src.hotciv.standard.factories.StandardUnitFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +44,8 @@ public class GameImpl implements Game {
     private HashMap<Player, Integer> production;
     private HashMap<Position, Integer> food;
 
+    private UnitFactory unitFactory;
+
     private Player playerInTurn;
 
     private Civ civ;
@@ -65,6 +68,8 @@ public class GameImpl implements Game {
 
         for(Position cityPos : cities.keySet())
             food.put(cityPos, 0);
+
+        unitFactory = new BombUnitFactory();
     }
 
     public Tile getTileAt(Position p) {
@@ -182,7 +187,7 @@ public class GameImpl implements Game {
             int newProd = production.get(c.getOwner()) + 6;
 
             AtomicInteger ai = new AtomicInteger(newProd);
-            Unit u = UnitFactory.createUnit(c, ai);
+            Unit u = unitFactory.createUnit(c, ai);
             newProd = ai.get();
 
             if(u != null){
