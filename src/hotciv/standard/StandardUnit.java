@@ -16,11 +16,11 @@ public class StandardUnit implements Unit {
         this(type, p, 1);
     }
 
-    public StandardUnit(Unit u, boolean cityBonus, int terrainBonus, int adjecentCount){
+    public StandardUnit(Unit u, boolean cityBonus, int terrainBonus, int adjacentCount){
         this(u.getTypeString(), u.getOwner(), u.getMoveCount());
         this.cityBonus = cityBonus;
         this.terrainBonus = terrainBonus;
-        this.adjacentCount = adjecentCount;
+        this.adjacentCount = adjacentCount;
         this.defensiveStrength = u.getDefensiveStrength();
     }
 
@@ -34,6 +34,9 @@ public class StandardUnit implements Unit {
         this.moveCount = moveCount;
 
         switch (type) {
+            case "bomb":
+                this.defensiveStrength = 1;
+                break;
             case GameConstants.LEGION:
                 this.defensiveStrength = 2;
                 break;

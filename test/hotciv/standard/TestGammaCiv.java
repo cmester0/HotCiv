@@ -21,7 +21,6 @@ public class TestGammaCiv {
 
     private Position redPosition, bluePosition;
 
-    /** Fixture for alphaciv testing. */
     @Before
     public void setUp() {
         game = new GameImpl(new AbstractCiv(new GammaCivFactory()));
