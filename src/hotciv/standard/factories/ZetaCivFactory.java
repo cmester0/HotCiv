@@ -32,5 +32,10 @@ public class ZetaCivFactory implements CivFactory {
     public BattleStrategy createBattleStrategy() {
         return alphaCivFactory.createBattleStrategy();
     }
+
+    @Override
+    public PerformActionStrategy createPerformActionStrategy() {
+        return alphaCivFactory.createPerformActionStrategy();
+    }
 }
 

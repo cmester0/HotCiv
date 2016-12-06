@@ -41,4 +41,9 @@ public class SemiCivFactory implements CivFactory {
     public BattleStrategy createBattleStrategy() {
         return epsilonCivFactory.createBattleStrategy();
     }
+
+    @Override
+    public PerformActionStrategy createPerformActionStrategy() {
+        return gammaCivFactory.createPerformActionStrategy();
+    }
 }

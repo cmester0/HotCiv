@@ -33,4 +33,9 @@ public class EpsilonCivFactory implements CivFactory {
     public BattleStrategy createBattleStrategy() {
         return new FightBattleStrategy();
     }
+
+    @Override
+    public PerformActionStrategy createPerformActionStrategy() {
+        return alphaCivFactory.createPerformActionStrategy();
+    }
 }

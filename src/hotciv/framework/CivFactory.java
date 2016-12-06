@@ -8,4 +8,5 @@ public interface CivFactory {
     WinnerStrategy createWinnerStrategy();
     StartingLayoutStrategy createStartingLayoutStrategy();
     BattleStrategy createBattleStrategy();
+    PerformActionStrategy createPerformActionStrategy();
 }

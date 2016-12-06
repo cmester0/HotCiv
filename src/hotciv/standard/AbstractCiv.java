@@ -3,20 +3,27 @@ package src.hotciv.standard;
 import src.hotciv.framework.*;
 import java.util.Map;
 
+
 /**
  * Created by Lasse Letager Hansen on 30-11-2016.
  */
 public class AbstractCiv implements Civ {
-    AgeingStrategy ageingStrategy;
-    WinnerStrategy winnerStrategy;
-    StartingLayoutStrategy startingLayoutStrategy;
-    BattleStrategy battleStrategy;
+    private AgeingStrategy ageingStrategy;
+    private WinnerStrategy winnerStrategy;
+    private StartingLayoutStrategy startingLayoutStrategy;
+    private BattleStrategy battleStrategy;
+
+    private PerformActionStrategy performActionStrategy;
+
+    private Map<Position, Unit> units;
+    private Map<Position, City> cities;
 
     public AbstractCiv(CivFactory civFactory){
         ageingStrategy = civFactory.createAgeingStrategy();
         winnerStrategy = civFactory.createWinnerStrategy();
         startingLayoutStrategy = civFactory.createStartingLayoutStrategy();
         battleStrategy = civFactory.createBattleStrategy();
+        performActionStrategy = civFactory.createPerformActionStrategy();
     }
 
     @Override
@@ -36,6 +43,9 @@ public class AbstractCiv implements Civ {
         units.putAll(startingLayoutStrategy.createUnits());
         cities.putAll(startingLayoutStrategy.createCities());
         tiles.putAll(startingLayoutStrategy.createMap());
+
+        this.units = units;
+        this.cities = cities;
     }
 
     @Override
@@ -51,5 +61,15 @@ public class AbstractCiv implements Civ {
             winnerStrategy.addAttackWin(attacker.getOwner());
 
         return attackerWins;
+    }
+
+    @Override
+    public void performUnitActionAt(Position p) {
+        performActionStrategy.performUnitAction(p, units, cities);
+    }
+
+    @Override
+    public void changeProductionInCityAt(Position p, String unitType) {
+
     }
 }
