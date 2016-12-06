@@ -7,6 +7,10 @@
 * [x] ~~Gathering food increases city size~~
 * [x] ~~Cities cannot exceed a size of nine~~
 
+---
+
+* [x] ~~Gathering food does not make units~~
+
 ## ZetaCiv
 * [x] ~~There is no winner at the beginning of the game~~
 * [x] ~~If red conquers blue city at round 1, then red wins the game~~

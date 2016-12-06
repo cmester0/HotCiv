@@ -184,7 +184,8 @@ public class GameImpl implements Game {
         age = civ.getNextAge(age);
 
         for (City c : cities.values()) {
-            int newProd = production.get(c.getOwner()) + 6;
+            if(!c.getWorkforceFocus().equals(GameConstants.productionFocus)) continue;
+            int newProd = production.get(c.getOwner()) + 6; // change to production based on terrain here
 
             AtomicInteger ai = new AtomicInteger(newProd);
             Unit u = civ.createUnit(c, ai);
@@ -246,12 +247,13 @@ public class GameImpl implements Game {
         cities.put(p, new StandardCity(c.getOwner(), c.getProduction(), balance, c.getSize()));
     }
 
+    @Override
     public void changeProductionInCityAt(Position p, String unitType) {
         Player cityOwner = cities.get(p).getOwner();
         cities.put(p, new StandardCity(cityOwner, unitType));
     }
 
-    // Should be only for GammaCiv
+    @Override
     public void performUnitActionAt(Position p) {
         civ.performUnitActionAt(p);
     }

@@ -89,4 +89,12 @@ public class TestEtaCiv {
         endRound(300);
         assertThat(game.getCityAt(redPosition).getSize(), is(9));
     }
+
+    @Test
+    public void gatheringFoodDoesNotMakeUnits(){
+        game.changeWorkforceFocusInCityAt(redPosition, GameConstants.foodFocus);
+        endRound(10);
+        assertThat(game.getUnitAt(redPosition), is(nullValue()));
+
+    }
 }
