@@ -187,7 +187,7 @@ public class GameImpl implements Game {
             int newProd = production.get(c.getOwner()) + 6;
 
             AtomicInteger ai = new AtomicInteger(newProd);
-            Unit u = unitFactory.createUnit(c, ai);
+            Unit u = civ.createUnit(c, ai);
             newProd = ai.get();
 
             if(u != null){

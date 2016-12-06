@@ -7,7 +7,7 @@ import src.hotciv.standard.strategies.SimpleUnitActionStrategy;
  * Created by Lasse Letager Hansen on 30-11-2016.
  */
 public class GammaCivFactory implements CivFactory {
-    AlphaCivFactory alphaCivFactory;
+    private AlphaCivFactory alphaCivFactory;
 
     public GammaCivFactory(){
         alphaCivFactory = new AlphaCivFactory();
@@ -36,5 +36,10 @@ public class GammaCivFactory implements CivFactory {
     @Override
     public PerformActionStrategy createPerformActionStrategy() {
         return new SimpleUnitActionStrategy();
+    }
+
+    @Override
+    public UnitFactory createUnitFactory() {
+        return alphaCivFactory.createUnitFactory();
     }
 }

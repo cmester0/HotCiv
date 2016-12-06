@@ -8,6 +8,7 @@ import src.hotciv.framework.*;
 public class SemiCivFactory implements CivFactory {
     // MISSING UNIT ACTION AND CITY WORKFORCE / POPULATION
 
+    private AlphaCivFactory alphaCivFactory;
     private BetaCivFactory betaCivFactory;
     private GammaCivFactory gammaCivFactory;
     private DeltaCivFactory deltaCivFactory;
@@ -15,6 +16,7 @@ public class SemiCivFactory implements CivFactory {
     private EtaCivFactory etaCivFactory;
 
     public SemiCivFactory(){
+        alphaCivFactory = new AlphaCivFactory();
         betaCivFactory = new BetaCivFactory();
         gammaCivFactory = new GammaCivFactory();
         deltaCivFactory = new DeltaCivFactory();
@@ -45,5 +47,10 @@ public class SemiCivFactory implements CivFactory {
     @Override
     public PerformActionStrategy createPerformActionStrategy() {
         return gammaCivFactory.createPerformActionStrategy();
+    }
+
+    @Override
+    public UnitFactory createUnitFactory() {
+        return alphaCivFactory.createUnitFactory();
     }
 }

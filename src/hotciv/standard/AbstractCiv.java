@@ -2,6 +2,7 @@ package src.hotciv.standard;
 
 import src.hotciv.framework.*;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
@@ -12,8 +13,8 @@ public class AbstractCiv implements Civ {
     private WinnerStrategy winnerStrategy;
     private StartingLayoutStrategy startingLayoutStrategy;
     private BattleStrategy battleStrategy;
-
     private PerformActionStrategy performActionStrategy;
+    private UnitFactory unitFactory;
 
     private Map<Position, Unit> units;
     private Map<Position, City> cities;
@@ -24,6 +25,7 @@ public class AbstractCiv implements Civ {
         startingLayoutStrategy = civFactory.createStartingLayoutStrategy();
         battleStrategy = civFactory.createBattleStrategy();
         performActionStrategy = civFactory.createPerformActionStrategy();
+        unitFactory = civFactory.createUnitFactory();
     }
 
     @Override
@@ -71,5 +73,10 @@ public class AbstractCiv implements Civ {
     @Override
     public void changeProductionInCityAt(Position p, String unitType) {
 
+    }
+
+    @Override
+    public Unit createUnit(City c, AtomicInteger ai) {
+        return unitFactory.createUnit(c, ai);
     }
 }

@@ -37,4 +37,9 @@ public class ThetaCivFactory implements CivFactory {
     public PerformActionStrategy createPerformActionStrategy() {
         return new BombUnitActionStrategy();
     }
+
+    @Override
+    public UnitFactory createUnitFactory() {
+        return new BombUnitFactory();
+    }
 }

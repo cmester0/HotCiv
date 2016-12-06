@@ -9,4 +9,5 @@ public interface CivFactory {
     StartingLayoutStrategy createStartingLayoutStrategy();
     BattleStrategy createBattleStrategy();
     PerformActionStrategy createPerformActionStrategy();
+    UnitFactory createUnitFactory();
 }

@@ -3,6 +3,7 @@ package src.hotciv.framework;
 import src.hotciv.standard.GameImpl;
 
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by ssodelta on 11/21/16.
@@ -41,4 +42,5 @@ public interface Civ {
     void changeProductionInCityAt( Position p, String unitType );
 
 
+    Unit createUnit(City c, AtomicInteger ai);
 }

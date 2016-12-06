@@ -38,4 +38,9 @@ public class EpsilonCivFactory implements CivFactory {
     public PerformActionStrategy createPerformActionStrategy() {
         return alphaCivFactory.createPerformActionStrategy();
     }
+
+    @Override
+    public UnitFactory createUnitFactory() {
+        return alphaCivFactory.createUnitFactory();
+    }
 }
