@@ -1,4 +1,4 @@
-package src.hotciv.standard.factories;
+package src.hotciv.standard.factories.civ;
 
 import src.hotciv.framework.*;
 import src.hotciv.standard.strategies.*;
@@ -6,26 +6,26 @@ import src.hotciv.standard.strategies.*;
 /**
  * Created by Lasse Letager Hansen on 30-11-2016.
  */
-public class DeltaCivFactory implements CivFactory {
+public class BetaCivFactory implements CivFactory {
     private AlphaCivFactory alphaCivFactory;
 
-    public DeltaCivFactory(){
+    public BetaCivFactory(){
         alphaCivFactory = new AlphaCivFactory();
     }
 
     @Override
     public AgeingStrategy createAgeingStrategy() {
-        return alphaCivFactory.createAgeingStrategy();
+        return new SlowingAgeingStrategy();
     }
 
     @Override
     public WinnerStrategy createWinnerStrategy() {
-        return alphaCivFactory.createWinnerStrategy();
+        return new ConquerCityWinsStrategy();
     }
 
     @Override
     public StartingLayoutStrategy createStartingLayoutStrategy() {
-        return new ComplexStartingLayoutStrategy();
+        return alphaCivFactory.createStartingLayoutStrategy();
     }
 
     @Override

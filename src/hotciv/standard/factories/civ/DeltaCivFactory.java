@@ -1,44 +1,45 @@
-package src.hotciv.standard.factories;
+package src.hotciv.standard.factories.civ;
 
 import src.hotciv.framework.*;
 import src.hotciv.standard.strategies.*;
 
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
-
 /**
  * Created by Lasse Letager Hansen on 30-11-2016.
  */
-public class AlphaCivFactory implements CivFactory {
+public class DeltaCivFactory implements CivFactory {
+    private AlphaCivFactory alphaCivFactory;
+
+    public DeltaCivFactory(){
+        alphaCivFactory = new AlphaCivFactory();
+    }
 
     @Override
     public AgeingStrategy createAgeingStrategy() {
-        return new StandardAging();
+        return alphaCivFactory.createAgeingStrategy();
     }
 
     @Override
     public WinnerStrategy createWinnerStrategy() {
-        return new TimeBasedWinningStrategy();
+        return alphaCivFactory.createWinnerStrategy();
     }
 
     @Override
     public StartingLayoutStrategy createStartingLayoutStrategy() {
-        return new StandardStartingLayoutStrategy();
+        return new ComplexStartingLayoutStrategy();
     }
 
     @Override
     public BattleStrategy createBattleStrategy() {
-        return new AttackerWinsStrategy();
+        return alphaCivFactory.createBattleStrategy();
     }
 
     @Override
     public PerformActionStrategy createPerformActionStrategy() {
-        return (p, units, cities) -> {};
+        return alphaCivFactory.createPerformActionStrategy();
     }
 
     @Override
     public UnitFactory createUnitFactory() {
-        return new StandardUnitFactory();
+        return alphaCivFactory.createUnitFactory();
     }
-
 }

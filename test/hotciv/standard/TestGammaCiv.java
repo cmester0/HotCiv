@@ -8,7 +8,7 @@ import src.hotciv.framework.Player;
 import src.hotciv.framework.Position;
 import src.hotciv.standard.AbstractCiv;
 import src.hotciv.standard.GameImpl;
-import src.hotciv.standard.factories.GammaCivFactory;
+import src.hotciv.standard.factories.civ.GammaCivFactory;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;

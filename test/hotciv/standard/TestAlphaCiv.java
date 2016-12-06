@@ -5,7 +5,7 @@ import src.hotciv.standard.*;
 
 import org.junit.*;
 
-import src.hotciv.standard.factories.AlphaCivFactory;
+import src.hotciv.standard.factories.civ.AlphaCivFactory;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;

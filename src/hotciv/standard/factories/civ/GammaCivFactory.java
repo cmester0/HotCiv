@@ -1,15 +1,15 @@
-package src.hotciv.standard.factories;
+package src.hotciv.standard.factories.civ;
 
 import src.hotciv.framework.*;
-import src.hotciv.standard.strategies.*;
+import src.hotciv.standard.strategies.SimpleUnitActionStrategy;
 
 /**
  * Created by Lasse Letager Hansen on 30-11-2016.
  */
-public class ZetaCivFactory implements CivFactory {
+public class GammaCivFactory implements CivFactory {
     private AlphaCivFactory alphaCivFactory;
 
-    public ZetaCivFactory(){
+    public GammaCivFactory(){
         alphaCivFactory = new AlphaCivFactory();
     }
 
@@ -20,7 +20,7 @@ public class ZetaCivFactory implements CivFactory {
 
     @Override
     public WinnerStrategy createWinnerStrategy() {
-        return new ConquerCityAndWinning3BattlesStrategy();
+        return alphaCivFactory.createWinnerStrategy();
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ZetaCivFactory implements CivFactory {
 
     @Override
     public PerformActionStrategy createPerformActionStrategy() {
-        return alphaCivFactory.createPerformActionStrategy();
+        return new SimpleUnitActionStrategy();
     }
 
     @Override
@@ -43,4 +43,3 @@ public class ZetaCivFactory implements CivFactory {
         return alphaCivFactory.createUnitFactory();
     }
 }
-

@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import src.hotciv.framework.*;
 import src.hotciv.standard.*;
-import src.hotciv.standard.factories.ThetaCivFactory;
+import src.hotciv.standard.factories.civ.ThetaCivFactory;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;

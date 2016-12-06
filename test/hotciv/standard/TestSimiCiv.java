@@ -1,14 +1,10 @@
 package test.hotciv.standard;
 
 import org.junit.Before;
-import org.junit.Test;
 
 import src.hotciv.framework.*;
 import src.hotciv.standard.*;
-import src.hotciv.standard.factories.SemiCivFactory;
-
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import src.hotciv.standard.factories.civ.SemiCivFactory;
 
 /**
  * Created by Lasse Letager Hansen on 05-12-2016.

@@ -1,15 +1,13 @@
-package src.hotciv.standard.factories;
+package src.hotciv.standard.factories.civ;
 
 import src.hotciv.framework.*;
-import src.hotciv.standard.strategies.SimpleUnitActionStrategy;
 
 /**
  * Created by Lasse Letager Hansen on 30-11-2016.
  */
-public class GammaCivFactory implements CivFactory {
+public class EtaCivFactory implements CivFactory{
     private AlphaCivFactory alphaCivFactory;
-
-    public GammaCivFactory(){
+    public EtaCivFactory(){
         alphaCivFactory = new AlphaCivFactory();
     }
 
@@ -35,7 +33,7 @@ public class GammaCivFactory implements CivFactory {
 
     @Override
     public PerformActionStrategy createPerformActionStrategy() {
-        return new SimpleUnitActionStrategy();
+        return alphaCivFactory.createPerformActionStrategy();
     }
 
     @Override
