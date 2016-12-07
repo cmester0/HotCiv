@@ -18,7 +18,7 @@ public class TestZetaCiv {
 
     @Before
     public void setUp() {
-        game = new GameImpl(new AbstractCiv(new ZetaCivFactory()));
+        game = new GameImpl(new AbstractCiv(new ZetaCivFactory(), "ZetaCiv"));
         redPosition = (new Position(1,1));
         bluePosition = (new Position(4,1));
     }

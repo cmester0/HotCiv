@@ -15,7 +15,7 @@ public class TestSimiCiv {
 
     @Before
     public void setUp() {
-        game = new GameImpl(new AbstractCiv(new SemiCivFactory()));
+        game = new GameImpl(new AbstractCiv(new SemiCivFactory(), "SemiCiv"));
         redPosition = (new Position(1,1));
         bluePosition = (new Position(4,1));
     }

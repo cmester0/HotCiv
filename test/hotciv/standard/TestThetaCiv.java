@@ -18,7 +18,7 @@ public class TestThetaCiv {
 
     @Before
     public void setUp() {
-        game = new GameImpl(new AbstractCiv(new ThetaCivFactory()));
+        game = new GameImpl(new AbstractCiv(new ThetaCivFactory(), "ThetaCiv"));
         redPosition = (new Position(1,1));
         bluePosition = (new Position(4,1));
     }

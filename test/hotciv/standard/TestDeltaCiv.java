@@ -20,7 +20,7 @@ public class TestDeltaCiv {
 
     @Before
     public void setUp() {
-        game = new GameImpl(new AbstractCiv(new DeltaCivFactory()));
+        game = new GameImpl(new AbstractCiv(new DeltaCivFactory(), "DeltaCiv"));
     }
 
     private int countNumberOfTilesOfType(String type){

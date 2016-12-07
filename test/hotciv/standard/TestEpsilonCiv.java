@@ -22,7 +22,7 @@ public class TestEpsilonCiv {
         die = new LoadedDie();
         GameReferences.die = die;
 
-        game = new GameImpl(new AbstractCiv(new EpsilonCivFactory()));
+        game = new GameImpl(new AbstractCiv(new EpsilonCivFactory(), "EpsilonCiv"));
         redPosition = (new Position(1,1));
         bluePosition = (new Position(4,1));
     }

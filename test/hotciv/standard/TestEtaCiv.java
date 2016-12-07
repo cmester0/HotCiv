@@ -19,7 +19,7 @@ public class TestEtaCiv {
     @Before
     public void setUp() {
         CivFactory factory = new EtaCivFactory();
-        Civ civ = new AbstractCiv(factory);
+        Civ civ = new AbstractCiv(factory, "EtaCiv");
         game = new GameImpl(civ);
         redPosition = (new Position(1, 1));
         bluePosition = (new Position(4, 1));

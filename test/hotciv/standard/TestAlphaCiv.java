@@ -46,7 +46,7 @@ public class TestAlphaCiv {
   /** Fixture for alphaciv testing. */
   @Before
   public void setUp() {
-    game = new GameImpl(new AbstractCiv(new AlphaCivFactory()));
+    game = new GameImpl(new AbstractCiv(new AlphaCivFactory(), "AlphaCiv"));
     redPosition = (new Position(1,1));
     bluePosition = (new Position(4,1));
   }

@@ -23,7 +23,7 @@ public class TestGammaCiv {
 
     @Before
     public void setUp() {
-        game = new GameImpl(new AbstractCiv(new GammaCivFactory()));
+        game = new GameImpl(new AbstractCiv(new GammaCivFactory(),"GammaCiv"));
         redPosition = (new Position(1,1));
         bluePosition = (new Position(4,1));
     }
