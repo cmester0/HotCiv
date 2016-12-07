@@ -1,36 +1,32 @@
 package src.hotciv.standard.factories.civ;
 
 import src.hotciv.framework.*;
-import src.hotciv.standard.strategies.SimpleUnitActionStrategy;
+import src.hotciv.standard.factories.StandardUnitFactory;
+import src.hotciv.standard.strategies.*;
 
 /**
  * Created by Lasse Letager Hansen on 30-11-2016.
  */
 public class GammaCivFactory implements CivFactory {
-    private AlphaCivFactory alphaCivFactory;
-
-    public GammaCivFactory(){
-        alphaCivFactory = new AlphaCivFactory();
-    }
 
     @Override
     public AgeingStrategy createAgeingStrategy() {
-        return alphaCivFactory.createAgeingStrategy();
+        return new StandardAging();
     }
 
     @Override
     public WinnerStrategy createWinnerStrategy() {
-        return alphaCivFactory.createWinnerStrategy();
+        return new TimeBasedWinningStrategy();
     }
 
     @Override
     public StartingLayoutStrategy createStartingLayoutStrategy() {
-        return alphaCivFactory.createStartingLayoutStrategy();
+        return new StandardStartingLayoutStrategy();
     }
 
     @Override
     public BattleStrategy createBattleStrategy() {
-        return alphaCivFactory.createBattleStrategy();
+        return new AttackerWinsStrategy();
     }
 
     @Override
@@ -40,6 +36,6 @@ public class GammaCivFactory implements CivFactory {
 
     @Override
     public UnitFactory createUnitFactory() {
-        return alphaCivFactory.createUnitFactory();
+        return new StandardUnitFactory();
     }
 }
