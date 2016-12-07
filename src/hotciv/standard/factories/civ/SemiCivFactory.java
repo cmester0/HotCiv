@@ -1,56 +1,41 @@
 package src.hotciv.standard.factories.civ;
 
 import src.hotciv.framework.*;
+import src.hotciv.standard.factories.BombUnitFactory;
+import src.hotciv.standard.strategies.*;
 
 /**
  * Created by Lasse Letager Hansen on 05-12-2016.
  */
 public class SemiCivFactory implements CivFactory {
-    // MISSING UNIT ACTION AND CITY WORKFORCE / POPULATION
-
-    private AlphaCivFactory alphaCivFactory;
-    private BetaCivFactory betaCivFactory;
-    private GammaCivFactory gammaCivFactory;
-    private DeltaCivFactory deltaCivFactory;
-    private EpsilonCivFactory epsilonCivFactory;
-    private EtaCivFactory etaCivFactory;
-
-    public SemiCivFactory(){
-        alphaCivFactory = new AlphaCivFactory();
-        betaCivFactory = new BetaCivFactory();
-        gammaCivFactory = new GammaCivFactory();
-        deltaCivFactory = new DeltaCivFactory();
-        epsilonCivFactory = new EpsilonCivFactory();
-        etaCivFactory = new EtaCivFactory();
-    }
 
     @Override
     public AgeingStrategy createAgeingStrategy() {
-        return betaCivFactory.createAgeingStrategy();
+        return new SlowingAgeingStrategy();
     }
 
     @Override
     public WinnerStrategy createWinnerStrategy() {
-        return epsilonCivFactory.createWinnerStrategy();
+        return new ConquerCityAndWinning3BattlesStrategy();
     }
 
     @Override
     public StartingLayoutStrategy createStartingLayoutStrategy() {
-        return deltaCivFactory.createStartingLayoutStrategy();
+        return new ComplexStartingLayoutStrategy();
     }
 
     @Override
     public BattleStrategy createBattleStrategy() {
-        return epsilonCivFactory.createBattleStrategy();
+        return new FightBattleStrategy();
     }
 
     @Override
     public PerformActionStrategy createPerformActionStrategy() {
-        return gammaCivFactory.createPerformActionStrategy();
+        return new BombUnitActionStrategy();
     }
 
     @Override
     public UnitFactory createUnitFactory() {
-        return alphaCivFactory.createUnitFactory();
+        return new BombUnitFactory();
     }
 }

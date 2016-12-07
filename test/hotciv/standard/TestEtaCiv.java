@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import src.hotciv.framework.*;
 import src.hotciv.standard.*;
-import src.hotciv.standard.factories.civ.EtaCivFactory;
+import src.hotciv.standard.factories.civ.AlphaCivFactory;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -18,7 +18,7 @@ public class TestEtaCiv {
 
     @Before
     public void setUp() {
-        CivFactory factory = new EtaCivFactory();
+        CivFactory factory = new AlphaCivFactory();
         Civ civ = new AbstractCiv(factory, "EtaCiv");
         game = new GameImpl(civ);
         redPosition = (new Position(1, 1));
