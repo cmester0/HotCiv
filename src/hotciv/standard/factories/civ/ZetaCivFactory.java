@@ -7,7 +7,7 @@ import src.hotciv.standard.strategies.*;
  * Created by Lasse Letager Hansen on 30-11-2016.
  */
 public class ZetaCivFactory implements CivFactory {
-    private AlphaCivFactory alphaCivFactory;
+    private AlphaCivFactory alphaCivFactory; //
 
     public ZetaCivFactory(){
         alphaCivFactory = new AlphaCivFactory();
