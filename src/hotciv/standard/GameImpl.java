@@ -3,6 +3,7 @@ package src.hotciv.standard;
 import src.hotciv.framework.*;
 import src.hotciv.standard.factories.BombUnitFactory;
 import src.hotciv.standard.factories.StandardUnitFactory;
+import src.hotciv.standard.factories.civ.EtaCivFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -79,6 +80,7 @@ public class GameImpl implements Game {
     public Unit getUnitAt(Position p) {
         Unit u = units.get(p);
 
+        // should only change for one Civ, not all
         if(u != null) {
             Tile t = getTileAt(p);
 
@@ -115,7 +117,6 @@ public class GameImpl implements Game {
     public City getCityAt(Position p) {
         return cities.get(p);
     }
-
 
     public Player getPlayerInTurn() {
         return playerInTurn;
@@ -199,13 +200,6 @@ public class GameImpl implements Game {
             production.put(c.getOwner(), newProd);
         }
 
-        HashMap<Position, Unit> unitsTemp = new HashMap<Position, Unit>();
-        for(Map.Entry<Position, Unit> e : units.entrySet()){
-            unitsTemp.put(e.getKey(), new StandardUnit(e.getValue().getTypeString(), e.getValue().getOwner()));
-        }
-        units.clear();
-        units.putAll(unitsTemp);
-
         // Should be only for EtaCiv
         HashMap<Position, City> cityTemp = new HashMap<Position, City>();
         for(Map.Entry<Position, City> e : cities.entrySet()) {
@@ -230,6 +224,14 @@ public class GameImpl implements Game {
         }
 
         cities.putAll(cityTemp);
+
+        HashMap<Position, Unit> unitsTemp = new HashMap<Position, Unit>();
+        for(Map.Entry<Position, Unit> e : units.entrySet()){
+            unitsTemp.put(e.getKey(), new StandardUnit(e.getValue().getTypeString(), e.getValue().getOwner()));
+        }
+        units.clear();
+        units.putAll(unitsTemp);
+
     }
 
     public void endOfTurn() {

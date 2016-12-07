@@ -71,11 +71,6 @@ public class AbstractCiv implements Civ {
     }
 
     @Override
-    public void changeProductionInCityAt(Position p, String unitType) {
-
-    }
-
-    @Override
     public Unit createUnit(City c, AtomicInteger ai) {
         return unitFactory.createUnit(c, ai);
     }
