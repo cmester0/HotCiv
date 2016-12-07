@@ -20,7 +20,7 @@ public class TestEpsilonCiv {
     @Before
     public void setUp() {
         die = new LoadedDie();
-        GameConstants.die = die;
+        GameReferences.die = die;
 
         game = new GameImpl(new AbstractCiv(new EpsilonCivFactory()));
         redPosition = (new Position(1,1));
