@@ -28,6 +28,8 @@ public class AbstractCiv implements Civ {
 
     int rounds;
 
+    String civType = "ZetaCiv";
+
     public AbstractCiv(CivFactory civFactory, String civType){
         ageingStrategy = civFactory.createAgeingStrategy();
         startingLayoutStrategy = civFactory.createStartingLayoutStrategy();
@@ -59,8 +61,6 @@ public class AbstractCiv implements Civ {
         }
         return nextAge;
     }
-
-    String civType = "ZetaCiv";
 
     @Override
     public Player getWinner() {
