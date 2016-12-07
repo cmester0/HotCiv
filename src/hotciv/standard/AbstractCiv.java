@@ -20,6 +20,7 @@ public class AbstractCiv implements Civ {
 
     private Map<Position, Unit> units;
     private Map<Position, City> cities;
+    // text?
 
     private int redWins;
     private int blueWins;
