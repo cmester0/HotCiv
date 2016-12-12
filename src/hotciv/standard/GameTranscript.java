@@ -8,18 +8,29 @@ import src.hotciv.framework.*;
 public class GameTranscript implements Game {
 
     private GameImpl game;
+    private boolean log = true;
 
     public GameTranscript(GameImpl game){
         this.game = game;
     }
 
     private void log(String s){
-        System.out.println(getPlayerInTurn()+" "+s);
+        if(log)
+            System.out.println(getPlayerInTurn()+" "+s);
+    }
+
+    public void setLogging(boolean log){
+        this.log = log;
     }
 
     @Override
     public Tile getTileAt(Position p) {
         return game.getTileAt(p);
+    }
+    @Override
+    public void endOfTurn() {
+        log("ends turn");
+        game.endOfTurn();
     }
 
     @Override
@@ -57,11 +68,7 @@ public class GameTranscript implements Game {
         return false;
     }
 
-    @Override
-    public void endOfTurn() {
-        log("ends turn");
-        game.endOfTurn();
-    }
+
 
     @Override
     public void changeWorkforceFocusInCityAt(Position p, String balance) {
