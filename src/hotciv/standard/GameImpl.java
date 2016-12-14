@@ -1,6 +1,10 @@
 package src.hotciv.standard;
 
 import src.hotciv.framework.*;
+import src.hotciv.standard.strategies.AttackerWinsStrategy;
+import src.hotciv.standard.strategies.StandardAging;
+import src.hotciv.standard.strategies.StandardStartingLayoutStrategy;
+import src.hotciv.standard.strategies.TimeBasedWinningStrategy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -263,4 +267,46 @@ public class GameImpl implements Game {
         return food.get(p);
     }
 
+    public static class GameBuilder {
+        private AgeingStrategy ageingStrategy;
+        private BattleStrategy battleStrategy;
+        private PerformActionStrategy performActionStrategy;
+        private StartingLayoutStrategy startingLayoutStrategy;
+        private WinnerStrategy winnerStrategy;
+
+        public GameBuilder(){
+            ageingStrategy = new StandardAging();
+            battleStrategy = new AttackerWinsStrategy();
+            performActionStrategy  = (p, units, cities) -> {};
+            startingLayoutStrategy = new StandardStartingLayoutStrategy();
+            winnerStrategy = new TimeBasedWinningStrategy();
+        }
+
+        public GameBuilder setAgeingStrategy(AgeingStrategy ageingStrategy){
+            this.ageingStrategy = ageingStrategy;
+            return this;
+        }
+
+        public GameBuilder setBattleStrategy(BattleStrategy battleStrategy){
+            this.battleStrategy = battleStrategy;
+            return this;
+        }
+
+        public GameBuilder setPerformActionStrategy(PerformActionStrategy performActionStrategy){
+            this.performActionStrategy = performActionStrategy;
+            return this;
+        }
+
+        public GameBuilder setStartingLayoutStrategy(StartingLayoutStrategy startingLayoutStrategy){
+            this.startingLayoutStrategy = startingLayoutStrategy;
+            return this;
+        }
+
+        public GameBuilder setWinnerStrategy(WinnerStrategy winnerStrategy){
+            this.winnerStrategy = winnerStrategy;
+            return this;
+        }
+    }
+
 }
+
