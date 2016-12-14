@@ -23,7 +23,7 @@ public class TestBetaCiv {
 
     @Before
     public void setUp() {
-        game = new GameImpl(new AbstractCiv(new BetaCivFactory(), "BetaCiv"));
+        game = new GameImpl(new AbstractCiv(new BetaCivFactory()));
         redPosition = (new Position(1,1));
         bluePosition = (new Position(4,1));
     }
