@@ -19,8 +19,8 @@
 <project name="HotCiv" default="help" basedir="./"
 	 xmlns:jacoco="antlib:org.jacoco.ant">
 
-  <property name="source-directory" value="src"/>
-  <property name="test-source-directory" value="test"/>
+  <property name="source-directory" value="./"/>
+  <property name="test-source-directory" value="./"/>
 
   <property name="build-directory" value="build"/>
   <property name="resource-directory" value="resource"/>
@@ -166,7 +166,7 @@ HotCiv build management for dSoftArk
 	  </fileset>
         </classfiles>
         <sourcefiles encoding="UTF-8" tabwidth="2">
-	  <fileset dir="${source-directory}"/>
+			<fileset dir="${source-directory}"/>
         </sourcefiles>
       </structure>
       <html destdir="${jacoco.report.dir}"/>

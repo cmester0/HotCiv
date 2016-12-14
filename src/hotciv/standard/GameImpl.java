@@ -1,6 +1,7 @@
 package src.hotciv.standard;
 
 import src.hotciv.framework.*;
+import src.hotciv.standard.factories.StandardUnitFactory;
 import src.hotciv.standard.strategies.AttackerWinsStrategy;
 import src.hotciv.standard.strategies.StandardAging;
 import src.hotciv.standard.strategies.StandardStartingLayoutStrategy;
@@ -273,6 +274,7 @@ public class GameImpl implements Game {
         private PerformActionStrategy performActionStrategy;
         private StartingLayoutStrategy startingLayoutStrategy;
         private WinnerStrategy winnerStrategy;
+        private UnitFactory unitFactory;
 
         public GameBuilder(){
             ageingStrategy = new StandardAging();
@@ -280,6 +282,7 @@ public class GameImpl implements Game {
             performActionStrategy  = (p, units, cities) -> {};
             startingLayoutStrategy = new StandardStartingLayoutStrategy();
             winnerStrategy = new TimeBasedWinningStrategy();
+            unitFactory = new StandardUnitFactory();
         }
 
         public GameBuilder setAgeingStrategy(AgeingStrategy ageingStrategy){
@@ -305,6 +308,54 @@ public class GameImpl implements Game {
         public GameBuilder setWinnerStrategy(WinnerStrategy winnerStrategy){
             this.winnerStrategy = winnerStrategy;
             return this;
+        }
+
+        public GameBuilder setUnitFactory(UnitFactory unitFactory){
+            this.unitFactory = unitFactory;
+            return this;
+        }
+
+        public Game build(){
+            final AgeingStrategy ageingStrategyBuild = ageingStrategy;
+            final WinnerStrategy winnerStrategyBuild = winnerStrategy;
+            final StartingLayoutStrategy startingLayoutStrategyBuild = startingLayoutStrategy;
+            final BattleStrategy battleStrategyBuild = battleStrategy;
+            final PerformActionStrategy performActionStrategyBuild = performActionStrategy;
+            final UnitFactory unitFactoryBuild = unitFactory;
+
+            Game game = new GameImpl(new AbstractCiv(new CivFactory() {
+                @Override
+                public AgeingStrategy createAgeingStrategy() {
+                    return ageingStrategyBuild;
+                }
+
+                @Override
+                public WinnerStrategy createWinnerStrategy() {
+                    return winnerStrategyBuild;
+                }
+
+                @Override
+                public StartingLayoutStrategy createStartingLayoutStrategy() {
+                    return startingLayoutStrategyBuild ;
+                }
+
+                @Override
+                public BattleStrategy createBattleStrategy() {
+                    return battleStrategyBuild;
+                }
+
+                @Override
+                public PerformActionStrategy createPerformActionStrategy() {
+                    return performActionStrategyBuild;
+                }
+
+                @Override
+                public UnitFactory createUnitFactory() {
+                    return unitFactoryBuild;
+                }
+            }));
+
+            return game;
         }
     }
 
