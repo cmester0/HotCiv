@@ -61,8 +61,9 @@ public class GameTranscript implements Game {
     @Override
     public boolean moveUnit(Position from, Position to) {
        Unit u = game.getUnitAt(from);
+       log("tries to move from " + from + " to " + to);
        if(game.moveUnit(from, to)) {
-           log("moves " + u.getTypeString() + " from " + from + " to " + to);
+           log("\t moves " + u.getTypeString() + " from " + from + " to " + to);
            return true;
        }
         return false;

@@ -8,6 +8,11 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import src.hotciv.framework.*;
+import src.hotciv.standard.AbstractCiv;
+import src.hotciv.standard.GameImpl;
+import src.hotciv.standard.GameTranscript;
+import src.hotciv.standard.factories.civ.AlphaCivFactory;
+import src.hotciv.standard.factories.civ.SemiCivFactory;
 import src.hotciv.view.*;
 import test.hotciv.stub.*;
 
@@ -30,7 +35,7 @@ import test.hotciv.stub.*;
 public class ShowMove {
   
   public static void main(String[] args) {
-    Game game = new StubGame2();
+    Game game = new StubGame2(); // new GameTranscript(new GameImpl(new AbstractCiv(new AlphaCivFactory())));
 
     DrawingEditor editor = 
       new MiniDrawApplication( "Move any unit using the mouse",  
@@ -39,6 +44,6 @@ public class ShowMove {
     editor.showStatus("Move units to see Game's moveUnit method being called.");
 
     // Replace the setting of the tool with your UnitMoveTool implementation.
-    editor.setTool( new SelectionTool(editor) );
+    editor.setTool( new UnitMoveTool(editor, game) );
   }
 }
