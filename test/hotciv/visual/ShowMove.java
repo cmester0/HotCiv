@@ -35,7 +35,7 @@ import test.hotciv.stub.*;
 public class ShowMove {
   
   public static void main(String[] args) {
-    Game game = new StubGame2(); // new GameTranscript(new GameImpl(new AbstractCiv(new AlphaCivFactory())));
+    Game game = new StubGame2();
 
     DrawingEditor editor = 
       new MiniDrawApplication( "Move any unit using the mouse",  
