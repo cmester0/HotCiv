@@ -268,6 +268,16 @@ public class GameImpl implements Game {
         return food.get(p);
     }
 
+    @Override
+    public void addObserver(GameObserver observer) {
+
+    }
+
+    @Override
+    public void setTileFocus(Position position) {
+
+    }
+
     public static class GameBuilder {
         private AgeingStrategy ageingStrategy;
         private BattleStrategy battleStrategy;
