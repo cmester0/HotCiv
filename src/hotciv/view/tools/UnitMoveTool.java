@@ -1,4 +1,4 @@
-package src.hotciv.view;
+package src.hotciv.view.tools;
 
 import minidraw.framework.DrawingEditor;
 import minidraw.framework.Figure;
@@ -17,12 +17,10 @@ public class UnitMoveTool implements Tool {
     private Position from, to;
     private Game game;
     private Figure figure;
-    private double cx, cy;
-    private double figurePosX, figurePosY;
-    private double figureStartPosX, figureStartPosY;
+    private int figurePosX, figurePosY;
+    private int figureStartX, figureStartY;
 
     private static final int moveWidth = 30;
-    private static final int screenWidth = 455;
     private static final int borderWidth = 19;
 
     public UnitMoveTool(DrawingEditor editor, Game game){
@@ -36,22 +34,17 @@ public class UnitMoveTool implements Tool {
         from = null;
         to = null;
         figure = null;
-        cx = 0;
-        cy = 0;
     }
 
     @Override
     public void mouseDown(MouseEvent mouseEvent, int i, int i1) {
-        int x = (int) ((i1 - borderWidth) * moveWidth / ((double)2 * screenWidth));
-        int y = (int) ((i - borderWidth) * moveWidth / ((double)2 * screenWidth));
+        int x = (i1 - borderWidth) / moveWidth;
+        int y = (i - borderWidth) / moveWidth;
 
         from = new Position(x, y);
         figure = editor.drawing().findFigure(i, i1);
-        figurePosX = i;
-        figurePosY = i1;
-
-        figureStartPosX = i;
-        figureStartPosY = i1;
+        figureStartX = figurePosX = i;
+        figureStartY = figurePosY = i1;
     }
 
     @Override
@@ -61,31 +54,7 @@ public class UnitMoveTool implements Tool {
         double dx = i - figurePosX;
         double dy = i1 - figurePosY;
 
-        cx += dx;
-        cy += dy;
-
-        int mx = 0;
-        int my = 0;
-
-        while(cx > moveWidth){
-            mx+=moveWidth;
-            cx-=moveWidth;
-        }
-        while(cx < -moveWidth){
-            mx-=moveWidth;
-            cx+=moveWidth;
-        }
-
-        while(cy > moveWidth){
-            my+=moveWidth;
-            cy-=moveWidth;
-        }
-        while(cy < -moveWidth){
-            my-=moveWidth;
-            cy+=moveWidth;
-        }
-
-        figure.moveBy(mx, my);
+        figure.moveBy((int)dx, (int)dy);
 
         figurePosX = i;
         figurePosY = i1;
@@ -95,14 +64,15 @@ public class UnitMoveTool implements Tool {
     public void mouseUp(MouseEvent mouseEvent, int i, int i1) {
         if(figure == null) return;
 
-        double xcoord = figurePosX - cx;
-        double ycoord = figurePosY - cy;
+        int x = (i1 - borderWidth) / moveWidth;
+        int y = (i - borderWidth) / moveWidth;
 
-        int x = (int) ((ycoord - borderWidth) * moveWidth / ((double)2 * screenWidth));
-        int y = (int) ((xcoord - borderWidth) * moveWidth / ((double)2 * screenWidth));
         to = new Position(x, y);
 
-        game.moveUnit(from, to);
+        if(!game.moveUnit(from, to)){
+            figure.moveBy(-figurePosX, -figurePosY); // move to 0,0
+            figure.moveBy(figureStartX, figureStartY); // move to startx, starty
+        }
         reset();
     }
 

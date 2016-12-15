@@ -119,11 +119,20 @@ public class StubGame2 implements Game {
    */
   protected void defineWorld(int worldType) {
     world = new HashMap<Position,Tile>();
+
+    boolean flipper = false;
+
     for ( int r = 0; r < GameConstants.WORLDSIZE; r++ ) {
       for ( int c = 0; c < GameConstants.WORLDSIZE; c++ ) {
         Position p = new Position(r,c);
-        world.put( p, new StubTile(GameConstants.PLAINS));
+        if(flipper) {
+          world.put(p, new StubTile(GameConstants.PLAINS));
+        }else{
+          world.put(p, new StubTile(GameConstants.OCEANS));
+        }
+        flipper =! flipper;
       }
+      flipper =! flipper;
     }
   }
 

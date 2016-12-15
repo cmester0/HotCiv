@@ -7,6 +7,10 @@ import java.awt.*;
 import javax.swing.*;
 
 import src.hotciv.framework.*;
+import src.hotciv.standard.AbstractCiv;
+import src.hotciv.standard.GameImpl;
+import src.hotciv.standard.factories.civ.AlphaCivFactory;
+import src.hotciv.standard.factories.civ.SemiCivFactory;
 import src.hotciv.view.*;
 import test.hotciv.stub.*;
 

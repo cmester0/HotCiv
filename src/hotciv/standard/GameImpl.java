@@ -47,6 +47,8 @@ public class GameImpl implements Game {
     private HashMap<Player, Integer> production;
     private HashMap<Position, Integer> food;
 
+    private GameObserver gameObserver;
+
     private Player playerInTurn;
 
     private Civ civ;
@@ -138,11 +140,21 @@ public class GameImpl implements Game {
         if(getTileAt(to).getTypeString().equals(GameConstants.MOUNTAINS)) return false;
         if(getTileAt(to).getTypeString().equals(GameConstants.OCEANS)) return false;
 
+        // TEST THIS PLZ
+        if(Math.max(Math.abs(from.getColumn() - to.getColumn()), Math.abs(from.getRow() - to.getRow())) > 1){
+            return false;
+        }
+
         if(toUnit == null || civ.outcomeOfBattle(fromUnit, toUnit)){
             units.put(to, new StandardUnit(fromUnit.getTypeString(), fromUnit.getOwner(), 0));
         }
 
         units.remove(from);
+
+        if(gameObserver != null) {
+            gameObserver.worldChangedAt(from);
+            gameObserver.worldChangedAt(to);
+        }
 
         civ.update(units, cities, tiles);
 
@@ -270,7 +282,7 @@ public class GameImpl implements Game {
 
     @Override
     public void addObserver(GameObserver observer) {
-
+        gameObserver = observer;
     }
 
     @Override

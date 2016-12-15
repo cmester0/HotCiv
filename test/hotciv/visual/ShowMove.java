@@ -3,17 +3,11 @@ package test.hotciv.visual;
 import minidraw.standard.*;
 import minidraw.framework.*;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-
 import src.hotciv.framework.*;
 import src.hotciv.standard.AbstractCiv;
 import src.hotciv.standard.GameImpl;
-import src.hotciv.standard.GameTranscript;
 import src.hotciv.standard.factories.civ.AlphaCivFactory;
-import src.hotciv.standard.factories.civ.SemiCivFactory;
-import src.hotciv.view.*;
+import src.hotciv.view.tools.UnitMoveTool;
 import test.hotciv.stub.*;
 
 /** Template code for exercise FRS 36.39.
@@ -35,7 +29,7 @@ import test.hotciv.stub.*;
 public class ShowMove {
   
   public static void main(String[] args) {
-    Game game = new StubGame2();
+    Game game = new GameImpl(new AbstractCiv(new AlphaCivFactory())); //new StubGame2();
 
     DrawingEditor editor = 
       new MiniDrawApplication( "Move any unit using the mouse",  
