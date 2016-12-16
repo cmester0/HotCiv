@@ -205,6 +205,8 @@ public class GameImpl implements Game {
             if(u != null){
                 Position p = getAvailablePosition(c.getOwner());
                 units.put(p, u);
+
+                gameObserver.worldChangedAt(p);
             }
 
             production.put(c.getOwner(), newProd);
@@ -250,6 +252,10 @@ public class GameImpl implements Game {
         else {
             playerInTurn = Player.RED;
             endOfRound();
+        }
+
+        if(gameObserver != null){
+            gameObserver.turnEnds(playerInTurn, age);
         }
     }
 

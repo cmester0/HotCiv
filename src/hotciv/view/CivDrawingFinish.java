@@ -1,13 +1,15 @@
 package src.hotciv.view;
 
+import minidraw.framework.*;
+import minidraw.standard.ImageFigure;
+import minidraw.standard.StandardDrawing;
 import src.hotciv.framework.*;
 
 import java.awt.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-
-import minidraw.framework.*;
-import minidraw.standard.*;
+import java.util.Map;
 
 /** CivDrawing is a specialized Drawing (model component) from
  * MiniDraw that dynamically builds the list of Figures for MiniDraw
@@ -42,16 +44,16 @@ import minidraw.standard.*;
    limitations under the License.
 */
 
-public class CivDrawing 
+public class CivDrawingFinish
   implements Drawing, GameObserver {
-  
+
   private Drawing delegate;
 
   /** the Game instance that this UnitDrawing is going to render units
    * from */
   protected Game game;
-  
-  public CivDrawing( DrawingEditor editor, Game game ) {
+
+  public CivDrawingFinish(DrawingEditor editor, Game game ) {
     super();
     this.delegate = new StandardDrawing();
     this.game = game;
@@ -124,6 +126,31 @@ public class CivDrawing
     // insert in delegate figure list to ensure graphical
     // rendering.
     delegate.add(turnShieldIcon);
+
+    TextFigure textFigure = new TextFigure("4000 BC",
+            new Point(GfxConstants.AGE_TEXT_X,
+                    GfxConstants.AGE_TEXT_Y));
+
+    delegate.add(textFigure);
+
+    for(int i = 0; i < 16; i++){
+      for(int j = 0; j < 16; j++){
+        City city = game.getCityAt(new Position(i,j));
+        if(city != null){
+          CityFigure cityFigure = new CityFigure(city, new Point(GfxConstants.getXFromColumn(j), GfxConstants.getYFromRow(i)));
+          delegate.add(cityFigure);
+        }
+      }
+    }
+
+      TextFigure unitTypeString = new TextFigure(" ", new Point(GfxConstants.UNIT_COUNT_X, GfxConstants.UNIT_COUNT_Y));
+      delegate.add(unitTypeString);
+
+      TextFigure cityWorkforceFocus = new TextFigure(" ", new Point(GfxConstants.WORKFORCEFOCUS_X, GfxConstants.WORKFORCEFOCUS_Y));
+      delegate.add(cityWorkforceFocus);
+
+      TextFigure cityProduction = new TextFigure(" ", new Point(GfxConstants.CITY_PRODUCTION_X, GfxConstants.CITY_PRODUCTION_Y));
+      delegate.add(cityProduction);
   }
  
   // === Observer Methods ===

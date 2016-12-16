@@ -9,6 +9,7 @@ import javax.swing.*;
 
 import src.hotciv.framework.*;
 import src.hotciv.view.*;
+import src.hotciv.view.tools.UnitMoveTool;
 import test.hotciv.stub.*;
 
 /** Template code for exercise FRS 36.44.
@@ -39,6 +40,6 @@ public class ShowComposition {
     editor.showStatus("Click and drag any item to see Game's proper response.");
 
     // Replace the setting of the tool with your CompositionTool implementation.
-    editor.setTool( new NullTool() );
+    editor.setTool( new UnitMoveTool(editor, game) );
   }
 }

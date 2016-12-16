@@ -68,6 +68,9 @@ public class StubGame2 implements Game {
     // notify our observer(s) about the changes on the tiles
     gameObserver.worldChangedAt(from);
     gameObserver.worldChangedAt(to);
+
+    System.out.println();
+
     return true; 
   }
 
