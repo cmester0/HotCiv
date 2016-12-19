@@ -36,7 +36,7 @@ public class SetFocusTool extends NullTool {
     @Override
     public void mouseUp(MouseEvent mouseEvent, int i, int i1) {
         Position to = GfxConstants.getPositionFromXY(i, i1);
-        if(from.equals(to)){
+        if(from != null && from.equals(to)){
             game.setTileFocus(from);
         }
 

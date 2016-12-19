@@ -116,11 +116,12 @@ public class CivDrawing
   private ImageFigure turnShieldIcon;
   private ImageFigure unitShieldFigure;
   private TextFigure unitTypeStringFigure;
-  private TextFigure cityWorkforceFocusFigure;
-  private TextFigure cityProductionFigure;
+  private ImageFigure cityWorkforceFocusFigure;
+  private ImageFigure cityProductionFigure;
   private CityFigure redCityFigure;
   private CityFigure blueCityFigure;
   private TextFigure ageFigure;
+  private ImageFigure cityShieldFigure;
 
   private void defineIcons() {
     // very much a template implementation :)
@@ -150,27 +151,29 @@ public class CivDrawing
     unitTypeStringFigure = new TextFigure(" ", new Point(GfxConstants.UNIT_COUNT_X, GfxConstants.UNIT_COUNT_Y));
     delegate.add(unitTypeStringFigure);
 
-    cityWorkforceFocusFigure = new TextFigure(" ", new Point(GfxConstants.WORKFORCEFOCUS_X, GfxConstants.WORKFORCEFOCUS_Y));
+    cityWorkforceFocusFigure = new ImageFigure("hammer", new Point(10000, 0));
     delegate.add(cityWorkforceFocusFigure);
 
-    cityProductionFigure = new TextFigure(" ", new Point(GfxConstants.CITY_PRODUCTION_X, GfxConstants.CITY_PRODUCTION_Y));
+    cityProductionFigure = new ImageFigure("archer", new Point(10000, 0));
     delegate.add(cityProductionFigure);
 
     unitShieldFigure =
-            new ImageFigure( "redshield",
-                    new Point( 10000,
-                              0 ) );
+            new ImageFigure( "redshield", new Point( 10000, 0 ) );
 
     delegate.add(unitShieldFigure);
 
     ageFigure = new TextFigure("4000 BC", new Point(GfxConstants.AGE_TEXT_X, GfxConstants.AGE_TEXT_Y));
     delegate.add(ageFigure);
+
+    cityShieldFigure =
+            new ImageFigure( "redshield", new Point( 10000, 0 ) );
+
+    delegate.add(cityShieldFigure);
   }
  
   // === Observer Methods ===
 
   public void worldChangedAt(Position pos) {
-    System.out.println( "CivDrawing: world changes at "+pos);
     clearSelection();
     // this is a really brute-force algorithm: destroy
     // all known units and build up the entire set again
@@ -181,8 +184,6 @@ public class CivDrawing
   }
 
   public void turnEnds(Player nextPlayer, int age) {
-    System.out.println( "CivDrawing: turnEnds for "+
-                        nextPlayer+" at "+age );
     String playername = "red";
     if ( nextPlayer == Player.BLUE ) { playername = "blue"; }
     turnShieldIcon.set( playername+"shield",
@@ -193,7 +194,6 @@ public class CivDrawing
   }
 
   public void tileFocusChangedAt(Position position) {
-    System.out.println("Tile focus changed at " + position);
     Unit u = game.getUnitAt(position);
     if(unitTypeStringFigure != null) {
       if(u != null) {
@@ -211,19 +211,27 @@ public class CivDrawing
 
     City city = game.getCityAt(position);
 
+    if(city != null){
+      String playername = "red";
+      if ( city.getOwner() == Player.BLUE ) { playername = "blue"; }
+      cityShieldFigure.set(playername + "shield", new Point(GfxConstants.CITY_SHIELD_X, GfxConstants.CITY_SHIELD_Y));
+    }else{
+      cityShieldFigure.moveBy(100000, 0);
+    }
+
     if(cityWorkforceFocusFigure != null){
       if(city != null) {
-        cityWorkforceFocusFigure.setText("" + city.getWorkforceFocus());
+        cityWorkforceFocusFigure.set(city.getWorkforceFocus(), new Point(GfxConstants.WORKFORCEFOCUS_X, GfxConstants.WORKFORCEFOCUS_Y));
       } else {
-        cityWorkforceFocusFigure.setText(" ");
+        cityWorkforceFocusFigure.moveBy(100000, 0);
       }
     }
 
     if(cityProductionFigure != null){
       if(city != null) {
-        cityProductionFigure .setText("" + game.getProductionAmountOfCity(city));
+        cityProductionFigure.set(city.getProduction(), new Point(GfxConstants.CITY_PRODUCTION_X, GfxConstants.CITY_PRODUCTION_Y));
       } else {
-        cityProductionFigure .setText(" ");
+        cityProductionFigure.moveBy(100000, 0);
       }
     }
 

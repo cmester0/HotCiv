@@ -283,6 +283,10 @@ HotCiv build management for dSoftArk MiniDraw Exercises
   </target>
 
   <target name="semi" depends="build-all">
-    <echo message="*** Placeholder for your Semi task ***"/>
+    <java fork="yes" classname="test.hotciv.visual.ShowWorkingGame">
+      <classpath>
+	<path refid="class-path"/>
+      </classpath>
+    </java>
   </target>
 </project>

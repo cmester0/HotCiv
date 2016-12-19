@@ -41,6 +41,8 @@ public class UnitMoveTool extends NullTool {
 
     @Override
     public void mouseDown(MouseEvent mouseEvent, int i, int i1) {
+        if(mouseEvent.getButton() != 1) return;
+
         from = GfxConstants.getPositionFromXY(i, i1);
         figure = editor.drawing().findFigure(i, i1);
         if(!(figure instanceof UnitFigure)){
@@ -54,6 +56,7 @@ public class UnitMoveTool extends NullTool {
     @Override
     public void mouseDrag(MouseEvent mouseEvent, int i, int i1) {
         if(figure == null) return;
+        if(from == null) return;
 
         double dx = i - figurePosX;
         double dy = i1 - figurePosY;
@@ -66,6 +69,7 @@ public class UnitMoveTool extends NullTool {
 
     @Override
     public void mouseUp(MouseEvent mouseEvent, int i, int i1) {
+        if(mouseEvent.getButton() != MouseEvent.BUTTON1) return;
         if(figure == null) return;
 
         to = GfxConstants.getPositionFromXY(i, i1);
