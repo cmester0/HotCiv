@@ -9,7 +9,7 @@ import javax.swing.*;
 
 import src.hotciv.framework.*;
 import src.hotciv.view.*;
-import src.hotciv.view.tools.ToolSelector;
+import src.hotciv.view.tools.CompositeTool;
 import src.hotciv.view.tools.UnitMoveTool;
 import test.hotciv.stub.*;
 
@@ -41,6 +41,6 @@ public class ShowComposition {
     editor.showStatus("Click and drag any item to see Game's proper response.");
 
     // Replace the setting of the tool with your CompositionTool implementation.
-    editor.setTool( new ToolSelector(editor, game) );
+    editor.setTool( new CompositeTool(editor, game) );
   }
 }

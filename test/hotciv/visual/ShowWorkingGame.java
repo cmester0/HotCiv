@@ -9,8 +9,9 @@ import src.hotciv.framework.Game;
 import src.hotciv.standard.AbstractCiv;
 import src.hotciv.standard.GameImpl;
 import src.hotciv.standard.factories.civ.AlphaCivFactory;
+import src.hotciv.standard.factories.civ.SemiCivFactory;
 import src.hotciv.view.*;
-import src.hotciv.view.tools.ToolSelector;
+import src.hotciv.view.tools.CompositeTool;
 
 import javax.swing.*;
 
@@ -19,7 +20,7 @@ import javax.swing.*;
  */
 public class ShowWorkingGame {
     public static void main(String[] args) {
-        Game game = new GameImpl(new AbstractCiv(new AlphaCivFactory()));
+        Game game = new GameImpl(new AbstractCiv(new SemiCivFactory()));
 
         DrawingEditor editor =
                 new MiniDrawApplication( "Move any unit using the mouse",
@@ -28,7 +29,7 @@ public class ShowWorkingGame {
         editor.showStatus("Move units to see Game's moveUnit method being called.");
 
         // Replace the setting of the tool with your UnitMoveTool implementation.
-        editor.setTool( new ToolSelector(editor, game) );
+        editor.setTool( new CompositeTool(editor, game) );
     }
 
     private static class HotCivFactoryFinal implements Factory {

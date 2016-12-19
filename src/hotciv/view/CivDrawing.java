@@ -50,7 +50,7 @@ public class CivDrawing
   /** the Game instance that this UnitDrawing is going to render units
    * from */
   protected Game game;
-  
+
   public CivDrawing( DrawingEditor editor, Game game ) {
     super();
     this.delegate = new StandardDrawing();
@@ -120,6 +120,7 @@ public class CivDrawing
   private TextFigure cityProductionFigure;
   private CityFigure redCityFigure;
   private CityFigure blueCityFigure;
+  private TextFigure ageFigure;
 
   private void defineIcons() {
     // very much a template implementation :)
@@ -161,6 +162,9 @@ public class CivDrawing
                               0 ) );
 
     delegate.add(unitShieldFigure);
+
+    ageFigure = new TextFigure("4000 BC", new Point(GfxConstants.AGE_TEXT_X, GfxConstants.AGE_TEXT_Y));
+    delegate.add(ageFigure);
   }
  
   // === Observer Methods ===
@@ -184,6 +188,8 @@ public class CivDrawing
     turnShieldIcon.set( playername+"shield",
                         new Point( GfxConstants.TURN_SHIELD_X,
                                    GfxConstants.TURN_SHIELD_Y ) );
+
+    ageFigure.setText(Math.abs(age) + " " + (age < 0 ? "BC" : "AC"));
   }
 
   public void tileFocusChangedAt(Position position) {

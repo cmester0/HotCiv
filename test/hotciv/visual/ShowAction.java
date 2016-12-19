@@ -40,6 +40,6 @@ public class ShowAction {
     editor.showStatus("Shift-Click on unit to see Game's performAction method being called.");
 
     // Replace the setting of the tool with your ActionTool implementation.
-    editor.setTool( new ActionTool() );
+    editor.setTool( new ActionTool(game) );
   }
 }
