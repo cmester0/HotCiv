@@ -28,12 +28,6 @@ public class EndOfTurnTool extends NullTool {
         Figure figure = editor.drawing().findFigure(GfxConstants.TURN_SHIELD_X, GfxConstants.TURN_SHIELD_Y);
         if(figure.displayBox().contains(i, i1)){
             game.endOfTurn();
-
-            TextFigure tf = (TextFigure) editor.drawing().findFigure(GfxConstants.AGE_TEXT_X, GfxConstants.AGE_TEXT_Y);
-            if(tf != null) {
-                int age = game.getAge();
-                tf.setText(Math.abs(age) + (age < 0 ? "BC" : "AC"));
-            }
         }
 
     }

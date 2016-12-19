@@ -133,12 +133,11 @@ public class StubGame2 implements Game {
 
   public City getCityAt( Position p ) { return null; }
   public Player getWinner() { return null; }
-  public int getAge() { return 0; }  
+  public int getAge() { return -4000; }
   public void changeWorkforceFocusInCityAt( Position p, String balance ) {}
   public void changeProductionInCityAt( Position p, String unitType ) {}
   public void performUnitActionAt( Position p ) {
     System.out.println("Performe action at: " + p);
-
   }
 
   @Override
