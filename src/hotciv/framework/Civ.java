@@ -31,7 +31,8 @@ public interface Civ {
      */
     void performUnitActionAt( Position p );
 
-
-
     Unit createUnit(City c, AtomicInteger ai);
+
+    Position[] getPossibleBluePositions();
+    Position[] getPossibleRedPositions();
 }

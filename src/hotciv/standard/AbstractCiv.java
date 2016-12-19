@@ -15,6 +15,7 @@ public class AbstractCiv implements Civ {
     private BattleStrategy battleStrategy;
     private PerformActionStrategy performActionStrategy;
     private UnitFactory unitFactory;
+    private PositionFactory positionFactory;
 
     private Map<Position, Unit> units;
     private Map<Position, City> cities;
@@ -26,6 +27,7 @@ public class AbstractCiv implements Civ {
         battleStrategy = civFactory.createBattleStrategy();
         performActionStrategy = civFactory.createPerformActionStrategy();
         unitFactory = civFactory.createUnitFactory();
+        positionFactory = civFactory.createPositionFactory();
     }
 
     @Override
@@ -73,5 +75,17 @@ public class AbstractCiv implements Civ {
     @Override
     public Unit createUnit(City c, AtomicInteger ai) {
         return unitFactory.createUnit(c, ai);
+    }
+
+    @Override
+    public Position[] getPossibleBluePositions() {
+        return positionFactory.getPossiblePositions(Player.BLUE);
+    }
+
+    @Override
+    public Position[] getPossibleRedPositions() {
+        return positionFactory.getPossiblePositions(Player.RED);
+        /*
+         */
     }
 }

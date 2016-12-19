@@ -1,6 +1,7 @@
 package src.hotciv.standard;
 
 import src.hotciv.framework.*;
+import src.hotciv.standard.factories.StandardPositionFactory;
 import src.hotciv.standard.factories.StandardUnitFactory;
 import src.hotciv.standard.strategies.AttackerWinsStrategy;
 import src.hotciv.standard.strategies.StandardAging;
@@ -53,6 +54,9 @@ public class GameImpl implements Game {
 
     private Civ civ;
 
+    private Position[] possibleBluePositions;
+    private Position[] possibleRedPositions;
+
     public GameImpl(Civ civ) {
         production = new HashMap<Player, Integer>();
         cities     = new HashMap<Position, City>();
@@ -71,6 +75,9 @@ public class GameImpl implements Game {
 
         for(Position cityPos : cities.keySet())
             food.put(cityPos, 0);
+
+        possibleBluePositions  = civ.getPossibleBluePositions();
+        possibleRedPositions = civ.getPossibleRedPositions();
     }
 
     public Tile getTileAt(Position p) {
@@ -140,10 +147,9 @@ public class GameImpl implements Game {
         if(getTileAt(to).getTypeString().equals(GameConstants.MOUNTAINS)) return false;
         if(getTileAt(to).getTypeString().equals(GameConstants.OCEANS)) return false;
 
-        // TEST THIS PLZ
         if(Math.max(Math.abs(from.getColumn() - to.getColumn()), Math.abs(from.getRow() - to.getRow())) > 1){
             return false;
-        }
+    }
 
         if(toUnit == null || civ.outcomeOfBattle(fromUnit, toUnit)){
             units.put(to, new StandardUnit(fromUnit.getTypeString(), fromUnit.getOwner(), 0));
@@ -161,24 +167,6 @@ public class GameImpl implements Game {
         return units.get(to) != null;
     }
 
-    private static final Position[] possibleRedPositions = new Position[]{
-            new Position(1,1),
-            new Position(0,1),
-            new Position(0,2),
-            new Position(1,2),
-            new Position(2,1),
-            new Position(2,0),
-            new Position(0,0)
-    };
-    private static final Position[] possibleBluePositions = new Position[]{
-            new Position(4,1),
-            new Position(3,1),
-            new Position(4,2),
-            new Position(5,2),
-            new Position(5,1),
-            new Position(5,0),
-            new Position(4,0)
-    };
     private Position getAvailablePosition(Player player){
         Position[] pos = possibleRedPositions;
         if(player==Player.BLUE)
@@ -305,6 +293,7 @@ public class GameImpl implements Game {
         private StartingLayoutStrategy startingLayoutStrategy;
         private WinnerStrategy winnerStrategy;
         private UnitFactory unitFactory;
+        private PositionFactory positionFactory;
 
         public GameBuilder(){
             ageingStrategy = new StandardAging();
@@ -313,6 +302,7 @@ public class GameImpl implements Game {
             startingLayoutStrategy = new StandardStartingLayoutStrategy();
             winnerStrategy = new TimeBasedWinningStrategy();
             unitFactory = new StandardUnitFactory();
+            positionFactory = new StandardPositionFactory();
         }
 
         public GameBuilder setAgeingStrategy(AgeingStrategy ageingStrategy){
@@ -345,6 +335,11 @@ public class GameImpl implements Game {
             return this;
         }
 
+        public GameBuilder setPositionFactory(PositionFactory positionFactory){
+            this.positionFactory = positionFactory;
+            return this;
+        }
+
         public Game build(){
             final AgeingStrategy ageingStrategyBuild = ageingStrategy;
             final WinnerStrategy winnerStrategyBuild = winnerStrategy;
@@ -352,6 +347,7 @@ public class GameImpl implements Game {
             final BattleStrategy battleStrategyBuild = battleStrategy;
             final PerformActionStrategy performActionStrategyBuild = performActionStrategy;
             final UnitFactory unitFactoryBuild = unitFactory;
+            final PositionFactory positionFactoryBuild = positionFactory;
 
             Game game = new GameImpl(new AbstractCiv(new CivFactory() {
                 @Override
@@ -383,6 +379,12 @@ public class GameImpl implements Game {
                 public UnitFactory createUnitFactory() {
                     return unitFactoryBuild;
                 }
+
+                @Override
+                public PositionFactory createPositionFactory() {
+                    return positionFactoryBuild;
+                }
+
             }));
 
             return game;

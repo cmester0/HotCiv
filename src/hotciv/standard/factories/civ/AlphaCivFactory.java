@@ -1,11 +1,9 @@
 package src.hotciv.standard.factories.civ;
 
 import src.hotciv.framework.*;
+import src.hotciv.standard.factories.StandardPositionFactory;
 import src.hotciv.standard.factories.StandardUnitFactory;
 import src.hotciv.standard.strategies.*;
-
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by Lasse Letager Hansen on 30-11-2016.
@@ -40,6 +38,11 @@ public class AlphaCivFactory implements CivFactory {
     @Override
     public UnitFactory createUnitFactory() {
         return new StandardUnitFactory();
+    }
+
+    @Override
+    public PositionFactory createPositionFactory() {
+        return new StandardPositionFactory();
     }
 
 }

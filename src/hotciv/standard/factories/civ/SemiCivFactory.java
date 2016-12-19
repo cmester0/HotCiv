@@ -2,6 +2,8 @@ package src.hotciv.standard.factories.civ;
 
 import src.hotciv.framework.*;
 import src.hotciv.standard.factories.BombUnitFactory;
+import src.hotciv.standard.factories.ComplexPositionFactory;
+import src.hotciv.standard.factories.StandardPositionFactory;
 import src.hotciv.standard.strategies.*;
 
 /**
@@ -37,5 +39,10 @@ public class SemiCivFactory implements CivFactory {
     @Override
     public UnitFactory createUnitFactory() {
         return new BombUnitFactory();
+    }
+
+    @Override
+    public PositionFactory createPositionFactory() {
+        return new ComplexPositionFactory();
     }
 }

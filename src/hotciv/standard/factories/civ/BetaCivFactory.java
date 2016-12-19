@@ -1,6 +1,7 @@
 package src.hotciv.standard.factories.civ;
 
 import src.hotciv.framework.*;
+import src.hotciv.standard.factories.StandardPositionFactory;
 import src.hotciv.standard.factories.StandardUnitFactory;
 import src.hotciv.standard.strategies.*;
 
@@ -36,5 +37,10 @@ public class BetaCivFactory implements CivFactory {
     @Override
     public UnitFactory createUnitFactory() {
         return new StandardUnitFactory();
+    }
+
+    @Override
+    public PositionFactory createPositionFactory() {
+        return new StandardPositionFactory();
     }
 }

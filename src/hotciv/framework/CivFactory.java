@@ -10,4 +10,5 @@ public interface CivFactory {
     BattleStrategy createBattleStrategy();
     PerformActionStrategy createPerformActionStrategy();
     UnitFactory createUnitFactory();
+    PositionFactory createPositionFactory();
 }
