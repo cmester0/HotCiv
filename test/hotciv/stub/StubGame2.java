@@ -123,19 +123,11 @@ public class StubGame2 implements Game {
   protected void defineWorld(int worldType) {
     world = new HashMap<Position,Tile>();
 
-    boolean flipper = false;
-
     for ( int r = 0; r < GameConstants.WORLDSIZE; r++ ) {
       for ( int c = 0; c < GameConstants.WORLDSIZE; c++ ) {
         Position p = new Position(r,c);
-        if(flipper) {
-          world.put(p, new StubTile(GameConstants.PLAINS));
-        }else{
-          world.put(p, new StubTile(GameConstants.OCEANS));
-        }
-        flipper =! flipper;
+        world.put(p, new StubTile(GameConstants.PLAINS));
       }
-      flipper =! flipper;
     }
   }
 
@@ -158,7 +150,7 @@ public class StubGame2 implements Game {
 
   public void setTileFocus(Position position) {
     System.out.println("-- StubGame2 / setTileFocus called.");
-    System.out.println(" *** IMPLEMENTATION PENDING ***");
+    gameObserver.tileFocusChangedAt(position);
   }
 
 }

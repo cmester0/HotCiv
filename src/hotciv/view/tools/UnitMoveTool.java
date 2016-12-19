@@ -3,6 +3,7 @@ package src.hotciv.view.tools;
 import minidraw.framework.DrawingEditor;
 import minidraw.framework.Figure;
 import minidraw.framework.Tool;
+import minidraw.standard.NullTool;
 import src.hotciv.framework.City;
 import src.hotciv.framework.Game;
 import src.hotciv.framework.Position;
@@ -17,7 +18,7 @@ import java.awt.event.MouseEvent;
 /**
  * Created by Lasse Letager Hansen on 15-12-2016.
  */
-public class UnitMoveTool implements Tool {
+public class UnitMoveTool extends NullTool {
     private DrawingEditor editor;
     private Position from, to;
     private Game game;
@@ -48,36 +49,6 @@ public class UnitMoveTool implements Tool {
 
         figureStartX = figurePosX = i;
         figureStartY = figurePosY = i1;
-
-        Unit u = game.getUnitAt(from);
-        TextFigure textFigure = (TextFigure) editor.drawing().findFigure(GfxConstants.UNIT_COUNT_X, GfxConstants.UNIT_COUNT_Y);
-        if(textFigure != null) {
-            if(u != null) {
-                textFigure.setText("" + u.getMoveCount());
-            } else {
-                textFigure.setText(" ");
-            }
-        }
-
-        City city = game.getCityAt(from);
-
-        textFigure = (TextFigure) editor.drawing().findFigure(GfxConstants.WORKFORCEFOCUS_X, GfxConstants.WORKFORCEFOCUS_Y);
-        if(textFigure != null){
-            if(city != null) {
-                textFigure.setText("" + city.getWorkforceFocus());
-            } else {
-                textFigure.setText(" ");
-            }
-        }
-
-        textFigure = (TextFigure) editor.drawing().findFigure(GfxConstants.CITY_PRODUCTION_X, GfxConstants.CITY_PRODUCTION_Y);
-        if(textFigure != null){
-            if(city != null) {
-                textFigure.setText("" + game.getProductionAmountOfCity(city));
-            } else {
-                textFigure.setText(" ");
-            }
-        }
     }
 
     @Override
@@ -114,10 +85,4 @@ public class UnitMoveTool implements Tool {
 
         reset();
     }
-
-    @Override
-    public void mouseMove(MouseEvent mouseEvent, int i, int i1) { }
-
-    @Override
-    public void keyDown(KeyEvent keyEvent, int i) { }
 }

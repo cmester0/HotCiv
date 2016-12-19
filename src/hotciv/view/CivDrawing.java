@@ -114,6 +114,12 @@ public class CivDrawing
   }
 
   private ImageFigure turnShieldIcon;
+  private ImageFigure unitShieldFigure;
+  private TextFigure unitTypeStringFigure;
+  private TextFigure cityWorkforceFocusFigure;
+  private TextFigure cityProductionFigure;
+  private CityFigure redCityFigure;
+  private CityFigure blueCityFigure;
 
   private void defineIcons() {
     // very much a template implementation :)
@@ -124,6 +130,37 @@ public class CivDrawing
     // insert in delegate figure list to ensure graphical
     // rendering.
     delegate.add(turnShieldIcon);
+
+    for(int i = 0; i < 16; i++){
+      for(int j = 0; j < 16; j++){
+        City city = game.getCityAt(new Position(i,j));
+        if(city != null){
+          CityFigure cityFigure = new CityFigure(city, new Point(GfxConstants.getXFromColumn(j), GfxConstants.getYFromRow(i)));
+          delegate.add(cityFigure);
+          if(city.getOwner() == Player.RED){
+            redCityFigure = cityFigure;
+          }else{
+            blueCityFigure = cityFigure;
+          }
+        }
+      }
+    }
+
+    unitTypeStringFigure = new TextFigure(" ", new Point(GfxConstants.UNIT_COUNT_X, GfxConstants.UNIT_COUNT_Y));
+    delegate.add(unitTypeStringFigure);
+
+    cityWorkforceFocusFigure = new TextFigure(" ", new Point(GfxConstants.WORKFORCEFOCUS_X, GfxConstants.WORKFORCEFOCUS_Y));
+    delegate.add(cityWorkforceFocusFigure);
+
+    cityProductionFigure = new TextFigure(" ", new Point(GfxConstants.CITY_PRODUCTION_X, GfxConstants.CITY_PRODUCTION_Y));
+    delegate.add(cityProductionFigure);
+
+    unitShieldFigure =
+            new ImageFigure( "redshield",
+                    new Point( 10000,
+                              0 ) );
+
+    delegate.add(unitShieldFigure);
   }
  
   // === Observer Methods ===
@@ -150,7 +187,41 @@ public class CivDrawing
   }
 
   public void tileFocusChangedAt(Position position) {
-    System.out.println( "Fake it: tileFocusChangedAt "+position );
+    System.out.println("Tile focus changed at " + position);
+    Unit u = game.getUnitAt(position);
+    if(unitTypeStringFigure != null) {
+      if(u != null) {
+        String playername = "red";
+        if ( u.getOwner() == Player.BLUE ) { playername = "blue"; }
+        unitShieldFigure.set(playername + "shield", new Point(GfxConstants.UNIT_SHIELD_X, GfxConstants.UNIT_SHIELD_Y));
+
+        unitTypeStringFigure.setText("" + u.getMoveCount());
+      } else {
+        unitShieldFigure.moveBy(100000, 0);
+
+        unitTypeStringFigure.setText(" ");
+      }
+    }
+
+    City city = game.getCityAt(position);
+
+    if(cityWorkforceFocusFigure != null){
+      if(city != null) {
+        cityWorkforceFocusFigure.setText("" + city.getWorkforceFocus());
+      } else {
+        cityWorkforceFocusFigure.setText(" ");
+      }
+    }
+
+    if(cityProductionFigure != null){
+      if(city != null) {
+        cityProductionFigure .setText("" + game.getProductionAmountOfCity(city));
+      } else {
+        cityProductionFigure .setText(" ");
+      }
+    }
+
+    worldChangedAt(position);
   }
 
   @Override

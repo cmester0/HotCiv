@@ -9,6 +9,7 @@ import javax.swing.*;
 
 import src.hotciv.framework.*;
 import src.hotciv.view.*;
+import src.hotciv.view.tools.SetFocusTool;
 import test.hotciv.stub.*;
 
 /** Template code for exercise FRS 36.40.
@@ -39,6 +40,6 @@ public class ShowSetFocus {
     editor.showStatus("Click a tile to see Game's setFocus method being called.");
 
     // Replace the setting of the tool with your SetFocusTool implementation.
-    editor.setTool( new SelectionTool(editor) );
+    editor.setTool( new SetFocusTool(editor, game) );
   }
 }

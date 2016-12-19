@@ -206,7 +206,9 @@ public class GameImpl implements Game {
                 Position p = getAvailablePosition(c.getOwner());
                 units.put(p, u);
 
-                gameObserver.worldChangedAt(p);
+                if(gameObserver != null) {
+                    gameObserver.worldChangedAt(p);
+                }
             }
 
             production.put(c.getOwner(), newProd);
@@ -293,7 +295,7 @@ public class GameImpl implements Game {
 
     @Override
     public void setTileFocus(Position position) {
-
+        gameObserver.tileFocusChangedAt(position);
     }
 
     public static class GameBuilder {

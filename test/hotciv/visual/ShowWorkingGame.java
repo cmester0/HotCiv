@@ -46,7 +46,7 @@ public class ShowWorkingGame {
 
         @Override
         public Drawing createDrawing( DrawingEditor editor ) {
-            return new CivDrawingFinish( editor, game );
+            return new CivDrawing( editor, game );
         }
 
         @Override

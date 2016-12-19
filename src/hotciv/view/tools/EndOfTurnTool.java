@@ -3,6 +3,7 @@ package src.hotciv.view.tools;
 import minidraw.framework.DrawingEditor;
 import minidraw.framework.Figure;
 import minidraw.framework.Tool;
+import minidraw.standard.NullTool;
 import src.hotciv.framework.Game;
 import src.hotciv.view.GfxConstants;
 import src.hotciv.view.TextFigure;
@@ -13,10 +14,9 @@ import java.awt.event.MouseEvent;
 /**
  * Created by Lasse Letager Hansen on 15-12-2016.
  */
-public class EndOfTurnTool implements Tool {
+public class EndOfTurnTool extends NullTool {
     private Game game;
     private DrawingEditor editor;
-    private TextFigure tf;
 
     public EndOfTurnTool(DrawingEditor editor, Game game){
         this.game = game;
@@ -35,26 +35,6 @@ public class EndOfTurnTool implements Tool {
                 tf.setText(Math.abs(age) + (age < 0 ? "BC" : "AC"));
             }
         }
-
-    }
-
-    @Override
-    public void mouseDrag(MouseEvent mouseEvent, int i, int i1) {
-
-    }
-
-    @Override
-    public void mouseUp(MouseEvent mouseEvent, int i, int i1) {
-
-    }
-
-    @Override
-    public void mouseMove(MouseEvent mouseEvent, int i, int i1) {
-
-    }
-
-    @Override
-    public void keyDown(KeyEvent keyEvent, int i) {
 
     }
 }
