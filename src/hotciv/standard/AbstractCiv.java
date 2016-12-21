@@ -85,7 +85,5 @@ public class AbstractCiv implements Civ {
     @Override
     public Position[] getPossibleRedPositions() {
         return positionFactory.getPossiblePositions(Player.RED);
-        /*
-         */
     }
 }

@@ -8,7 +8,6 @@ import minidraw.standard.MiniDrawApplication;
 import src.hotciv.framework.Game;
 import src.hotciv.standard.AbstractCiv;
 import src.hotciv.standard.GameImpl;
-import src.hotciv.standard.factories.civ.AlphaCivFactory;
 import src.hotciv.standard.factories.civ.SemiCivFactory;
 import src.hotciv.view.*;
 import src.hotciv.view.tools.CompositeTool;
